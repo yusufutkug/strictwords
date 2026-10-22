@@ -1,0 +1,11552 @@
+{
+ "levels": [
+  {
+   "id": 1,
+   "name": "Level 1",
+   "difficulty": "2 waves",
+   "width": 3,
+   "height": 3,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "YEL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "EGO"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "PES"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "LOŞ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "BEJ"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "BEŞ"
+     }
+    ]
+   ],
+   "validWords": [],
+   "gen": {
+    "seed": 2547218310,
+    "lang": "tr",
+    "profile": [
+     3,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F,C),3(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0,
+    "noInPlace": false,
+    "rMix": false,
+    "fullBoard": false,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 3,
+    "cover": "strict",
+    "waves": 2,
+    "targets": 6,
+    "letters": 18,
+    "bonus": 0,
+    "validWords": 0,
+    "extras": {
+     "root": 0,
+     "four": 0,
+     "three": 0
+    },
+    "ratio": 0,
+    "peakBonus": 0,
+    "perWave": [
+     [
+      3,
+      6,
+      0
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.41,
+     0.87,
+     0.36,
+     0.47,
+     0.58
+    ],
+    "knots": [],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 0,
+    "nearMiss": 0,
+    "startNoise": 0,
+    "revCenter": null,
+    "emptyCells": 0,
+    "stage": "1-1"
+   }
+  },
+  {
+   "id": 2,
+   "name": "Level 2",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "KEZ"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "RIZA"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "TORNA"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "YÜN"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "BÜTÇE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "ŞARKI"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "AVUÇ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇABUK"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 3,
+      "word": "DENK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "TER"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARI",
+    "AZI",
+    "DEK",
+    "ERK",
+    "KET",
+    "KOT",
+    "RET",
+    "TEK",
+    "TERK",
+    "TOK",
+    "ŞARK"
+   ],
+   "gen": {
+    "seed": 2378239802,
+    "lang": "tr",
+    "profile": [
+     4,
+     1,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),1(K),2(F),3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.1,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 10,
+    "letters": 41,
+    "bonus": 4,
+    "validWords": 11,
+    "extras": {
+     "root": 2,
+     "four": 0,
+     "three": 9
+    },
+    "ratio": 0.4,
+    "peakBonus": 33,
+    "perWave": [
+     [
+      4,
+      10,
+      1
+     ],
+     [
+      1,
+      6,
+      0
+     ],
+     [
+      2,
+      5,
+      1
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.31,
+     0.41,
+     1.09,
+     1.47,
+     0.58,
+     0.41,
+     0.38,
+     0.89,
+     1.1,
+     1.34
+    ],
+    "knots": [
+     3
+    ],
+    "chains": [
+     {
+      "start": 4,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 2,
+    "nearMiss": 0,
+    "startNoise": 0.4,
+    "revCenter": 1,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 3,
+   "name": "Level 3",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "HARF"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "ÇUKUR"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "OCAK"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "SEANS"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "SEDEF"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "BAY"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "ÇEŞME"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "FÜZE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 3,
+      "word": "PERDE"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "CEZVE"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "MEŞE"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "İMAR"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 0,
+      "word": "ÇİY"
+     }
+    ]
+   ],
+   "validWords": [
+    "AHİ",
+    "BEY",
+    "CAZ",
+    "DEF",
+    "DEK",
+    "ERK",
+    "HAR",
+    "HARE",
+    "HAS",
+    "KAZ",
+    "KEZ",
+    "KUR",
+    "KİR",
+    "ODA",
+    "ODAK",
+    "RAY",
+    "SAHİ",
+    "YAR",
+    "YAS",
+    "ZOR",
+    "İMA"
+   ],
+   "gen": {
+    "seed": 2213876688,
+    "lang": "tr",
+    "profile": [
+     3,
+     3,
+     2,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),3,2,2(K,L),3(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.077,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 13,
+    "letters": 56,
+    "bonus": 7,
+    "validWords": 21,
+    "extras": {
+     "root": 2,
+     "four": 3,
+     "three": 16
+    },
+    "ratio": 0.538,
+    "peakBonus": 67,
+    "perWave": [
+     [
+      3,
+      13,
+      2
+     ],
+     [
+      3,
+      10,
+      1
+     ],
+     [
+      2,
+      7,
+      0
+     ],
+     [
+      2,
+      5,
+      0
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.31,
+     0.47,
+     0.46,
+     0.79,
+     1.04,
+     3.17,
+     2.44,
+     2.68,
+     2.47,
+     0.36,
+     0.48,
+     1.99,
+     1.42
+    ],
+    "knots": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 9,
+    "nearMiss": 4,
+    "startNoise": 0.48,
+    "revCenter": 0.92,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "medium",
+    "misses": [
+     "ending"
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "name": "Level 4",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "ÇİZGİ"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "TOST"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SIĞ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "NAM"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "ÖFKE"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "YÜZEY"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 3,
+      "word": "ESMEK"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "BACI"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "KOKU"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SAZ"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "PUL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ÇÖL"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GALİP"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "BUZ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "EZGİ"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "GEBE"
+     }
+    ]
+   ],
+   "validWords": [
+    "ACI",
+    "ALO",
+    "BAL",
+    "BEL",
+    "BELKİ",
+    "BEZ",
+    "BOT",
+    "EBE",
+    "KEM",
+    "KEZ",
+    "KOT",
+    "KUM",
+    "KÖY",
+    "OĞUL",
+    "PİL",
+    "SAĞ",
+    "SEL",
+    "TOK",
+    "YÜZ",
+    "ZAM",
+    "İLE"
+   ],
+   "gen": {
+    "seed": 3119554947,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     1,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,1(K,L),3(F,L),2(L),2(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.063,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 16,
+    "letters": 62,
+    "bonus": 8,
+    "validWords": 21,
+    "extras": {
+     "root": 1,
+     "four": 2,
+     "three": 18
+    },
+    "ratio": 0.5,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      16,
+      0
+     ],
+     [
+      2,
+      12,
+      2
+     ],
+     [
+      2,
+      10,
+      2
+     ],
+     [
+      4,
+      8,
+      0
+     ],
+     [
+      2,
+      4,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.33,
+     0.46,
+     0.48,
+     0.45,
+     0.81,
+     0.36,
+     0.48,
+     3.47,
+     1.79,
+     1.88,
+     1.97,
+     2.47,
+     3.55,
+     0.75,
+     0.51,
+     0.58
+    ],
+    "knots": [
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 7,
+    "nearMiss": 5,
+    "startNoise": 0.4,
+    "revCenter": 0.47,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 5,
+   "name": "Level 5",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "ANİ"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "HANE"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "ŞEN"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "DİYET"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "KOMİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "NEZLE"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "VAZO"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "PERT"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 3,
+      "word": "UYAK"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ZAM"
+     }
+    ]
+   ],
+   "validWords": [
+    "DİK",
+    "DİYE",
+    "HAN",
+    "VAR",
+    "YAŞ"
+   ],
+   "gen": {
+    "seed": 2946926802,
+    "lang": "tr",
+    "profile": [
+     5,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),2,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.1,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 10,
+    "letters": 39,
+    "bonus": 2,
+    "validWords": 5,
+    "extras": {
+     "root": 2,
+     "four": 0,
+     "three": 3
+    },
+    "ratio": 0.2,
+    "peakBonus": 29,
+    "perWave": [
+     [
+      5,
+      10,
+      2
+     ],
+     [
+      2,
+      5,
+      0
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.27,
+     0.29,
+     0.44,
+     0.6,
+     0.85,
+     1.94,
+     2.84,
+     0.32,
+     0.95,
+     1.19
+    ],
+    "knots": [
+     5,
+     6
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 2,
+    "nearMiss": 2,
+    "startNoise": 0.24,
+    "revCenter": 1,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 6,
+   "name": "Level 6",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "ZEVK"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "BOZ"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ALÇI"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "HİLE"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "DAMGA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "UYGUN"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KAVGA"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "ÖLÇEK"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "JUDO"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "SÖNÜK"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "BOY"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "BLUZ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "BÜKÜK"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALA",
+    "AYA",
+    "BAS",
+    "BOYLU",
+    "DAM",
+    "DEM",
+    "HAN",
+    "HİÇ",
+    "KAN",
+    "KAYMA",
+    "KEL",
+    "KOZ",
+    "KÖK",
+    "LALA",
+    "LİG",
+    "NUH",
+    "ÇEK",
+    "ÇİM",
+    "İLE",
+    "İMA"
+   ],
+   "gen": {
+    "seed": 2778594924,
+    "lang": "tr",
+    "profile": [
+     5,
+     3,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),3,2(K,L),3(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 13,
+    "letters": 56,
+    "bonus": 7,
+    "validWords": 20,
+    "extras": {
+     "root": 2,
+     "four": 2,
+     "three": 16
+    },
+    "ratio": 0.538,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      5,
+      13,
+      3
+     ],
+     [
+      5,
+      8,
+      2
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.24,
+     0.3,
+     0.31,
+     0.49,
+     0.5,
+     0.29,
+     0.38,
+     0.38,
+     0.41,
+     1.94,
+     2.57,
+     1.15,
+     1.67
+    ],
+    "knots": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 2,
+    "nearMiss": 2,
+    "startNoise": 0.2,
+    "revCenter": null,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "medium",
+    "misses": [
+     "ending (hard)"
+    ]
+   }
+  },
+  {
+   "id": 7,
+   "name": "Level 7",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "DOĞA"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "EKİN"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "ÇENE"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "AİLE"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GÜBRE"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "MESUT"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "SALI"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "GÖÇ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "HENÜZ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "ZEBRA"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "OMUZ"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "ACİL"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "KIDEM"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 2,
+      "word": "KIZ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "AÇI"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "EŞYA"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARŞ",
+    "BAS",
+    "BEZ",
+    "BİN",
+    "BİZ",
+    "DEM",
+    "DOĞAÇ",
+    "DİK",
+    "DİN",
+    "DİZ",
+    "EŞİK",
+    "GABRO",
+    "GAM",
+    "KEM",
+    "KEZ",
+    "KIŞ",
+    "KİN",
+    "MAÇ",
+    "MEKİK",
+    "MEŞİN",
+    "MUZ",
+    "MİS",
+    "NİŞ",
+    "SAL",
+    "SEL",
+    "SİM",
+    "ÇAM",
+    "ÇAĞ",
+    "ÇİL",
+    "ÇİM",
+    "İLE",
+    "ŞIK"
+   ],
+   "gen": {
+    "seed": 3682502026,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,2(K),2(F),2(K,L),2(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.125,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 16,
+    "letters": 66,
+    "bonus": 10,
+    "validWords": 32,
+    "extras": {
+     "root": 2,
+     "four": 4,
+     "three": 26
+    },
+    "ratio": 0.625,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      16,
+      5
+     ],
+     [
+      2,
+      12,
+      1
+     ],
+     [
+      2,
+      10,
+      1
+     ],
+     [
+      2,
+      8,
+      1
+     ],
+     [
+      4,
+      6,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.34,
+     0.47,
+     0.62,
+     1.1,
+     0.44,
+     0.47,
+     1.37,
+     1.42,
+     1,
+     0.87,
+     0.3,
+     0.87,
+     1.8,
+     1.85,
+     0.38,
+     0.59
+    ],
+    "knots": [
+     12,
+     13
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 0,
+    "nearMiss": 0,
+    "startNoise": 0.36,
+    "revCenter": 0.83,
+    "emptyCells": 0,
+    "stage": "2-7",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 8,
+   "name": "Level 8",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇİÇEK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "AROMA"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "DİKİŞ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "TÜM"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ESMER"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "LODOS"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "LAPA"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "REVA"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 1,
+      "word": "ÖRF"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KİM"
+     }
+    ]
+   ],
+   "validWords": [
+    "DİK",
+    "KEÇİ",
+    "KİMİ",
+    "MOR",
+    "ÇEK",
+    "İKİ"
+   ],
+   "gen": {
+    "seed": 3508051110,
+    "lang": "tr",
+    "profile": [
+     3,
+     4,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),4,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.1,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 10,
+    "letters": 42,
+    "bonus": 5,
+    "validWords": 6,
+    "extras": {
+     "root": 2,
+     "four": 1,
+     "three": 3
+    },
+    "ratio": 0.5,
+    "peakBonus": 63,
+    "perWave": [
+     [
+      3,
+      10,
+      5
+     ],
+     [
+      4,
+      7,
+      0
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.89,
+     0.54,
+     0.34,
+     0.59,
+     0.85,
+     1.36,
+     2.06,
+     0.34,
+     0.53,
+     1.34
+    ],
+    "knots": [
+     6
+    ],
+    "chains": [
+     {
+      "start": 1,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 1,
+    "nearMiss": 0,
+    "startNoise": 0.4,
+    "revCenter": 0.67,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 9,
+   "name": "Level 9",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "NİLÜFER"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "ODUN"
+     },
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 1,
+      "word": "ÇÖP"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "HAŞHAŞ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "REKOR"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "GİRDİ"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "GERİ"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "DOLGU"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GÜLÜCÜK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "GREV"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "CADDE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 3,
+      "word": "HOŞ"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 3,
+      "word": "KARŞI"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "PİL"
+     }
+    ]
+   ],
+   "validWords": [
+    "AHİ",
+    "ARŞ",
+    "FER",
+    "GÜL",
+    "KAR",
+    "KLOR",
+    "KLOŞ",
+    "KOR",
+    "KÖR",
+    "KÜR",
+    "LEŞ",
+    "LOR",
+    "LOŞ",
+    "LÜFER",
+    "LİG",
+    "OLGU",
+    "ROL",
+    "ŞAH"
+   ],
+   "gen": {
+    "seed": 3342195963,
+    "lang": "tr",
+    "profile": [
+     4,
+     4,
+     1,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),4,1(K),2(F),3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.143,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 14,
+    "letters": 66,
+    "bonus": 10,
+    "validWords": 18,
+    "extras": {
+     "root": 2,
+     "four": 4,
+     "three": 12
+    },
+    "ratio": 0.714,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      4,
+      14,
+      3
+     ],
+     [
+      4,
+      10,
+      2
+     ],
+     [
+      1,
+      6,
+      3
+     ],
+     [
+      2,
+      5,
+      2
+     ],
+     [
+      3,
+      3,
+      2
+     ]
+    ],
+    "tempo": [
+     0.84,
+     0.93,
+     0.63,
+     0.5,
+     0.55,
+     1,
+     1.05,
+     2.76,
+     3.08,
+     2.47,
+     0.34,
+     0.38,
+     1.11,
+     1.47
+    ],
+    "knots": [
+     7,
+     8,
+     9
+    ],
+    "chains": [
+     {
+      "start": 2,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 8,
+    "nearMiss": 3,
+    "startNoise": 0.43,
+    "revCenter": 0.96,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "medium",
+    "misses": [
+     "sweep"
+    ]
+   }
+  },
+  {
+   "id": 10,
+   "name": "Level 10",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "ABİYE"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "MİDE"
+     },
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 0,
+      "word": "OKUL"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 0,
+      "word": "BUT"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "AYRINTI"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "CÜZDAN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "PİLOT"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "AİT"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "SANDVİÇ"
+     },
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 3,
+      "word": "ARIZALI"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "MEŞRU"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 1,
+      "word": "CAN"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "İNEK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "TURNA"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KİL"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇARE"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 2,
+      "word": "ÇİNİ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ABİDE",
+    "ANT",
+    "ANİ",
+    "ARI",
+    "ARIZ",
+    "ARIZA",
+    "ATİ",
+    "AYRI",
+    "AZI",
+    "BAŞ",
+    "BEN",
+    "BİN",
+    "BİNA",
+    "CÜZ",
+    "DAR",
+    "ELA",
+    "ELİT",
+    "KAN",
+    "KOD",
+    "KOY",
+    "KUL",
+    "KİLO",
+    "KİR",
+    "LAZ",
+    "NAL",
+    "ODA",
+    "OYA",
+    "PATİ",
+    "PİL",
+    "RIZA",
+    "TALİ",
+    "TUR",
+    "TURA",
+    "TUZ",
+    "TÜR",
+    "YAN",
+    "YEL",
+    "YOK",
+    "YOL",
+    "ÇAR",
+    "ÇAY",
+    "ÇİT",
+    "İLE",
+    "İRİ",
+    "İTA"
+   ],
+   "gen": {
+    "seed": 4247863751,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     1,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,2(K,L),1(K,L),2(K,L),2(F,L),2(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.176,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 17,
+    "letters": 79,
+    "bonus": 17,
+    "validWords": 45,
+    "extras": {
+     "root": 9,
+     "four": 7,
+     "three": 29
+    },
+    "ratio": 1,
+    "peakBonus": 88,
+    "perWave": [
+     [
+      4,
+      17,
+      2
+     ],
+     [
+      3,
+      13,
+      4
+     ],
+     [
+      2,
+      10,
+      3
+     ],
+     [
+      2,
+      8,
+      7
+     ],
+     [
+      4,
+      6,
+      2
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.35,
+     0.5,
+     1.59,
+     2.18,
+     1.39,
+     1.55,
+     3.35,
+     1.35,
+     1.18,
+     2.08,
+     4.35,
+     0.43,
+     0.78,
+     0.31,
+     0.39,
+     1.12,
+     1.19
+    ],
+    "knots": [
+     6,
+     10
+    ],
+    "chains": [
+     {
+      "start": 11,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 13,
+    "nearMiss": 0,
+    "startNoise": 0.54,
+    "revCenter": 0.73,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 11,
+   "name": "Level 11",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "DESEN"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 1,
+      "word": "SALGI"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "KERVAN"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "ECZA"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "HAVUZ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "HANGAR"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "ASANSÖR"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 0,
+      "word": "GÜL"
+     },
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 0,
+      "word": "ŞAL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "İFLAS"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 0,
+      "word": "DOZ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALGI",
+    "ASA",
+    "GAR",
+    "HAN",
+    "NAZ",
+    "SAL",
+    "SEN",
+    "SÜS",
+    "ZAN"
+   ],
+   "gen": {
+    "seed": 4075541570,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     2,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2,2(K,L),4(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.091,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 11,
+    "letters": 52,
+    "bonus": 10,
+    "validWords": 9,
+    "extras": {
+     "root": 3,
+     "four": 1,
+     "three": 5
+    },
+    "ratio": 0.909,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      3,
+      11,
+      4
+     ],
+     [
+      2,
+      8,
+      1
+     ],
+     [
+      2,
+      6,
+      3
+     ],
+     [
+      4,
+      4,
+      1
+     ]
+    ],
+    "tempo": [
+     0.89,
+     1.12,
+     0.97,
+     2.38,
+     3.09,
+     2.45,
+     5.75,
+     0.31,
+     0.34,
+     0.44,
+     2.01
+    ],
+    "knots": [
+     3,
+     4,
+     5,
+     6
+    ],
+    "chains": [
+     {
+      "start": 7,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 13,
+    "nearMiss": 3,
+    "startNoise": 0.54,
+    "revCenter": 0.6,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 12,
+   "name": "Level 12",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "DERİN"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "AHLAK"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "KURU"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "ÇUL"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "ÇETE"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "DÜĞÜM"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "MUTSUZ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "CİĞER"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 0,
+      "word": "KÖR"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "BORA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "ŞÜPHE"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "EĞER"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "FEDERAL"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 1,
+      "word": "AST"
+     }
+    ]
+   ],
+   "validWords": [
+    "BOR",
+    "DEF",
+    "DERİ",
+    "EDER",
+    "ERK",
+    "HAR",
+    "HARE",
+    "KUR",
+    "KUT",
+    "KUTSUZ",
+    "KÜR",
+    "PUS",
+    "RET",
+    "TER"
+   ],
+   "gen": {
+    "seed": 3911725752,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2(L),2(K),2(K,L),2(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.071,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 14,
+    "letters": 63,
+    "bonus": 5,
+    "validWords": 14,
+    "extras": {
+     "root": 3,
+     "four": 3,
+     "three": 8
+    },
+    "ratio": 0.357,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      4,
+      14,
+      3
+     ],
+     [
+      3,
+      10,
+      0
+     ],
+     [
+      1,
+      7,
+      0
+     ],
+     [
+      4,
+      6,
+      1
+     ],
+     [
+      2,
+      2,
+      2
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.34,
+     0.61,
+     0.77,
+     0.38,
+     0.42,
+     0.44,
+     1.78,
+     1.8,
+     2.08,
+     1.94,
+     4.97,
+     0.42,
+     1.37
+    ],
+    "knots": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "chains": [
+     {
+      "start": 4,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 6,
+    "nearMiss": 5,
+    "startNoise": 0.51,
+    "revCenter": 0.85,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 13,
+   "name": "Level 13",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "ROKA"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "KÜPE"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "TEMSİL"
+     },
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 1,
+      "word": "HOL"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "TULUMBA"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 3,
+      "word": "İNSAFLI"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "TÖRPÜ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ODAK"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SIR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "YOLCU"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "KÖYLÜ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇEYREK"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 0,
+      "word": "BEL"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 1,
+      "word": "BAŞ"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "KOY"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 3,
+      "word": "DÜŞÜNCE"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 1,
+      "word": "EVLİ"
+     }
+    ]
+   ],
+   "validWords": [
+    "AKOR",
+    "ARŞ",
+    "BOT",
+    "BOŞ",
+    "DEK",
+    "DÜŞ",
+    "DÜŞÜN",
+    "KAS",
+    "KOR",
+    "KÖR",
+    "KÖY",
+    "KÜP",
+    "ODA",
+    "RET",
+    "RUMBA",
+    "SAF",
+    "SIRF",
+    "TEMSİLİ",
+    "TER",
+    "TERS",
+    "TULUM",
+    "TUR",
+    "ULU",
+    "YAŞ",
+    "YIL",
+    "YOK",
+    "YOL",
+    "İNSAF",
+    "ŞUNCA"
+   ],
+   "gen": {
+    "seed": 512668702,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     3,
+     1,
+     5,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,3,1(K,L),5(F,L),2(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.118,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 17,
+    "letters": 79,
+    "bonus": 17,
+    "validWords": 29,
+    "extras": {
+     "root": 10,
+     "four": 4,
+     "three": 15
+    },
+    "ratio": 1,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      4,
+      17,
+      7
+     ],
+     [
+      2,
+      13,
+      4
+     ],
+     [
+      7,
+      11,
+      4
+     ],
+     [
+      4,
+      4,
+      2
+     ]
+    ],
+    "tempo": [
+     0.77,
+     0.89,
+     1.18,
+     0.5,
+     3.45,
+     3.61,
+     5.75,
+     0.27,
+     0.34,
+     0.37,
+     1.56,
+     0.97,
+     1.27,
+     0.29,
+     0.38,
+     1.22,
+     1.42
+    ],
+    "knots": [
+     4,
+     5,
+     6
+    ],
+    "chains": [
+     {
+      "start": 7,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 18,
+    "nearMiss": 3,
+    "startNoise": 0.51,
+    "revCenter": 0.66,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "many",
+    "misses": [
+     "opening"
+    ]
+   }
+  },
+  {
+   "id": 14,
+   "name": "Level 14",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "MAYONEZ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "TAKUNYA"
+     },
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 1,
+      "word": "BESİ"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "YIRTICI"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "KÖKEN"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "SÜTUN"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "HAS"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "ARP"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KİN"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "RENK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "YOĞUN"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KIYIM"
+     }
+    ]
+   ],
+   "validWords": [
+    "AİT",
+    "BOT",
+    "KAT",
+    "KIYI",
+    "KÖK",
+    "MAYO",
+    "NET",
+    "OYA",
+    "SÜT",
+    "TEN",
+    "YAĞ"
+   ],
+   "gen": {
+    "seed": 340045051,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     3,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,3,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.167,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 12,
+    "letters": 58,
+    "bonus": 7,
+    "validWords": 11,
+    "extras": {
+     "root": 4,
+     "four": 0,
+     "three": 7
+    },
+    "ratio": 0.583,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      4,
+      12,
+      4
+     ],
+     [
+      2,
+      8,
+      2
+     ],
+     [
+      3,
+      6,
+      0
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.25,
+     0.38,
+     0.65,
+     1.17,
+     2.8,
+     3.57,
+     1.4,
+     1.57,
+     0.41,
+     0.54,
+     1.6,
+     1.3
+    ],
+    "knots": [
+     4,
+     5
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 11,
+    "nearMiss": 0,
+    "startNoise": 0.29,
+    "revCenter": 0.95,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 15,
+   "name": "Level 15",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "KAFA"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "MAHCUP"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GEVŞEK"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "ÖĞÜN"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "OPERA"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "HUSUS"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "İLGİSİZ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "MUTLU"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "BAMBU"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 1,
+      "word": "KÜP"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "BACA"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "ÖNCÜ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "HİBE"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 5,
+      "dir": 2,
+      "word": "UÇLU"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "OYA"
+     }
+    ]
+   ],
+   "validWords": [
+    "AMA",
+    "AMAN",
+    "AST",
+    "AİT",
+    "CAM",
+    "CAN",
+    "ELA",
+    "HAM",
+    "HAN",
+    "HİN",
+    "KAÇ",
+    "KAÇA",
+    "KEP",
+    "KEŞ",
+    "LEŞ",
+    "MAMA",
+    "NAM",
+    "PEK",
+    "PUF",
+    "SEN",
+    "SİZ",
+    "ÇAK",
+    "ÇİP",
+    "İLGİ",
+    "ŞER"
+   ],
+   "gen": {
+    "seed": 173536050,
+    "lang": "tr",
+    "profile": [
+     3,
+     3,
+     1,
+     2,
+     4,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),3,1(K,L),2(K),4(F),2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.2,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 15,
+    "letters": 69,
+    "bonus": 9,
+    "validWords": 25,
+    "extras": {
+     "root": 1,
+     "four": 3,
+     "three": 21
+    },
+    "ratio": 0.6,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      3,
+      15,
+      3
+     ],
+     [
+      3,
+      12,
+      1
+     ],
+     [
+      1,
+      9,
+      3
+     ],
+     [
+      2,
+      8,
+      1
+     ],
+     [
+      4,
+      6,
+      0
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.39,
+     0.61,
+     0.38,
+     0.48,
+     3.51,
+     3.63,
+     3.35,
+     2.7,
+     1.99,
+     2.1,
+     0.27,
+     0.38,
+     0.96,
+     1.1,
+     2.15
+    ],
+    "knots": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "chains": [
+     {
+      "start": 1,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 13,
+    "nearMiss": 5,
+    "startNoise": 0.54,
+    "revCenter": 0.86,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "medium",
+    "misses": [
+     "decoys"
+    ]
+   }
+  },
+  {
+   "id": 16,
+   "name": "Level 16",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "SEVİYE"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 1,
+      "word": "ANİME"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "DOĞRU"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "KISA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "AĞIT"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "YÜZÜK"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "DİZİ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "ESPRİLİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ISLAK"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 0,
+      "word": "SEMA"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 0,
+      "word": "GÖZ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 1,
+      "word": "PUS"
+     },
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 3,
+      "word": "BOŞ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "YEMİN"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 0,
+      "word": "İMA"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "AKILCI"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "PEK"
+     }
+    ]
+   ],
+   "validWords": [
+    "AKI",
+    "AKIL",
+    "ALIK",
+    "ANİ",
+    "ASIK",
+    "ATİ",
+    "AZI",
+    "DEK",
+    "DOZ",
+    "DÜK",
+    "DİZ",
+    "EMİN",
+    "ESPRİ",
+    "GÖL",
+    "KAZ",
+    "KEP",
+    "KIL",
+    "KIZ",
+    "KÜP",
+    "LİG",
+    "MEY",
+    "NAZ",
+    "POZ",
+    "SES",
+    "SEVK",
+    "SIK",
+    "TIĞ",
+    "YEM",
+    "YER",
+    "YÜZ",
+    "YİV",
+    "ZAN",
+    "ZİL",
+    "ÖTE",
+    "ÜNİTE",
+    "İRİ",
+    "İRİN",
+    "İTA"
+   ],
+   "gen": {
+    "seed": 7796758,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     1,
+     2,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2(K,L),1(K,L),2(F,L),2,2(L),2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.059,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 17,
+    "letters": 75,
+    "bonus": 22,
+    "validWords": 38,
+    "extras": {
+     "root": 7,
+     "four": 6,
+     "three": 25
+    },
+    "ratio": 1.294,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      4,
+      17,
+      7
+     ],
+     [
+      5,
+      13,
+      5
+     ],
+     [
+      3,
+      8,
+      2
+     ],
+     [
+      3,
+      5,
+      3
+     ],
+     [
+      2,
+      2,
+      4
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.47,
+     0.67,
+     0.29,
+     0.62,
+     1.06,
+     0.34,
+     0.92,
+     2.95,
+     0.47,
+     0.74,
+     0.38,
+     0.86,
+     1.76,
+     2.73,
+     1.08,
+     0.65
+    ],
+    "knots": [
+     8,
+     13,
+     14
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 6,
+    "nearMiss": 0,
+    "startNoise": 0.43,
+    "revCenter": 0.88,
+    "emptyCells": 0,
+    "stage": "8-16",
+    "tier": "many",
+    "misses": [
+     "no chain after knot"
+    ]
+   }
+  },
+  {
+   "id": 17,
+   "name": "Level 17",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 5,
+      "y": 1,
+      "dir": 1,
+      "word": "ÇALI"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "ARZU"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "ÜST"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "OLTA"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "TİCARİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "HARİTA"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "BAGAJ"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "TEORİ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 3,
+      "word": "EĞMEK"
+     },
+     {
+      "x": 1,
+      "y": 5,
+      "dir": 3,
+      "word": "EDİTÖR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "KUMPİR"
+     },
+     {
+      "x": 5,
+      "y": 5,
+      "dir": 2,
+      "word": "PORTRE"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALO",
+    "ALT",
+    "ARZ",
+    "ARİ",
+    "AST",
+    "ATİ",
+    "CARİ",
+    "DERİ",
+    "EĞME",
+    "GRİ",
+    "HAR",
+    "KAR",
+    "KEM",
+    "KUM",
+    "PORTE",
+    "SET",
+    "SÜMEK",
+    "İTA"
+   ],
+   "gen": {
+    "seed": 910294962,
+    "lang": "tr",
+    "profile": [
+     5,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),3,2,2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.25,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 12,
+    "letters": 60,
+    "bonus": 14,
+    "validWords": 18,
+    "extras": {
+     "root": 4,
+     "four": 4,
+     "three": 10
+    },
+    "ratio": 1.167,
+    "peakBonus": 86,
+    "perWave": [
+     [
+      5,
+      12,
+      4
+     ],
+     [
+      3,
+      7,
+      5
+     ],
+     [
+      2,
+      4,
+      3
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.28,
+     0.39,
+     0.44,
+     0.6,
+     0.88,
+     1.48,
+     1.55,
+     2.46,
+     3.02,
+     1.76,
+     0.95,
+     1.83
+    ],
+    "knots": [
+     7,
+     8
+    ],
+    "chains": [
+     {
+      "start": 1,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 5,
+    "nearMiss": 0,
+    "startNoise": 0.42,
+    "revCenter": 0.85,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 18,
+   "name": "Level 18",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "PEYNİR"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "AKICI"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "VİZYON"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "ANTİK"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "POŞET"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "TOY"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "HEZİMET"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 3,
+      "word": "ŞUT"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "AĞDA"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "FOSİL"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "NAZLI"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "HÜCUM"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "CIVA"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 1,
+      "word": "ADİ"
+     }
+    ]
+   ],
+   "validWords": [
+    "AKI",
+    "ANKA",
+    "ANT",
+    "ATA",
+    "AYI",
+    "AĞA",
+    "CİN",
+    "HAP",
+    "KEP",
+    "KİT",
+    "MUM",
+    "NAZ",
+    "PAHA",
+    "PEK",
+    "SEMİZ",
+    "TEMİZ",
+    "TUŞ",
+    "TİK",
+    "YAN",
+    "ZAN",
+    "ZAR",
+    "ZIT",
+    "ZOR"
+   ],
+   "gen": {
+    "seed": 741366920,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     3,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2,3,2(K),2(F,L),2(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.214,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 14,
+    "letters": 66,
+    "bonus": 11,
+    "validWords": 23,
+    "extras": {
+     "root": 3,
+     "four": 4,
+     "three": 16
+    },
+    "ratio": 0.786,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      3,
+      14,
+      2
+     ],
+     [
+      2,
+      11,
+      4
+     ],
+     [
+      3,
+      9,
+      2
+     ],
+     [
+      5,
+      6,
+      2
+     ],
+     [
+      1,
+      1,
+      0
+     ]
+    ],
+    "tempo": [
+     0.34,
+     0.44,
+     1.59,
+     0.44,
+     3.38,
+     0.39,
+     1.78,
+     1.91,
+     0.69,
+     0.34,
+     1.18,
+     1.12,
+     1.83,
+     0.75
+    ],
+    "knots": [
+     4,
+     7
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 3,
+    "nearMiss": 2,
+    "startNoise": 0.51,
+    "revCenter": 0.67,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "medium",
+    "misses": [
+     "decoys"
+    ]
+   }
+  },
+  {
+   "id": 19,
+   "name": "Level 19",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ŞEZLONG"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "ENTEGRE"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "İFADE"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 1,
+      "word": "TREN"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "DİKEN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "DUVAR"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 2,
+      "word": "VURUŞ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "VİRAJ"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SPREY"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "VİŞNE"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "VEZNE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 3,
+      "word": "ŞAN"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "KEP"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "UMUT"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "TAÇ"
+     },
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 1,
+      "word": "YAĞ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "KÜS"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "YÜK"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARİ",
+    "ATEŞ",
+    "ATİ",
+    "DAR",
+    "DUR",
+    "DÜK",
+    "DİK",
+    "EDA",
+    "EDAT",
+    "EGO",
+    "ERK",
+    "FAR",
+    "FARE",
+    "GEÇ",
+    "GRİ",
+    "KET",
+    "KEZ",
+    "NERE",
+    "PEK",
+    "RAF",
+    "SEN",
+    "TAT",
+    "TEK",
+    "TÜY",
+    "UZUN",
+    "VAR",
+    "YER",
+    "ZAR",
+    "ZAT",
+    "ÜRE",
+    "İFA",
+    "İTA",
+    "ŞEN",
+    "ŞER",
+    "ŞEY"
+   ],
+   "gen": {
+    "seed": 572123498,
+    "lang": "tr",
+    "profile": [
+     5,
+     2,
+     2,
+     2,
+     2,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),2,2(L),2(L),2(K),5(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.222,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 18,
+    "letters": 80,
+    "bonus": 12,
+    "validWords": 35,
+    "extras": {
+     "root": 2,
+     "four": 5,
+     "three": 28
+    },
+    "ratio": 0.667,
+    "peakBonus": 63,
+    "perWave": [
+     [
+      5,
+      18,
+      5
+     ],
+     [
+      7,
+      13,
+      3
+     ],
+     [
+      6,
+      6,
+      1
+     ]
+    ],
+    "tempo": [
+     0.26,
+     0.39,
+     0.5,
+     0.71,
+     1.2,
+     1.72,
+     1.89,
+     0.6,
+     1.33,
+     1.75,
+     0.2,
+     0.26,
+     0.34,
+     0.96,
+     1.77,
+     1.52,
+     0.44,
+     1.5
+    ],
+    "knots": [
+     5,
+     6,
+     9,
+     14
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     },
+     {
+      "start": 10,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 2,
+    "nearMiss": 2,
+    "startNoise": 0.2,
+    "revCenter": 0.81,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 20,
+   "name": "Level 20",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "MÜTHİŞ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "DEVAM"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "BİLMECE"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "KUM"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 2,
+      "word": "SÜET"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "KAYGI"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "MÜZİK"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 1,
+      "word": "TIR"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 3,
+      "word": "HAT"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "NORM"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "DAİR"
+     }
+    ]
+   ],
+   "validWords": [
+    "AYET",
+    "BİLME",
+    "DEV",
+    "DEVA",
+    "MEY",
+    "TAV",
+    "TÜM",
+    "YAZ",
+    "YEM",
+    "ŞAH"
+   ],
+   "gen": {
+    "seed": 1480264029,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     3,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,3,2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.273,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 11,
+    "letters": 49,
+    "bonus": 4,
+    "validWords": 10,
+    "extras": {
+     "root": 3,
+     "four": 1,
+     "three": 6
+    },
+    "ratio": 0.364,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      4,
+      11,
+      4
+     ],
+     [
+      2,
+      7,
+      0
+     ],
+     [
+      3,
+      5,
+      0
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.41,
+     0.68,
+     0.85,
+     0.53,
+     0.44,
+     0.78,
+     1.31,
+     2.11,
+     1.08,
+     0.59
+    ],
+    "knots": [
+     8
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 0,
+    "nearMiss": 0,
+    "startNoise": 0.4,
+    "revCenter": 0.8,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 21,
+   "name": "Level 21",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "DURU"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "KUAFÖR"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "EĞİM"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "AÇILIM"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "MOTORLU"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "SIKMAK"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "İĞNE"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "ŞOFÖR"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "UCUBE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 2,
+      "word": "ÖZDEŞ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "EZMEK"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "BEZE"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 1,
+      "word": "MAÇ"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 1,
+      "word": "ÇAP"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 1,
+      "word": "MARŞ"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "DEFO"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARZ",
+    "ARŞ",
+    "AÇI",
+    "BEZ",
+    "CAM",
+    "DEF",
+    "DEFA",
+    "DEM",
+    "DUR",
+    "DİK",
+    "ELA",
+    "EZME",
+    "FAR",
+    "FOK",
+    "KAFE",
+    "KAM",
+    "KEM",
+    "KEZ",
+    "KOF",
+    "MAL",
+    "MOTOR",
+    "RAF",
+    "SIK",
+    "SIKMA",
+    "SUR",
+    "UÇUK",
+    "ZAM",
+    "ÇAM",
+    "ÇAR",
+    "ÇİM",
+    "ÇİP"
+   ],
+   "gen": {
+    "seed": 1372097331,
+    "lang": "tr",
+    "profile": [
+     3,
+     3,
+     3,
+     2,
+     1,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),3,3,2(K,L),1(K,L),4(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.188,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 16,
+    "letters": 75,
+    "bonus": 13,
+    "validWords": 31,
+    "extras": {
+     "root": 8,
+     "four": 3,
+     "three": 20
+    },
+    "ratio": 0.813,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      3,
+      16,
+      2
+     ],
+     [
+      3,
+      13,
+      5
+     ],
+     [
+      6,
+      10,
+      3
+     ],
+     [
+      4,
+      4,
+      3
+     ]
+    ],
+    "tempo": [
+     0.39,
+     0.33,
+     0.31,
+     0.98,
+     1.05,
+     0.39,
+     0.88,
+     0.78,
+     1.83,
+     2.02,
+     2.73,
+     2.45,
+     4.26,
+     0.39,
+     0.47,
+     0.59
+    ],
+    "knots": [
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     },
+     {
+      "start": 13,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 10,
+    "nearMiss": 2,
+    "startNoise": 0.6,
+    "revCenter": 0.67,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 22,
+   "name": "Level 22",
+   "difficulty": "7 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "İÇGÜDÜ"
+     },
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 0,
+      "word": "ZİL"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 0,
+      "word": "DUA"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "TIĞ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "AKSİ"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "DÜĞÜN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ÇIKMAK"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "HATALI"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "SIFIR"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "KASKO"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 3,
+      "word": "ENGİN"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 5,
+      "dir": 2,
+      "word": "SENSÖR"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "OLGU"
+     },
+     {
+      "x": 5,
+      "y": 3,
+      "dir": 2,
+      "word": "MENZİL"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "ASMAK"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 3,
+      "word": "TİZ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "DAĞ"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "OĞUL"
+     }
+    ]
+   ],
+   "validWords": [
+    "AKS",
+    "ALO",
+    "ALT",
+    "ANA",
+    "ANALI",
+    "ANİ",
+    "ASKI",
+    "ASMA",
+    "ASİ",
+    "ATA",
+    "AĞA",
+    "DAM",
+    "DANK",
+    "DUR",
+    "EZGİ",
+    "GAM",
+    "GÜDÜ",
+    "GÜL",
+    "GÜZ",
+    "HAN",
+    "HAT",
+    "HATA",
+    "KAM",
+    "KAN",
+    "KAS",
+    "KASK",
+    "KAZ",
+    "KENE",
+    "KÜS",
+    "LİG",
+    "MEN",
+    "MİS",
+    "NAL",
+    "NEM",
+    "SANA",
+    "SANSÜR",
+    "SAĞ",
+    "SEL",
+    "SEN",
+    "SENE",
+    "SUR",
+    "SÜT",
+    "SİM",
+    "TAS",
+    "ZAR",
+    "ZAT",
+    "ÇIKMA",
+    "ÇOMAK",
+    "İSA"
+   ],
+   "gen": {
+    "seed": 1203372820,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     3,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,3,3,2(K),2(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.222,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 7,
+    "targets": 18,
+    "letters": 82,
+    "bonus": 20,
+    "validWords": 49,
+    "extras": {
+     "root": 9,
+     "four": 10,
+     "three": 30
+    },
+    "ratio": 1.111,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      4,
+      18,
+      2
+     ],
+     [
+      2,
+      14,
+      9
+     ],
+     [
+      2,
+      12,
+      6
+     ],
+     [
+      3,
+      10,
+      3
+     ],
+     [
+      3,
+      7,
+      4
+     ],
+     [
+      2,
+      4,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.82,
+     0.4,
+     0.53,
+     0.65,
+     0.77,
+     0.39,
+     0.84,
+     2.05,
+     0.43,
+     0.47,
+     5.97,
+     0.34,
+     1.56,
+     4.29,
+     1.15,
+     0.98,
+     0.41,
+     1.56
+    ],
+    "knots": [
+     7,
+     10,
+     13
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 7,
+    "nearMiss": 2,
+    "startNoise": 0.58,
+    "revCenter": 0.74,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "many",
+    "misses": [
+     "no chain after knot"
+    ]
+   }
+  },
+  {
+   "id": 23,
+   "name": "Level 23",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "AMPUL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "KAŞ"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "ÇÜRÜK"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "İHTİYAÇ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 2,
+      "word": "DOSYA"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "LİNK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ENDAM"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 5,
+      "dir": 3,
+      "word": "BUĞDAY"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 1,
+      "word": "İLAN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "CİVAR"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "TIP"
+     }
+    ]
+   ],
+   "validWords": [
+    "ADİ",
+    "DAM",
+    "KÜR",
+    "MİDYE",
+    "NAL",
+    "PUL",
+    "TIPA",
+    "VAR",
+    "YAD",
+    "ÇAY"
+   ],
+   "gen": {
+    "seed": 2109677438,
+    "lang": "tr",
+    "profile": [
+     4,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),3,2(K),2(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.182,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 11,
+    "letters": 52,
+    "bonus": 8,
+    "validWords": 10,
+    "extras": {
+     "root": 1,
+     "four": 1,
+     "three": 8
+    },
+    "ratio": 0.727,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      11,
+      4
+     ],
+     [
+      3,
+      7,
+      3
+     ],
+     [
+      2,
+      4,
+      3
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.39,
+     0.52,
+     0.65,
+     1.1,
+     0.38,
+     1.23,
+     1.05,
+     1.5,
+     3.36,
+     1.39,
+     1.42
+    ],
+    "knots": [
+     8
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 3,
+    "nearMiss": 0,
+    "startNoise": 0.43,
+    "revCenter": 0.85,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 24,
+   "name": "Level 24",
+   "difficulty": "5 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GALİBA"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "ÇIKIŞ"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "PANJUR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "KISMET"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 2,
+      "word": "MİTİNG"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "İŞÇİ"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "TEŞVİK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "ÜLKÜ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "GEZİ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "YÜZSÜZ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "JOKER"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KÜLÇE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 5,
+      "dir": 3,
+      "word": "RULO"
+     },
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 3,
+      "word": "TEK"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALO",
+    "BOL",
+    "BİLE",
+    "GÜL",
+    "ISI",
+    "KEL",
+    "KEM",
+    "KET",
+    "KIŞ",
+    "KÜL",
+    "NAL",
+    "NAM",
+    "OBA",
+    "RUJ",
+    "SEL",
+    "SIK",
+    "TAŞ",
+    "TİP",
+    "YÜZ",
+    "ÇEK",
+    "ÜLKE",
+    "İLAN",
+    "İLE",
+    "ŞIK"
+   ],
+   "gen": {
+    "seed": 1941506918,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     2,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2,2(K,L),3(F),2(L),2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.214,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 14,
+    "letters": 70,
+    "bonus": 11,
+    "validWords": 24,
+    "extras": {
+     "root": 2,
+     "four": 3,
+     "three": 19
+    },
+    "ratio": 0.786,
+    "peakBonus": 63,
+    "perWave": [
+     [
+      3,
+      14,
+      5
+     ],
+     [
+      4,
+      11,
+      1
+     ],
+     [
+      3,
+      7,
+      1
+     ],
+     [
+      2,
+      4,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.37,
+     0.48,
+     1.46,
+     0.88,
+     0.62,
+     1.55,
+     1.65,
+     0.78,
+     0.97,
+     0.87,
+     0.95,
+     2.08,
+     0.87,
+     1.19
+    ],
+    "knots": [
+     11
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 2,
+    "nearMiss": 1,
+    "startNoise": 0.53,
+    "revCenter": 0.79,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 25,
+   "name": "Level 25",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "DEĞİŞİM"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "ERİK"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "NİSPET"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "SALDIRI"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇINAR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "FULAR"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "RENDE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "GENİŞ"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "BOĞA"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 3,
+      "word": "UYUM"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "FİİL"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "GÖZCÜ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 2,
+      "word": "VAR"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 2,
+      "word": "ŞATO"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "TUNÇ"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 1,
+      "word": "ÇAN"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "BAHŞİŞ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ABA",
+    "AKS",
+    "AKSİ",
+    "ANI",
+    "ANT",
+    "ANİ",
+    "ARİ",
+    "ARİF",
+    "BABA",
+    "DEĞİŞ",
+    "DEĞİŞİŞ",
+    "DİSK",
+    "FİL",
+    "GEN",
+    "GRİ",
+    "GÖZ",
+    "KUYU",
+    "KİR",
+    "LİF",
+    "NAL",
+    "NAR",
+    "NET",
+    "NUR",
+    "NİŞ",
+    "SAL",
+    "SAV",
+    "TAS",
+    "TAŞ",
+    "TEN",
+    "TEPSİ",
+    "ŞİŞ"
+   ],
+   "gen": {
+    "seed": 1769890072,
+    "lang": "tr",
+    "profile": [
+     5,
+     2,
+     2,
+     2,
+     1,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),2,2(L),2(K,D),1(K,D),2(K,D,L),3(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.294,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 17,
+    "letters": 81,
+    "bonus": 18,
+    "validWords": 31,
+    "extras": {
+     "root": 4,
+     "four": 7,
+     "three": 20
+    },
+    "ratio": 1.059,
+    "peakBonus": 70,
+    "perWave": [
+     [
+      5,
+      17,
+      9
+     ],
+     [
+      6,
+      12,
+      3
+     ],
+     [
+      3,
+      6,
+      0
+     ],
+     [
+      1,
+      3,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.28,
+     0.34,
+     0.89,
+     2.38,
+     0.93,
+     0.24,
+     0.69,
+     0.39,
+     0.39,
+     2.84,
+     3.25,
+     1.45,
+     0.91,
+     1.96,
+     2.37,
+     0.4,
+     1.37
+    ],
+    "knots": [
+     3,
+     9,
+     10,
+     13,
+     14
+    ],
+    "chains": [
+     {
+      "start": 5,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 6,
+    "nearMiss": 3,
+    "startNoise": 0.17,
+    "revCenter": 0.71,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "many",
+    "misses": [
+     "knot position"
+    ]
+   }
+  },
+  {
+   "id": 26,
+   "name": "Level 26",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "DENEK"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "GONDOL"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "MİNDER"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "DUBLÖR"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "CIMBIZ"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "SIĞIR"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "ARSLAN"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "ARBEDE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 5,
+      "dir": 2,
+      "word": "GORİL"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 2,
+      "word": "DÜRÜM"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ACEMİ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARI",
+    "ARZ",
+    "KENE",
+    "NAL",
+    "ODA",
+    "SIĞ"
+   ],
+   "gen": {
+    "seed": 2669426058,
+    "lang": "tr",
+    "profile": [
+     3,
+     3,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),3,2,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.182,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 11,
+    "letters": 61,
+    "bonus": 6,
+    "validWords": 6,
+    "extras": {
+     "root": 1,
+     "four": 1,
+     "three": 4
+    },
+    "ratio": 0.545,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      3,
+      11,
+      2
+     ],
+     [
+      3,
+      8,
+      2
+     ],
+     [
+      2,
+      5,
+      1
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.31,
+     0.47,
+     0.46,
+     0.76,
+     2.58,
+     2.27,
+     2.15,
+     0.38,
+     0.95,
+     1.27,
+     1.33
+    ],
+    "knots": [
+     4,
+     5,
+     6
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 3,
+    "nearMiss": 3,
+    "startNoise": 0.53,
+    "revCenter": 0.95,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 27,
+   "name": "Level 27",
+   "difficulty": "6 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "TRAFO"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "ESİR"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "LOSYON"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "RÖVANŞ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "SÜMBÜL"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "JAMBON"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "BAĞCIK"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 5,
+      "dir": 2,
+      "word": "AVUKAT"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "SİSTEM"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 5,
+      "dir": 3,
+      "word": "ÜMİTLİ"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "BİN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "BÖLGE"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "SON"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "KIT"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 0,
+      "word": "SUR"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALT",
+    "AST",
+    "ASİ",
+    "ASİL",
+    "AĞCIK",
+    "AİT",
+    "BAĞ",
+    "BAĞCI",
+    "EGO",
+    "FAR",
+    "KAR",
+    "KAT",
+    "KOY",
+    "MAL",
+    "MERSİ",
+    "NAR",
+    "NUR",
+    "RAF",
+    "SES",
+    "SOL",
+    "SİS",
+    "TAN",
+    "TAS",
+    "TAV",
+    "TÜL",
+    "YOK",
+    "ÜMİT",
+    "İSA",
+    "İSTEM",
+    "ŞAL"
+   ],
+   "gen": {
+    "seed": 2502916293,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     2,
+     2,
+     2,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2,2,2(K,L),2(K),4(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.133,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 15,
+    "letters": 74,
+    "bonus": 16,
+    "validWords": 30,
+    "extras": {
+     "root": 4,
+     "four": 4,
+     "three": 22
+    },
+    "ratio": 1.067,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      3,
+      15,
+      6
+     ],
+     [
+      2,
+      12,
+      2
+     ],
+     [
+      2,
+      10,
+      4
+     ],
+     [
+      2,
+      8,
+      3
+     ],
+     [
+      3,
+      6,
+      1
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.32,
+     0.48,
+     0.56,
+     0.79,
+     0.67,
+     0.5,
+     1.58,
+     3.24,
+     1.86,
+     2.72,
+     5.24,
+     3.69,
+     0.31,
+     0.44,
+     0.62
+    ],
+    "knots": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 7,
+    "nearMiss": 5,
+    "startNoise": 0.58,
+    "revCenter": 0.75,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 28,
+   "name": "Level 28",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 0,
+      "word": "ÖNEM"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "PERVAZ"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 1,
+      "word": "KEM"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "GÜMRÜK"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "ASETON"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SUŞİ"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "SİHİR"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "OĞLAK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 3,
+      "word": "ZEVKLİ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "MAYO"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "EYLÜL"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 2,
+      "word": "ULUS"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 3,
+      "word": "DİK"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 1,
+      "word": "ÖNCE"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "ÖDEM"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 1,
+      "word": "BEN"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 1,
+      "word": "KÖŞK"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "MOR"
+     }
+    ]
+   ],
+   "validWords": [
+    "AVRO",
+    "BAY",
+    "DEM",
+    "DUL",
+    "EMLAK",
+    "GÜM",
+    "HER",
+    "HOR",
+    "HİS",
+    "KAM",
+    "KAN",
+    "KAP",
+    "KEŞ",
+    "KUL",
+    "KUT",
+    "KUTU",
+    "KUTUR",
+    "KÜR",
+    "MEN",
+    "NEM",
+    "NOT",
+    "NUR",
+    "OYA",
+    "PAK",
+    "PERVA",
+    "SEL",
+    "SET",
+    "SULU",
+    "SİS",
+    "TON",
+    "TUR",
+    "UDİ",
+    "ULU",
+    "VEYA",
+    "YER",
+    "ZEVK",
+    "İLK",
+    "ŞEY",
+    "ŞOK"
+   ],
+   "gen": {
+    "seed": 2334749901,
+    "lang": "tr",
+    "profile": [
+     5,
+     3,
+     1,
+     2,
+     2,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),3,1(K,D,L),2(K,D,L),2(K,D,L),5(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.278,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 18,
+    "letters": 79,
+    "bonus": 24,
+    "validWords": 39,
+    "extras": {
+     "root": 4,
+     "four": 6,
+     "three": 29
+    },
+    "ratio": 1.333,
+    "peakBonus": 88,
+    "perWave": [
+     [
+      5,
+      18,
+      9
+     ],
+     [
+      5,
+      13,
+      4
+     ],
+     [
+      4,
+      8,
+      6
+     ],
+     [
+      1,
+      4,
+      2
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.27,
+     0.29,
+     0.47,
+     0.73,
+     0.85,
+     3.29,
+     3.3,
+     4.25,
+     4.37,
+     3.38,
+     5.42,
+     3.55,
+     0.36,
+     0.44,
+     0.97,
+     1.62,
+     0.44,
+     1.33
+    ],
+    "knots": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 5
+     },
+     {
+      "start": 12,
+      "len": 3
+     }
+    ],
+    "longestChain": 5,
+    "decoys": 13,
+    "nearMiss": 13,
+    "startNoise": 0.29,
+    "revCenter": 0.72,
+    "emptyCells": 0,
+    "stage": "17-28",
+    "tier": "many",
+    "misses": [
+     "knot decoys"
+    ]
+   }
+  },
+  {
+   "id": 29,
+   "name": "Level 29",
+   "difficulty": "3 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "DEMİR"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KRALİÇE"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "EGOİST"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "BELDE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "DUBLAJ"
+     },
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 2,
+      "word": "VERİM"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 0,
+      "word": "TAVA"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 0,
+      "word": "ARTI"
+     },
+     {
+      "x": 5,
+      "y": 4,
+      "dir": 2,
+      "word": "ŞOM"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "ÖĞRENME"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "ÖLÜM"
+     },
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 3,
+      "word": "MAT"
+     },
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 1,
+      "word": "TÜR"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALT",
+    "ARMA",
+    "AÇMA",
+    "AĞA",
+    "BAĞ",
+    "BEL",
+    "DEM",
+    "DİN",
+    "EGO",
+    "EMİR",
+    "ERİL",
+    "KRAL",
+    "TAM",
+    "TAV",
+    "TEL",
+    "VERİ",
+    "ÇAR",
+    "ÇİL",
+    "ÖLÜ"
+   ],
+   "gen": {
+    "seed": 2162875575,
+    "lang": "tr",
+    "profile": [
+     4,
+     5,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),5,4"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.231,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 13,
+    "letters": 62,
+    "bonus": 10,
+    "validWords": 19,
+    "extras": {
+     "root": 7,
+     "four": 4,
+     "three": 8
+    },
+    "ratio": 0.769,
+    "peakBonus": 60,
+    "perWave": [
+     [
+      4,
+      13,
+      6
+     ],
+     [
+      5,
+      9,
+      2
+     ],
+     [
+      4,
+      4,
+      2
+     ]
+    ],
+    "tempo": [
+     0.77,
+     0.27,
+     0.25,
+     0.31,
+     0.38,
+     0.36,
+     0.86,
+     1.44,
+     1.67,
+     2.25,
+     0.34,
+     0.97,
+     0.67
+    ],
+    "knots": [
+     7,
+     8,
+     9
+    ],
+    "chains": [
+     {
+      "start": 1,
+      "len": 5
+     }
+    ],
+    "longestChain": 5,
+    "decoys": 5,
+    "nearMiss": 0,
+    "startNoise": 0.45,
+    "revCenter": 0.78,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 30,
+   "name": "Level 30",
+   "difficulty": "5 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "SOY"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "YAPBOZ"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "FEDA"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "TABLET"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "EŞİTSİZ"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "DÜZLEM"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 4,
+      "dir": 2,
+      "word": "HİSSİZ"
+     },
+     {
+      "x": 5,
+      "y": 3,
+      "dir": 2,
+      "word": "SULTAN"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "HANEDAN"
+     },
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 3,
+      "word": "HÜZÜN"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "KUNDAK"
+     },
+     {
+      "x": 1,
+      "y": 5,
+      "dir": 0,
+      "word": "SİVRİ"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 0,
+      "word": "ÇAĞ"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 0,
+      "word": "GÜZ"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 0,
+      "word": "YÖN"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARİ",
+    "BAZ",
+    "BAĞ",
+    "BOZ",
+    "DEF",
+    "DÜN",
+    "DÜZ",
+    "EDA",
+    "EŞİT",
+    "GÜÇ",
+    "HAN",
+    "HANE",
+    "HİS",
+    "HİSSİ",
+    "KUNDA",
+    "KİST",
+    "MAVİ",
+    "NET",
+    "NİŞ",
+    "PAY",
+    "SEL",
+    "SULTA",
+    "SİS",
+    "SİZ",
+    "TAN",
+    "TAS",
+    "TAT",
+    "TEL",
+    "TEN",
+    "TOY",
+    "TÜL",
+    "YAN"
+   ],
+   "gen": {
+    "seed": 3063435642,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,2(K,D,L),5(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.267,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 15,
+    "letters": 76,
+    "bonus": 20,
+    "validWords": 32,
+    "extras": {
+     "root": 8,
+     "four": 2,
+     "three": 22
+    },
+    "ratio": 1.333,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      4,
+      15,
+      7
+     ],
+     [
+      2,
+      11,
+      6
+     ],
+     [
+      2,
+      9,
+      5
+     ],
+     [
+      2,
+      7,
+      3
+     ],
+     [
+      5,
+      5,
+      1
+     ]
+    ],
+    "tempo": [
+     0.33,
+     0.39,
+     0.61,
+     0.55,
+     1.13,
+     2.01,
+     3.42,
+     4.18,
+     2.86,
+     3.24,
+     0.26,
+     0.29,
+     0.34,
+     0.83,
+     0.59
+    ],
+    "knots": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "chains": [
+     {
+      "start": 10,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 12,
+    "nearMiss": 0,
+    "startNoise": 0.55,
+    "revCenter": 0.54,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium",
+    "misses": [
+     "reversed early"
+    ]
+   }
+  },
+  {
+   "id": 31,
+   "name": "Level 31",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "VARDİYA"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "ÇİNKO"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "BARBEKÜ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "HİKAYE"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "TORPİDO"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 0,
+      "word": "BURS"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "KİR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "BURUN"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "TOSUN"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 2,
+      "word": "PUMA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "NÖTR"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 2,
+      "word": "NET"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "İRİN"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "UNSUR"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 1,
+      "word": "GÖREV"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "BAL"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "OVA"
+     }
+    ]
+   ],
+   "validWords": [
+    "ALO",
+    "ANİ",
+    "ARİ",
+    "AYİN",
+    "BALDO",
+    "BALO",
+    "BAR",
+    "BEK",
+    "BOL",
+    "BOT",
+    "DEK",
+    "DİK",
+    "DİN",
+    "DİP",
+    "ERİK",
+    "GAR",
+    "GÖRE",
+    "KAR",
+    "KARE",
+    "KOR",
+    "KUR",
+    "KİRPİ",
+    "NEY",
+    "NUR",
+    "OBA",
+    "PUL",
+    "RAY",
+    "SEN",
+    "SUR",
+    "TAN",
+    "TAT",
+    "TAV",
+    "TEN",
+    "TREN",
+    "UDİ",
+    "UNSU",
+    "VAR",
+    "YAR",
+    "YEN",
+    "ÖGE",
+    "İKİ",
+    "İNAT",
+    "İRİ",
+    "İYİ"
+   ],
+   "gen": {
+    "seed": 2898599337,
+    "lang": "tr",
+    "profile": [
+     5,
+     2,
+     2,
+     1,
+     2,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),2,2(K,L),1(K,L),2(K,L),5(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.118,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 17,
+    "letters": 80,
+    "bonus": 16,
+    "validWords": 44,
+    "extras": {
+     "root": 8,
+     "four": 5,
+     "three": 31
+    },
+    "ratio": 0.941,
+    "peakBonus": 67,
+    "perWave": [
+     [
+      5,
+      17,
+      6
+     ],
+     [
+      7,
+      12,
+      3
+     ],
+     [
+      5,
+      5,
+      4
+     ]
+    ],
+    "tempo": [
+     0.24,
+     0.34,
+     0.39,
+     0.43,
+     0.6,
+     2.27,
+     0.31,
+     0.67,
+     1.06,
+     0.39,
+     1.94,
+     1.77,
+     1.86,
+     2.37,
+     1.98,
+     1.61,
+     0.58
+    ],
+    "knots": [
+     5,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 6,
+    "nearMiss": 5,
+    "startNoise": 0.09,
+    "revCenter": 0.78,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many",
+    "misses": [
+     "no chain after knot"
+    ]
+   }
+  },
+  {
+   "id": 32,
+   "name": "Level 32",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 1,
+      "word": "DESTE"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "STÜDYO"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "PROTEİN"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "EFSANE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "JİLE"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 2,
+      "word": "DERT"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "FLÖRT"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 2,
+      "word": "ŞİVE"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "DAM"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "MÜLTECİ"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "GÖL"
+     }
+    ]
+   ],
+   "validWords": [
+    "CAM",
+    "PİL",
+    "SET",
+    "SÜET",
+    "TEL",
+    "YAD",
+    "ÜRE",
+    "ÜST",
+    "İLE",
+    "ŞOV"
+   ],
+   "gen": {
+    "seed": 2722322327,
+    "lang": "tr",
+    "profile": [
+     4,
+     5,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),5,2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.273,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 11,
+    "letters": 54,
+    "bonus": 6,
+    "validWords": 10,
+    "extras": {
+     "root": 0,
+     "four": 1,
+     "three": 9
+    },
+    "ratio": 0.545,
+    "peakBonus": 56,
+    "perWave": [
+     [
+      4,
+      11,
+      5
+     ],
+     [
+      5,
+      7,
+      1
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.33,
+     0.44,
+     0.45,
+     0.83,
+     0.29,
+     0.88,
+     1.22,
+     2.04,
+     1,
+     1.65,
+     0.65
+    ],
+    "knots": [
+     7
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 0,
+    "nearMiss": 0,
+    "startNoise": 0.31,
+    "revCenter": 0.73,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 33,
+   "name": "Level 33",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "KASA"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "SEFER"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "ÇİZİM"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "SIRA"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "LOKMA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "BOKS"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "GAMZE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "KAP"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "HUY"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "BUZLU"
+     },
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 3,
+      "word": "KAÇ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "İCAT"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KOBRA"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARI",
+    "ARZ",
+    "ASA",
+    "BAS",
+    "BEK",
+    "BUZ",
+    "FER",
+    "FES",
+    "GAM",
+    "KAS",
+    "KAÇA",
+    "KAÇAK",
+    "KEK",
+    "KOL",
+    "KOZ",
+    "PAK",
+    "SIR",
+    "TIR",
+    "ÇAK",
+    "İBİK"
+   ],
+   "gen": {
+    "seed": 3628203349,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2,2(K,L),2(F),2(K,L),2(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.154,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 13,
+    "letters": 55,
+    "bonus": 15,
+    "validWords": 20,
+    "extras": {
+     "root": 6,
+     "four": 1,
+     "three": 13
+    },
+    "ratio": 1.154,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      3,
+      13,
+      5
+     ],
+     [
+      5,
+      10,
+      5
+     ],
+     [
+      5,
+      5,
+      2
+     ]
+    ],
+    "tempo": [
+     0.34,
+     0.55,
+     1.37,
+     0.76,
+     0.84,
+     0.89,
+     1.63,
+     0.3,
+     0.44,
+     2.39,
+     3.13,
+     0.46,
+     1.34
+    ],
+    "knots": [
+     9,
+     10
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 5,
+    "nearMiss": 0,
+    "startNoise": 0.44,
+    "revCenter": 0.79,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 34,
+   "name": "Level 34",
+   "difficulty": "6 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "VAROLUŞ"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "MECLİS"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "ÖKSÜRÜK"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 1,
+      "word": "ÇATI"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "SIKICI"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "ÖRTÜLÜ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ADİSYON"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "DERTLİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "SUNMAK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "SÜZGEÇ"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 2,
+      "word": "SERSEM"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "ELLİ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "PAK"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "JAGUAR"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 3,
+      "word": "ŞOV"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 3,
+      "word": "KONSEY"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 1,
+      "word": "TEN"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 3,
+      "word": "FELÇ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "AHU"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 0,
+      "word": "FİŞ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ADİ",
+    "AKÇA",
+    "ARA",
+    "ARŞ",
+    "ASİ",
+    "DEK",
+    "DERT",
+    "DUA",
+    "ELA",
+    "ENİK",
+    "ERK",
+    "FEN",
+    "FES",
+    "GEM",
+    "GEÇ",
+    "HAL",
+    "HİN",
+    "HİS",
+    "KAM",
+    "KAP",
+    "KAS",
+    "KASE",
+    "KONU",
+    "KONUM",
+    "KOR",
+    "KORSE",
+    "KORU",
+    "KÜR",
+    "KİN",
+    "KİR",
+    "LOR",
+    "LOŞ",
+    "MEN",
+    "MOR",
+    "NEM",
+    "NET",
+    "OLUŞ",
+    "OYA",
+    "PAS",
+    "ROL",
+    "SAL",
+    "SAP",
+    "SAZ",
+    "SEK",
+    "SEL",
+    "SET",
+    "SIK",
+    "SIKI",
+    "SUNMA",
+    "SUNİ",
+    "SUR",
+    "SÜRÜ",
+    "SİNE",
+    "TAS",
+    "TAÇ",
+    "TÜL",
+    "VAR",
+    "ÇEK",
+    "ÖRTÜ",
+    "İLE",
+    "İSA",
+    "İSALE"
+   ],
+   "gen": {
+    "seed": 3456720008,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     1,
+     3,
+     4,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,2,1(K,L),3(F,L),4,2(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.2,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 20,
+    "letters": 102,
+    "bonus": 26,
+    "validWords": 62,
+    "extras": {
+     "root": 7,
+     "four": 12,
+     "three": 43
+    },
+    "ratio": 1.3,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      4,
+      20,
+      8
+     ],
+     [
+      2,
+      16,
+      5
+     ],
+     [
+      2,
+      14,
+      3
+     ],
+     [
+      5,
+      12,
+      4
+     ],
+     [
+      5,
+      7,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.27,
+     0.34,
+     1.05,
+     0.99,
+     1.51,
+     3.13,
+     1.1,
+     1.71,
+     0.28,
+     0.47,
+     0.48,
+     0.72,
+     1.43,
+     1.99,
+     0.3,
+     1.14,
+     0.3,
+     0.41,
+     1.07,
+     1.79
+    ],
+    "knots": [
+     5
+    ],
+    "chains": [
+     {
+      "start": 8,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 6,
+    "nearMiss": 0,
+    "startNoise": 0.43,
+    "revCenter": 0.86,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many",
+    "misses": [
+     "extras 4+",
+     "extras 3"
+    ]
+   }
+  },
+  {
+   "id": 35,
+   "name": "Level 35",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "DOĞAN"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "HAŞERE"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "TROPİK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "FORMÜL"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "FIRÇA"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "BENZER"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 3,
+      "word": "PROFİL"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "MELEZ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "SIZINTI"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 2,
+      "word": "DALGA"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "PARODİ"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "DÖNÜŞ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARI",
+    "BEN",
+    "DAL",
+    "DOĞA",
+    "ELEM",
+    "FORM",
+    "FİL",
+    "HAN",
+    "HANE",
+    "KİP",
+    "LAZ",
+    "LİF",
+    "NERE",
+    "POZ",
+    "PİK",
+    "SIZI",
+    "ZAR",
+    "ŞAH",
+    "ŞER"
+   ],
+   "gen": {
+    "seed": 3294493474,
+    "lang": "tr",
+    "profile": [
+     3,
+     3,
+     3,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),3,3,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.167,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 12,
+    "letters": 68,
+    "bonus": 14,
+    "validWords": 19,
+    "extras": {
+     "root": 5,
+     "four": 3,
+     "three": 11
+    },
+    "ratio": 1.167,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      3,
+      12,
+      7
+     ],
+     [
+      3,
+      9,
+      4
+     ],
+     [
+      3,
+      6,
+      4
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.32,
+     0.5,
+     0.65,
+     0.43,
+     0.54,
+     1.09,
+     0.29,
+     1.97,
+     2.77,
+     3.79,
+     1.09,
+     1.5
+    ],
+    "knots": [
+     7,
+     8,
+     9
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 5
+     }
+    ],
+    "longestChain": 5,
+    "decoys": 4,
+    "nearMiss": 2,
+    "startNoise": 0.6,
+    "revCenter": 0.91,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 36,
+   "name": "Level 36",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "İLTİMAS"
+     },
+     {
+      "x": 2,
+      "y": 5,
+      "dir": 0,
+      "word": "ŞEMA"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "PİNPON"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "MEZE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "DÖNÜŞÜM"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 3,
+      "word": "SANCI"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "PLANSIZ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "MİYOP"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "ÜRETİM"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "FIÇI"
+     },
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 2,
+      "word": "MİNİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "MECBUR"
+     },
+     {
+      "x": 5,
+      "y": 2,
+      "dir": 2,
+      "word": "GEÇMİŞ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "YAZI"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "İTİNA"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 1,
+      "word": "SAF"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "KİRA"
+     }
+    ]
+   ],
+   "validWords": [
+    "AMA",
+    "ANI",
+    "ANSIZ",
+    "ANT",
+    "ANİ",
+    "ARİ",
+    "AZI",
+    "AÇI",
+    "AİT",
+    "BAS",
+    "CEP",
+    "CİN",
+    "DÖNÜŞ",
+    "DİN",
+    "ETİL",
+    "FAİZ",
+    "GEÇ",
+    "KİN",
+    "KİR",
+    "MEN",
+    "MEY",
+    "NAL",
+    "NAM",
+    "NEM",
+    "NUR",
+    "PLAN",
+    "PİM",
+    "RET",
+    "SANI",
+    "SAZ",
+    "SEN",
+    "TER",
+    "TÜP",
+    "TİZ",
+    "YAZ",
+    "YAZIN",
+    "YEM",
+    "YEME",
+    "ZAR",
+    "ÇAY",
+    "ÖTE",
+    "ÜRE",
+    "İMA"
+   ],
+   "gen": {
+    "seed": 4201241553,
+    "lang": "tr",
+    "profile": [
+     4,
+     3,
+     4,
+     2,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),3,4,2(K,L),4(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.235,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 17,
+    "letters": 87,
+    "bonus": 27,
+    "validWords": 43,
+    "extras": {
+     "root": 7,
+     "four": 5,
+     "three": 31
+    },
+    "ratio": 1.588,
+    "peakBonus": 78,
+    "perWave": [
+     [
+      4,
+      17,
+      9
+     ],
+     [
+      3,
+      13,
+      12
+     ],
+     [
+      6,
+      10,
+      6
+     ],
+     [
+      4,
+      4,
+      5
+     ]
+    ],
+    "tempo": [
+     1.39,
+     0.27,
+     0.34,
+     0.48,
+     1.02,
+     2.88,
+     2.89,
+     4.13,
+     0.35,
+     0.79,
+     1.7,
+     1.58,
+     0.42,
+     2.32,
+     0.88,
+     0.97,
+     1.18
+    ],
+    "knots": [
+     5,
+     6,
+     7,
+     13
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 12,
+    "nearMiss": 3,
+    "startNoise": 0.5,
+    "revCenter": 0.64,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium",
+    "misses": [
+     "extras 3"
+    ]
+   }
+  },
+  {
+   "id": 37,
+   "name": "Level 37",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "VEDA"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "FARK"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "PİK"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "LAF"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "UÇAK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "AĞRI"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 2,
+      "word": "TAVİZ"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "GRUP"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "DEĞER"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "SÜTLÜ"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "DUŞ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "SERVİ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "KANLI"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "MUZ"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 3,
+      "word": "ORG"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "MUAF"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "FAZ"
+     }
+    ]
+   ],
+   "validWords": [
+    "AFAL",
+    "ANA",
+    "ARUZ",
+    "ASİ",
+    "ATİ",
+    "DAM",
+    "DERE",
+    "DEV",
+    "DIŞ",
+    "DUA",
+    "DUR",
+    "EDA",
+    "ELA",
+    "ERK",
+    "EĞER",
+    "FAL",
+    "FAR",
+    "FER",
+    "IRK",
+    "KAFA",
+    "KAN",
+    "KAT",
+    "KAZ",
+    "KAÇ",
+    "KÜP",
+    "KİP",
+    "MOR",
+    "NAL",
+    "RAF",
+    "SARF",
+    "SAĞ",
+    "SÜT",
+    "SİZ",
+    "TAS",
+    "TAV",
+    "TAÇ",
+    "VAR",
+    "ZAM",
+    "ÇAK",
+    "İFA",
+    "İSA",
+    "İTA"
+   ],
+   "gen": {
+    "seed": 4033120042,
+    "lang": "tr",
+    "profile": [
+     6,
+     3,
+     2,
+     1,
+     1,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "6(F),3,2(L),1(K,L),1(K,L),2(K,L),2(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.235,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 17,
+    "letters": 67,
+    "bonus": 21,
+    "validWords": 42,
+    "extras": {
+     "root": 4,
+     "four": 6,
+     "three": 32
+    },
+    "ratio": 1.235,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      6,
+      17,
+      11
+     ],
+     [
+      4,
+      11,
+      4
+     ],
+     [
+      4,
+      7,
+      1
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.25,
+     0.27,
+     0.34,
+     0.5,
+     1.99,
+     1.91,
+     2.35,
+     0.78,
+     1.65,
+     2.67,
+     0.25,
+     0.34,
+     0.34,
+     0.87,
+     1.36,
+     0.48,
+     1.42
+    ],
+    "knots": [
+     4,
+     5,
+     6,
+     8,
+     9
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     },
+     {
+      "start": 10,
+      "len": 3
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 3,
+    "nearMiss": 3,
+    "startNoise": 0.12,
+    "revCenter": 0.73,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 38,
+   "name": "Level 38",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "ŞALGAM"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "ÇEŞİT"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 0,
+      "word": "BAS"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "DOĞUM"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ANTEN"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "DERECE"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "GIPTA"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "BOKSÖR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 3,
+      "word": "İÇECEK"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "BURMA"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "DÜDÜK"
+     }
+    ]
+   ],
+   "validWords": [
+    "ANT",
+    "BEL",
+    "BOKS",
+    "DERE",
+    "DOĞU",
+    "DÜK",
+    "EBE",
+    "EŞİT",
+    "GAM",
+    "GÜM",
+    "NET",
+    "TEN",
+    "ŞAL"
+   ],
+   "gen": {
+    "seed": 3923827455,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.091,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 11,
+    "letters": 57,
+    "bonus": 11,
+    "validWords": 13,
+    "extras": {
+     "root": 5,
+     "four": 1,
+     "three": 7
+    },
+    "ratio": 1,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      11,
+      5
+     ],
+     [
+      2,
+      7,
+      4
+     ],
+     [
+      2,
+      5,
+      1
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.28,
+     0.34,
+     0.55,
+     0.76,
+     2.6,
+     2.5,
+     1.44,
+     1.4,
+     0.52,
+     1.04,
+     1.84
+    ],
+    "knots": [
+     4,
+     5
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 5,
+    "nearMiss": 2,
+    "startNoise": 0.47,
+    "revCenter": 1,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 39,
+   "name": "Level 39",
+   "difficulty": "5 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "KATI"
+     },
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "BALE"
+     },
+     {
+      "x": 1,
+      "y": 5,
+      "dir": 0,
+      "word": "DOĞU"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "EKSİ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "İLGİNÇ"
+     },
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 3,
+      "word": "TENHA"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "HELVA"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "ELTİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "HİDDET"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "LÜKS"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 1,
+      "word": "CÜCE"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 3,
+      "word": "YEM"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "HÜZÜNLÜ"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "DUT"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 2,
+      "word": "KÜTLE"
+     }
+    ]
+   ],
+   "validWords": [
+    "AKÜ",
+    "BAL",
+    "BEN",
+    "DON",
+    "DUA",
+    "DİN",
+    "ELA",
+    "GÜL",
+    "HÜZÜN",
+    "KAT",
+    "KÜL",
+    "KÜT",
+    "KİL",
+    "MEY",
+    "NAL",
+    "NAZ",
+    "NET",
+    "SON",
+    "TEN",
+    "TUNÇ",
+    "TÜL",
+    "ZAN",
+    "ZAT",
+    "ÜNLÜ",
+    "İLE",
+    "İLGİ",
+    "İNÇ",
+    "İTLİK"
+   ],
+   "gen": {
+    "seed": 536454047,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     3,
+     2,
+     2
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2(K),3(F,L),2,2"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.267,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 15,
+    "letters": 68,
+    "bonus": 17,
+    "validWords": 28,
+    "extras": {
+     "root": 6,
+     "four": 3,
+     "three": 19
+    },
+    "ratio": 1.133,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      4,
+      15,
+      4
+     ],
+     [
+      3,
+      11,
+      6
+     ],
+     [
+      3,
+      8,
+      2
+     ],
+     [
+      3,
+      5,
+      3
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    "tempo": [
+     0.3,
+     0.39,
+     0.57,
+     0.88,
+     1.97,
+     2,
+     4.29,
+     0.39,
+     0.39,
+     0.81,
+     0.67,
+     0.95,
+     0.74,
+     0.87,
+     1.53
+    ],
+    "knots": [
+     4,
+     5,
+     6
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 2,
+    "nearMiss": 2,
+    "startNoise": 0.54,
+    "revCenter": 0.8,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 40,
+   "name": "Level 40",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "REZENE"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "TEFTİŞ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "MEVCUT"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "BÖLÜNME"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "TAVIR"
+     },
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "ZİFT"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "HURDA"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "SAVUNMA"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 0,
+      "word": "YAN"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "TUR"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 5,
+      "dir": 2,
+      "word": "TUFAN"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 1,
+      "word": "PUSU"
+     },
+     {
+      "x": 4,
+      "y": 3,
+      "dir": 1,
+      "word": "ÇİL"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 1,
+      "word": "MİS"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 4,
+      "dir": 2,
+      "word": "KADI"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "TİPİ"
+     },
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 2,
+      "word": "DERİ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARZ",
+    "ASİ",
+    "AVUNMA",
+    "AYI",
+    "BÖLÜ",
+    "DUA",
+    "DİŞ",
+    "FAN",
+    "KAM",
+    "KAT",
+    "KATI",
+    "KEZ",
+    "KUM",
+    "KUT",
+    "NAM",
+    "NAR",
+    "PAS",
+    "PUS",
+    "RUH",
+    "SAP",
+    "SAPLI",
+    "SAV",
+    "SİM",
+    "SİZ",
+    "TAN",
+    "TAT",
+    "TAV",
+    "TEF",
+    "TIR",
+    "TÜR",
+    "TİP",
+    "UNSU",
+    "ÇİT",
+    "ÖLÜ",
+    "ÖLÜNME",
+    "İFA",
+    "İMA",
+    "İSA"
+   ],
+   "gen": {
+    "seed": 362505657,
+    "lang": "tr",
+    "profile": [
+     4,
+     3,
+     3,
+     1,
+     3,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),3,3(L),1(K,L),3(F),3(L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.235,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 17,
+    "letters": 79,
+    "bonus": 18,
+    "validWords": 38,
+    "extras": {
+     "root": 6,
+     "four": 5,
+     "three": 27
+    },
+    "ratio": 1.059,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      17,
+      4
+     ],
+     [
+      5,
+      13,
+      2
+     ],
+     [
+      1,
+      8,
+      3
+     ],
+     [
+      2,
+      7,
+      3
+     ],
+     [
+      3,
+      5,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.39,
+     0.68,
+     0.85,
+     0.77,
+     0.97,
+     1.38,
+     2.6,
+     5.67,
+     2.29,
+     0.48,
+     2.37,
+     0.29,
+     0.42,
+     0.42,
+     0.95,
+     1.37
+    ],
+    "knots": [
+     7,
+     8,
+     9,
+     11
+    ],
+    "chains": [
+     {
+      "start": 12,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 8,
+    "nearMiss": 2,
+    "startNoise": 0.29,
+    "revCenter": 0.78,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many"
+   }
+  },
+  {
+   "id": 41,
+   "name": "Level 41",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "ÇUVAL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "EŞİK"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "TİŞÖRT"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "SADE"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "TIBBİ"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "TEHDİT"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "TESADÜF"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "ORUÇ"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 1,
+      "word": "YER"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 2,
+      "word": "PAYDA"
+     },
+     {
+      "x": 4,
+      "y": 5,
+      "dir": 2,
+      "word": "HAFİF"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "UÇUCU"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "TIPA"
+     }
+    ]
+   ],
+   "validWords": [
+    "ADİ",
+    "AFT",
+    "AVUÇ",
+    "BEY",
+    "EDA",
+    "LAV",
+    "PAY",
+    "SET",
+    "TIP",
+    "UDİ",
+    "İFA"
+   ],
+   "gen": {
+    "seed": 196061424,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     3,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2(K),3(F),4"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.154,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 13,
+    "letters": 63,
+    "bonus": 8,
+    "validWords": 11,
+    "extras": {
+     "root": 2,
+     "four": 1,
+     "three": 8
+    },
+    "ratio": 0.615,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      4,
+      13,
+      4
+     ],
+     [
+      2,
+      9,
+      1
+     ],
+     [
+      3,
+      7,
+      1
+     ],
+     [
+      4,
+      4,
+      3
+     ]
+    ],
+    "tempo": [
+     0.32,
+     0.59,
+     1.24,
+     2.4,
+     0.67,
+     0.41,
+     1.26,
+     0.28,
+     0.79,
+     0.88,
+     1.14,
+     1.42,
+     1.17
+    ],
+    "knots": [
+     3
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 6,
+    "nearMiss": 0,
+    "startNoise": 0.55,
+    "revCenter": 0.96,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 42,
+   "name": "Level 42",
+   "difficulty": "5 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "DİREK"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "TUTUCU"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "KRAMP"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "VERANDA"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 1,
+      "word": "AMBAR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "GÖMÜLÜ"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "LEZİZ"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "İZCİ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "KIYMALI"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "BUZAĞI"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 6,
+      "dir": 2,
+      "word": "MODERN"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 2,
+      "word": "JET"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "PENSE"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "TİP"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "MOBİL"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "YUMRU"
+     },
+     {
+      "x": 3,
+      "y": 5,
+      "dir": 0,
+      "word": "DIŞ"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "YÜZ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARZ",
+    "ARİ",
+    "BAR",
+    "BEZ",
+    "BUZ",
+    "BİAT",
+    "BİR",
+    "DUT",
+    "ELA",
+    "ELMA",
+    "ENSE",
+    "GAM",
+    "GAR",
+    "KIYMA",
+    "KUM",
+    "KUMRU",
+    "MAL",
+    "MARK",
+    "MAT",
+    "NAR",
+    "OJE",
+    "PENS",
+    "RANDA",
+    "RET",
+    "SET",
+    "TAM",
+    "TEL",
+    "TER",
+    "TEZ",
+    "TUZ",
+    "TİZ",
+    "UYUM",
+    "UYUZ",
+    "İZMİR"
+   ],
+   "gen": {
+    "seed": 27265796,
+    "lang": "tr",
+    "profile": [
+     5,
+     3,
+     2,
+     1,
+     2,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),3,2,1(K,D),2(K,D,L),5(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.167,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 18,
+    "letters": 89,
+    "bonus": 18,
+    "validWords": 34,
+    "extras": {
+     "root": 3,
+     "four": 9,
+     "three": 22
+    },
+    "ratio": 1,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      5,
+      18,
+      7
+     ],
+     [
+      4,
+      13,
+      0
+     ],
+     [
+      2,
+      9,
+      5
+     ],
+     [
+      3,
+      7,
+      6
+     ],
+     [
+      4,
+      4,
+      0
+     ]
+    ],
+    "tempo": [
+     0.82,
+     0.79,
+     0.95,
+     0.87,
+     1.05,
+     1.07,
+     2.48,
+     2.03,
+     2.12,
+     0.92,
+     1.59,
+     1.45,
+     0.38,
+     0.41,
+     1.48,
+     0.29,
+     0.44,
+     1.79
+    ],
+    "knots": [
+     6,
+     7,
+     8
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 18,
+    "nearMiss": 0,
+    "startNoise": 0.33,
+    "revCenter": 0.82,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium",
+    "misses": [
+     "extras 4+"
+    ]
+   }
+  },
+  {
+   "id": 43,
+   "name": "Level 43",
+   "difficulty": "6 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "DEVRE"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "LÜTFEN"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "MODA"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "BİT"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "KUNDURA"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "ÇÖKÜK"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "BANKACI"
+     },
+     {
+      "x": 5,
+      "y": 1,
+      "dir": 1,
+      "word": "KİRLİ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "DİKEY"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "AÇILIŞ"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 6,
+      "dir": 3,
+      "word": "TÜRKÜCÜ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "GÜNDEM"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 0,
+      "word": "AMEL"
+     },
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "DİŞ"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 0,
+      "word": "GEN"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 0,
+      "word": "ALT"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 6,
+      "dir": 3,
+      "word": "ŞIRINGA"
+     },
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 3,
+      "word": "NİŞAN"
+     },
+     {
+      "x": 5,
+      "y": 2,
+      "dir": 3,
+      "word": "RAY"
+     }
+    ]
+   ],
+   "validWords": [
+    "ACI",
+    "AKI",
+    "AKÜ",
+    "AKŞIN",
+    "ALA",
+    "AMİR",
+    "ANI",
+    "ANIRIŞ",
+    "ANKA",
+    "ARI",
+    "ARŞ",
+    "ATİ",
+    "AÇI",
+    "AŞI",
+    "AŞK",
+    "BANK",
+    "BANKA",
+    "BEK",
+    "DAL",
+    "DEK",
+    "DEM",
+    "DEV",
+    "DUA",
+    "DUL",
+    "DUR",
+    "DÖKÜK",
+    "DÜK",
+    "DİK",
+    "ELA",
+    "ERK",
+    "EVRE",
+    "FEN",
+    "FER",
+    "GÜN",
+    "GÜNDE",
+    "IRK",
+    "KAÇ",
+    "KEL",
+    "KIR",
+    "KUL",
+    "KİR",
+    "LEŞ",
+    "MEN",
+    "MİL",
+    "NEM",
+    "NEMA",
+    "NET",
+    "NİŞ",
+    "ODA",
+    "RET",
+    "TAN",
+    "TAT",
+    "TAŞ",
+    "TEN",
+    "TER",
+    "TÜL",
+    "TÜR",
+    "TÜRK",
+    "TÜRKÜ",
+    "YAN",
+    "YAR",
+    "YÜK",
+    "ÇAK",
+    "ÇİL",
+    "ÜRE",
+    "ÜTÜ",
+    "İFA",
+    "İMA",
+    "İTA",
+    "ŞAN",
+    "ŞEN",
+    "ŞER",
+    "ŞİKE",
+    "ŞİVE"
+   ],
+   "gen": {
+    "seed": 930268554,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     1,
+     5,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2(L),2,1(K,D),5(F),3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.211,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 19,
+    "letters": 94,
+    "bonus": 28,
+    "validWords": 74,
+    "extras": {
+     "root": 12,
+     "four": 9,
+     "three": 53
+    },
+    "ratio": 1.474,
+    "peakBonus": 88,
+    "perWave": [
+     [
+      4,
+      19,
+      8
+     ],
+     [
+      4,
+      15,
+      8
+     ],
+     [
+      2,
+      11,
+      4
+     ],
+     [
+      1,
+      9,
+      6
+     ],
+     [
+      5,
+      8,
+      6
+     ],
+     [
+      3,
+      3,
+      3
+     ]
+    ],
+    "tempo": [
+     0.31,
+     0.41,
+     0.61,
+     0.8,
+     0.33,
+     0.44,
+     0.68,
+     2.65,
+     2.98,
+     2.49,
+     3.57,
+     0.26,
+     0.34,
+     2.28,
+     3.73,
+     1.05,
+     1.08,
+     1.36,
+     1.58
+    ],
+    "knots": [
+     7,
+     8,
+     9,
+     10,
+     13,
+     14
+    ],
+    "chains": [
+     {
+      "start": 2,
+      "len": 5
+     }
+    ],
+    "longestChain": 5,
+    "decoys": 10,
+    "nearMiss": 4,
+    "startNoise": 0.57,
+    "revCenter": 0.85,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many",
+    "misses": [
+     "extras 3",
+     "no chain after knot"
+    ]
+   }
+  },
+  {
+   "id": 44,
+   "name": "Level 44",
+   "difficulty": "3 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "DİN"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "VAZİYET"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "MUŞAMBA"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KOL"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "ŞİFRELİ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "YİĞİT"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 1,
+      "word": "ZAHMET"
+     },
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 0,
+      "word": "TEL"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "YUVA"
+     },
+     {
+      "x": 3,
+      "y": 5,
+      "dir": 2,
+      "word": "HIRS"
+     },
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 2,
+      "word": "SAMBA"
+     }
+    ]
+   ],
+   "validWords": [
+    "BOR",
+    "DİNİ",
+    "FİŞ",
+    "HAZ",
+    "HİN",
+    "İLE",
+    "İMA",
+    "ŞİFRE"
+   ],
+   "gen": {
+    "seed": 762706619,
+    "lang": "tr",
+    "profile": [
+     4,
+     4,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),4,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.182,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 11,
+    "letters": 54,
+    "bonus": 5,
+    "validWords": 8,
+    "extras": {
+     "root": 2,
+     "four": 0,
+     "three": 6
+    },
+    "ratio": 0.455,
+    "peakBonus": 44,
+    "perWave": [
+     [
+      4,
+      11,
+      2
+     ],
+     [
+      4,
+      7,
+      4
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.34,
+     0.3,
+     0.33,
+     1.91,
+     1.91,
+     0.63,
+     0.76,
+     1.07,
+     1.3,
+     1.19
+    ],
+    "knots": [
+     4,
+     5
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 2,
+    "nearMiss": 2,
+    "startNoise": 0.43,
+    "revCenter": 0.9,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 45,
+   "name": "Level 45",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "USTA"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "NAR"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "MAL"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "DİRİ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "BRONZ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "İPLİK"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ÖMÜR"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "AHIR"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "ZOR"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "DAR"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 3,
+      "word": "İNŞA"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 1,
+      "word": "VADİ"
+     },
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 3,
+      "word": "GRAM"
+     }
+    ]
+   ],
+   "validWords": [
+    "ADİ",
+    "ALA",
+    "ARI",
+    "ARP",
+    "ARZ",
+    "ARİ",
+    "DARP",
+    "HAN",
+    "HAR",
+    "HAS",
+    "HOR",
+    "KİL",
+    "MALA",
+    "MOR",
+    "MORG",
+    "NAM",
+    "ORG",
+    "ORTA",
+    "VAR",
+    "İLİK",
+    "İRİ",
+    "ŞAH"
+   ],
+   "gen": {
+    "seed": 589198252,
+    "lang": "tr",
+    "profile": [
+     3,
+     2,
+     5,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "3(F),2(K),5(F),3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.154,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 13,
+    "letters": 50,
+    "bonus": 11,
+    "validWords": 22,
+    "extras": {
+     "root": 2,
+     "four": 3,
+     "three": 17
+    },
+    "ratio": 0.846,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      3,
+      13,
+      2
+     ],
+     [
+      2,
+      10,
+      1
+     ],
+     [
+      5,
+      8,
+      2
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.92,
+     0.34,
+     1.89,
+     2.01,
+     3.29,
+     0.27,
+     0.39,
+     0.52,
+     3.05,
+     0.78,
+     1.07,
+     1.37
+    ],
+    "knots": [
+     3,
+     4,
+     5,
+     9
+    ],
+    "chains": [
+     {
+      "start": 6,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 5,
+    "nearMiss": 4,
+    "startNoise": 0.6,
+    "revCenter": 0.96,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 46,
+   "name": "Level 46",
+   "difficulty": "6 waves",
+   "width": 5,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "TARHANA"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "GÖKYÜZÜ"
+     },
+     {
+      "x": 2,
+      "y": 2,
+      "dir": 1,
+      "word": "DAMLA"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "MENTOL"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "PUSET"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 0,
+      "word": "DUYAR"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "BOŞANMA"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "LEŞ"
+     },
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "POMPA"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "OTUZ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "TAM"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 2,
+      "word": "KUCAK"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 6,
+      "dir": 3,
+      "word": "KEMANCI"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "ŞEHİRLİ"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 1,
+      "word": "KAT"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 1,
+      "word": "ANT"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 0,
+      "word": "YAS"
+     }
+    ]
+   ],
+   "validWords": [
+    "ADA",
+    "ALMA",
+    "ALMANCI",
+    "ANA",
+    "ANMA",
+    "ARİ",
+    "ATMA",
+    "BEŞ",
+    "BOŞ",
+    "BOŞATMA",
+    "CAM",
+    "DAM",
+    "DAR",
+    "DUL",
+    "DUY",
+    "GÖK",
+    "HAN",
+    "HEM",
+    "HİZA",
+    "KAN",
+    "KANMA",
+    "KAP",
+    "KATMA",
+    "KEM",
+    "KEMAN",
+    "KOL",
+    "KOT",
+    "KUL",
+    "KÖS",
+    "LAZ",
+    "LOŞ",
+    "MAT",
+    "MEN",
+    "NAM",
+    "NAME",
+    "NAR",
+    "NEM",
+    "NUR",
+    "ODA",
+    "ONUR",
+    "PAK",
+    "PAMPA",
+    "POS",
+    "PUS",
+    "RAY",
+    "SET",
+    "TAT",
+    "TAŞ",
+    "TOK",
+    "TUR",
+    "TUZ",
+    "YAR",
+    "YAZ",
+    "YÜZ",
+    "İMA",
+    "ŞAN",
+    "ŞEHİR",
+    "ŞEN"
+   ],
+   "gen": {
+    "seed": 1501177629,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     1,
+     3,
+     2,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,1(K,L),3(F,L),2(K,L),2(K,L),3(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.118,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 6,
+    "targets": 17,
+    "letters": 85,
+    "bonus": 28,
+    "validWords": 58,
+    "extras": {
+     "root": 10,
+     "four": 10,
+     "three": 38
+    },
+    "ratio": 1.647,
+    "peakBonus": 88,
+    "perWave": [
+     [
+      4,
+      17,
+      9
+     ],
+     [
+      2,
+      13,
+      8
+     ],
+     [
+      1,
+      11,
+      5
+     ],
+     [
+      5,
+      10,
+      2
+     ],
+     [
+      4,
+      5,
+      5
+     ],
+     [
+      1,
+      1,
+      0
+     ]
+    ],
+    "tempo": [
+     0.29,
+     0.4,
+     0.48,
+     1.37,
+     1.54,
+     2.67,
+     1.19,
+     0.3,
+     0.34,
+     0.89,
+     1.65,
+     2.04,
+     3.84,
+     0.36,
+     0.54,
+     1.33,
+     1.53
+    ],
+    "knots": [
+     5,
+     12
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 3
+     },
+     {
+      "start": 7,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 7,
+    "nearMiss": 0,
+    "startNoise": 0.29,
+    "revCenter": 0.84,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many",
+    "misses": [
+     "extras 3"
+    ]
+   }
+  },
+  {
+   "id": 47,
+   "name": "Level 47",
+   "difficulty": "4 waves",
+   "width": 6,
+   "height": 7,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "DALIŞ"
+     },
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 1,
+      "word": "MUHAFIZ"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "ANTİLOP"
+     },
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 1,
+      "word": "OTEL"
+     },
+     {
+      "x": 5,
+      "y": 0,
+      "dir": 1,
+      "word": "İZDİHAM"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "KAKTÜS"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "KÖFTE"
+     }
+    ],
+    [
+     {
+      "x": 1,
+      "y": 6,
+      "dir": 3,
+      "word": "ÇİZGİLİ"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "YAŞ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 6,
+      "dir": 0,
+      "word": "TİNER"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "KAFEİN"
+     },
+     {
+      "x": 1,
+      "y": 5,
+      "dir": 0,
+      "word": "KİP"
+     }
+    ]
+   ],
+   "validWords": [
+    "AHU",
+    "AHİ",
+    "ALIŞ",
+    "ANT",
+    "DAL",
+    "DİL",
+    "HAFIZ",
+    "HAM",
+    "KAFE",
+    "KAN",
+    "KİM",
+    "LİG",
+    "PİK",
+    "SÜT",
+    "TAŞ",
+    "TEL",
+    "TİZ",
+    "ÇİZGİ",
+    "İFA",
+    "ŞEN"
+   ],
+   "gen": {
+    "seed": 1324701574,
+    "lang": "tr",
+    "profile": [
+     5,
+     2,
+     2,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "5(F),2,2,3"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.083,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 7,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 12,
+    "letters": 65,
+    "bonus": 16,
+    "validWords": 20,
+    "extras": {
+     "root": 4,
+     "four": 2,
+     "three": 14
+    },
+    "ratio": 1.333,
+    "peakBonus": 80,
+    "perWave": [
+     [
+      5,
+      12,
+      9
+     ],
+     [
+      2,
+      7,
+      2
+     ],
+     [
+      2,
+      5,
+      2
+     ],
+     [
+      3,
+      3,
+      2
+     ]
+    ],
+    "tempo": [
+     0.78,
+     0.87,
+     0.89,
+     1.26,
+     1.55,
+     1.82,
+     1.77,
+     0.38,
+     2.31,
+     0.41,
+     0.95,
+     0.58
+    ],
+    "knots": [
+     8
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 9,
+    "nearMiss": 0,
+    "startNoise": 0.29,
+    "revCenter": 0.73,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  },
+  {
+   "id": 48,
+   "name": "Level 48",
+   "difficulty": "5 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "SAĞ"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "KAVŞAK"
+     },
+     {
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "word": "DİL"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "PLAKA"
+     }
+    ],
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "İŞTAH"
+     },
+     {
+      "x": 0,
+      "y": 5,
+      "dir": 3,
+      "word": "TARÇIN"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "ALIM"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 1,
+      "word": "BOŞLUK"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "GÖÇEBE"
+     },
+     {
+      "x": 5,
+      "y": 5,
+      "dir": 2,
+      "word": "BUGÜN"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 4,
+      "dir": 3,
+      "word": "KOMBİ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 3,
+      "dir": 0,
+      "word": "JÜRİ"
+     },
+     {
+      "x": 3,
+      "y": 0,
+      "dir": 0,
+      "word": "NAZ"
+     },
+     {
+      "x": 3,
+      "y": 2,
+      "dir": 0,
+      "word": "KAN"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARA",
+    "ARP",
+    "ARŞ",
+    "ATA",
+    "BAZ",
+    "BAŞ",
+    "BOŞ",
+    "EBE",
+    "GÖÇ",
+    "GÜN",
+    "HAR",
+    "HAT",
+    "HATA",
+    "KALP",
+    "KAM",
+    "KAŞ",
+    "KEL",
+    "KUL",
+    "KİM",
+    "KİN",
+    "LAV",
+    "MAŞA",
+    "OKLUK",
+    "OVA",
+    "PLAK",
+    "TÜL",
+    "ZAN",
+    "ŞAL",
+    "ŞAN"
+   ],
+   "gen": {
+    "seed": 1151299234,
+    "lang": "tr",
+    "profile": [
+     4,
+     4,
+     2,
+     1,
+     3
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),4,2,1(K),3(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.214,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 5,
+    "targets": 14,
+    "letters": 64,
+    "bonus": 16,
+    "validWords": 29,
+    "extras": {
+     "root": 3,
+     "four": 4,
+     "three": 22
+    },
+    "ratio": 1.143,
+    "peakBonus": 75,
+    "perWave": [
+     [
+      4,
+      14,
+      9
+     ],
+     [
+      4,
+      10,
+      3
+     ],
+     [
+      2,
+      6,
+      4
+     ],
+     [
+      1,
+      4,
+      1
+     ],
+     [
+      3,
+      3,
+      1
+     ]
+    ],
+    "tempo": [
+     0.28,
+     0.36,
+     1.03,
+     1.35,
+     0.41,
+     0.5,
+     0.49,
+     3.39,
+     2.71,
+     3.12,
+     3.95,
+     0.34,
+     0.42,
+     1.51
+    ],
+    "knots": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "chains": [
+     {
+      "start": 4,
+      "len": 3
+     }
+    ],
+    "longestChain": 3,
+    "decoys": 6,
+    "nearMiss": 4,
+    "startNoise": 0.53,
+    "revCenter": 0.67,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "medium"
+   }
+  },
+  {
+   "id": 49,
+   "name": "Level 49",
+   "difficulty": "4 waves",
+   "width": 5,
+   "height": 5,
+   "layers": [
+    [
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "KUL"
+     },
+     {
+      "x": 1,
+      "y": 3,
+      "dir": 0,
+      "word": "SAAT"
+     },
+     {
+      "x": 0,
+      "y": 4,
+      "dir": 0,
+      "word": "DAİRE"
+     },
+     {
+      "x": 4,
+      "y": 0,
+      "dir": 1,
+      "word": "YAZ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 0,
+      "dir": 0,
+      "word": "YAR"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KUŞAK"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 4,
+      "dir": 3,
+      "word": "SERÇE"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "EKLİ"
+     }
+    ],
+    [
+     {
+      "x": 2,
+      "y": 4,
+      "dir": 3,
+      "word": "HARİÇ"
+     },
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 3,
+      "word": "DUY"
+     }
+    ],
+    [
+     {
+      "x": 3,
+      "y": 3,
+      "dir": 2,
+      "word": "HARÇ"
+     }
+    ],
+    [
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 0,
+      "word": "ÇAY"
+     },
+     {
+      "x": 0,
+      "y": 1,
+      "dir": 0,
+      "word": "KEFEN"
+     },
+     {
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "word": "BAZ"
+     },
+     {
+      "x": 0,
+      "y": 2,
+      "dir": 0,
+      "word": "KUR"
+     },
+     {
+      "x": 4,
+      "y": 2,
+      "dir": 1,
+      "word": "GAZ"
+     }
+    ]
+   ],
+   "validWords": [
+    "ARZ",
+    "ARİ",
+    "ASİ",
+    "AYA",
+    "AYAR",
+    "AZAR",
+    "BAR",
+    "BAS",
+    "BİR",
+    "BİZ",
+    "DAR",
+    "DAİR",
+    "DUL",
+    "DUYU",
+    "DİK",
+    "DİL",
+    "DİZ",
+    "DİZE",
+    "FEN",
+    "GAR",
+    "HAR",
+    "HARF",
+    "HAS",
+    "HAÇ",
+    "KAR",
+    "KAZ",
+    "KAŞ",
+    "KEFE",
+    "KEL",
+    "KURA",
+    "KURAK",
+    "KUYU",
+    "KUŞ",
+    "RAY",
+    "SAHA",
+    "ULU",
+    "UŞAK",
+    "YAKA",
+    "YAY",
+    "YAYA",
+    "YER",
+    "ZAR",
+    "ÇAR",
+    "İLK",
+    "İLKE",
+    "İSA",
+    "ŞAH"
+   ],
+   "gen": {
+    "seed": 2060754557,
+    "lang": "tr",
+    "profile": [
+     4,
+     2,
+     2,
+     2,
+     1,
+     5
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "4(F),2,2,2(K,L),1(K),5(F,L)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.25,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 5,
+    "cover": "strict",
+    "waves": 4,
+    "targets": 16,
+    "letters": 61,
+    "bonus": 22,
+    "validWords": 47,
+    "extras": {
+     "root": 7,
+     "four": 10,
+     "three": 30
+    },
+    "ratio": 1.375,
+    "peakBonus": 83,
+    "perWave": [
+     [
+      4,
+      16,
+      5
+     ],
+     [
+      2,
+      12,
+      8
+     ],
+     [
+      5,
+      10,
+      4
+     ],
+     [
+      5,
+      5,
+      3
+     ]
+    ],
+    "tempo": [
+     0.3,
+     0.34,
+     0.65,
+     0.44,
+     1,
+     0.8,
+     1.94,
+     2.36,
+     2.93,
+     3.4,
+     0.39,
+     0.5,
+     2.25,
+     0.34,
+     0.97,
+     1.19
+    ],
+    "knots": [
+     6,
+     7,
+     8,
+     9,
+     12
+    ],
+    "chains": [
+     {
+      "start": 0,
+      "len": 4
+     }
+    ],
+    "longestChain": 4,
+    "decoys": 4,
+    "nearMiss": 4,
+    "startNoise": 0.4,
+    "revCenter": 0.73,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "many",
+    "misses": [
+     "3-letter words",
+     "no chain after knot"
+    ]
+   }
+  },
+  {
+   "id": 50,
+   "name": "Level 50",
+   "difficulty": "3 waves",
+   "width": 6,
+   "height": 6,
+   "layers": [
+    [
+     {
+      "x": 4,
+      "y": 1,
+      "dir": 1,
+      "word": "İMAN"
+     },
+     {
+      "x": 0,
+      "y": 0,
+      "dir": 1,
+      "word": "BUYRUK"
+     },
+     {
+      "x": 3,
+      "y": 5,
+      "dir": 0,
+      "word": "SEN"
+     },
+     {
+      "x": 1,
+      "y": 2,
+      "dir": 0,
+      "word": "RET"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 0,
+      "word": "ANLAM"
+     },
+     {
+      "x": 1,
+      "y": 1,
+      "dir": 0,
+      "word": "KOZ"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 3,
+      "dir": 2,
+      "word": "KIVANÇ"
+     }
+    ],
+    [
+     {
+      "x": 5,
+      "y": 1,
+      "dir": 1,
+      "word": "KLİŞE"
+     },
+     {
+      "x": 1,
+      "y": 0,
+      "dir": 1,
+      "word": "TARİHİ"
+     },
+     {
+      "x": 2,
+      "y": 1,
+      "dir": 1,
+      "word": "ÇAVUŞ"
+     },
+     {
+      "x": 3,
+      "y": 1,
+      "dir": 1,
+      "word": "SİNE"
+     }
+    ]
+   ],
+   "validWords": [
+    "ANA",
+    "ANI",
+    "ARİ",
+    "KAN",
+    "KINA",
+    "KUR",
+    "MAL",
+    "NAM",
+    "SENT",
+    "TARİH",
+    "TER",
+    "UYRUK",
+    "İLK",
+    "İMA"
+   ],
+   "gen": {
+    "seed": 1884160267,
+    "lang": "tr",
+    "profile": [
+     6,
+     1,
+     4
+    ],
+    "plan": [
+     {
+      "type": "single",
+      "counts": "6(F),1(K),4(F)"
+     }
+    ],
+    "swaps": 250,
+    "reusePenalty": 1,
+    "reversed": 0.091,
+    "noInPlace": true,
+    "rMix": false,
+    "fullBoard": true,
+    "maxBonus": null,
+    "minLen": 3,
+    "maxLen": 6,
+    "cover": "strict",
+    "waves": 3,
+    "targets": 11,
+    "letters": 50,
+    "bonus": 9,
+    "validWords": 14,
+    "extras": {
+     "root": 3,
+     "four": 2,
+     "three": 9
+    },
+    "ratio": 0.818,
+    "peakBonus": 50,
+    "perWave": [
+     [
+      6,
+      11,
+      6
+     ],
+     [
+      1,
+      5,
+      0
+     ],
+     [
+      4,
+      4,
+      3
+     ]
+    ],
+    "tempo": [
+     0.26,
+     0.3,
+     0.45,
+     0.53,
+     0.53,
+     0.7,
+     3.97,
+     0.27,
+     0.34,
+     0.47,
+     0.67
+    ],
+    "knots": [
+     6
+    ],
+    "chains": [],
+    "longestChain": 0,
+    "decoys": 1,
+    "nearMiss": 0,
+    "startNoise": 0.33,
+    "revCenter": 0.6,
+    "emptyCells": 0,
+    "stage": "29-50",
+    "tier": "few"
+   }
+  }
+ ]
+}

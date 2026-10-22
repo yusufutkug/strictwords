@@ -1,0 +1,354 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "First Steps",
+      "difficulty": "easy",
+      "width": 5,
+      "height": 5,
+      "layers": [
+        [
+          { "x": 0, "y": 0, "dir": 0, "word": "CAT" },
+          { "x": 4, "y": 0, "dir": 1, "word": "SUN" },
+          { "x": 0, "y": 4, "dir": 0, "word": "DOG" }
+        ],
+        [
+          { "x": 0, "y": 0, "dir": 1, "word": "CUP" },
+          { "x": 4, "y": 2, "dir": 2, "word": "NET" },
+          { "x": 1, "y": 4, "dir": 3, "word": "OWL" }
+        ]
+      ],
+      "validWords": ["TEN", "GOD", "TAN", "NUT"]
+    },
+    {
+      "id": 2,
+      "name": "Garden Sky",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 4, "dir": 2, "word": "STAR" },
+          { "x": 1, "y": 5, "dir": 0, "word": "MOON" },
+          { "x": 4, "y": 3, "dir": 2, "word": "RAIN" },
+          { "x": 2, "y": 2, "dir": 0, "word": "SKY" }
+        ],
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "TREE" },
+          { "x": 3, "y": 4, "dir": 3, "word": "LEAF" },
+          { "x": 2, "y": 4, "dir": 3, "word": "ROSE" }
+        ],
+        [
+          { "x": 2, "y": 3, "dir": 3, "word": "SEED" },
+          { "x": 3, "y": 3, "dir": 3, "word": "ROOT" }
+        ]
+      ],
+      "validWords": ["RAT", "TAR", "ART", "SEE", "SIR", "TOO", "MOO", "RISE", "TYRE", "AFT", "LEA", "ROSED", "SKI", "RAN", "SEA"]
+    },
+    {
+      "id": 3,
+      "name": "Deep Space",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "PLANET" },
+          { "x": 1, "y": 0, "dir": 1, "word": "COMET" },
+          { "x": 3, "y": 2, "dir": 1, "word": "ORBIT" },
+          { "x": 5, "y": 6, "dir": 3, "word": "SPACE" }
+        ],
+        [
+          { "x": 2, "y": 6, "dir": 3, "word": "ROCKET" },
+          { "x": 1, "y": 1, "dir": 1, "word": "LUNAR" },
+          { "x": 3, "y": 4, "dir": 3, "word": "SOLAR" },
+          { "x": 5, "y": 0, "dir": 1, "word": "ALIEN" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "NOVA" },
+          { "x": 5, "y": 2, "dir": 2, "word": "STARS" },
+          { "x": 6, "y": 4, "dir": 2, "word": "GALAXY" },
+          { "x": 1, "y": 1, "dir": 0, "word": "MOONS" }
+        ]
+      ],
+      "validWords": ["ACE", "BET", "BIT", "CAP", "COME", "GAL", "GALA", "LANE", "LIE", "LIEN", "LOAN", "LUNA", "MOAN", "MOON", "MOO", "NET", "OAR", "ORB", "OVA", "PACE", "PLAN", "PLANE", "RAN", "RAT", "ROAR", "ROCK", "SPA", "STAR", "TAN", "TAR", "TARS", "TEN", "TOE", "SOY", "SLAG", "LAG", "LAX", "MET", "TAX"]
+    },
+    {
+      "id": 4,
+      "name": "Ocean Breeze",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 3, "y": 1, "dir": 2, "word": "FISH" },
+          { "x": 3, "y": 0, "dir": 2, "word": "WAVE" },
+          { "x": 0, "y": 2, "dir": 0, "word": "SAND" },
+          { "x": 0, "y": 3, "dir": 0, "word": "SHIP" }
+        ],
+        [
+          { "x": 2, "y": 4, "dir": 3, "word": "CRAB" },
+          { "x": 1, "y": 1, "dir": 1, "word": "REEF" },
+          { "x": 0, "y": 1, "dir": 1, "word": "TIDE" }
+        ],
+        [
+          { "x": 1, "y": 5, "dir": 3, "word": "SHELL" },
+          { "x": 2, "y": 5, "dir": 3, "word": "KELP" },
+          { "x": 0, "y": 5, "dir": 3, "word": "SEAL" }
+        ]
+      ],
+      "validWords": ["ALL", "AND", "ARC", "BAR", "EAR", "FEAR", "FEE", "HAS", "HER", "HID", "HIDE", "HIP", "HIS", "LED", "RED", "SEA", "SEE", "SHE", "SIT", "SITE"]
+    },
+    {
+      "id": 5,
+      "name": "Kitchen",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "BREAD" },
+          { "x": 2, "y": 3, "dir": 0, "word": "KNIFE" },
+          { "x": 2, "y": 4, "dir": 0, "word": "SPOON" },
+          { "x": 2, "y": 1, "dir": 0, "word": "PLATE" }
+        ],
+        [
+          { "x": 4, "y": 5, "dir": 3, "word": "BUTTER" },
+          { "x": 3, "y": 0, "dir": 1, "word": "HONEY" },
+          { "x": 5, "y": 1, "dir": 1, "word": "SUGAR" },
+          { "x": 2, "y": 3, "dir": 3, "word": "OVEN" }
+        ],
+        [
+          { "x": 5, "y": 4, "dir": 3, "word": "FLOUR" },
+          { "x": 3, "y": 2, "dir": 1, "word": "SALT" },
+          { "x": 4, "y": 1, "dir": 1, "word": "PEPPER" },
+          { "x": 2, "y": 2, "dir": 1, "word": "BOWL" },
+          { "x": 4, "y": 0, "dir": 2, "word": "TOAST" }
+        ]
+      ],
+      "validWords": ["ANY", "ATE", "BOW", "BUT", "DEN", "EAR", "FAR", "FIN", "FOR", "GUT", "HAS", "INK", "LATE", "NOR", "NOT", "OAT", "ODE", "ONE", "OTTER", "OUR", "OWL", "PEA", "PEN", "PEP", "PER", "RAG", "RAT", "RATIO", "READ", "ROAST", "SOB", "SOD", "TAR", "TEA", "TEAR", "TEE", "TON", "TUB", "TUG", "VOW", "WOVEN", "YEN"]
+    },
+    {
+      "id": 6,
+      "name": "Deep Forest",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "FOREST" },
+          { "x": 1, "y": 5, "dir": 3, "word": "CANOPY" },
+          { "x": 0, "y": 5, "dir": 3, "word": "BRANCH" },
+          { "x": 3, "y": 0, "dir": 1, "word": "MOSS" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 1, "word": "WILLOW" },
+          { "x": 0, "y": 0, "dir": 0, "word": "ACORN" },
+          { "x": 2, "y": 6, "dir": 3, "word": "FERN" },
+          { "x": 0, "y": 6, "dir": 3, "word": "BIRCH" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "MAPLE" },
+          { "x": 4, "y": 4, "dir": 2, "word": "CEDAR" },
+          { "x": 0, "y": 5, "dir": 0, "word": "PINE" },
+          { "x": 1, "y": 0, "dir": 0, "word": "TRAIL" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "BADGER" },
+          { "x": 4, "y": 5, "dir": 2, "word": "RAVEN" },
+          { "x": 5, "y": 4, "dir": 2, "word": "LICHEN" },
+          { "x": 2, "y": 0, "dir": 0, "word": "THORN" }
+        ]
+      ],
+      "validWords": ["ALE", "ARE", "ART", "BAD", "BADGE", "BIN", "BIT", "BITE", "CAN", "CAP", "CORN", "DAB", "EEL", "ELM", "ERA", "FOR", "HEN", "HORN", "ICE", "ILL", "ION", "LIAR", "LOW", "MAN", "MAP", "NIP", "NOR", "ONE", "ORE", "PIE", "PIN", "PIT", "POT", "RAIL", "RAN", "RANCH", "RARE", "RAVE", "REST", "RIB", "SEA", "SEE", "SPA", "TIP", "TOP", "WILL", "WOO"]
+    },
+    {
+      "id": 7,
+      "name": "City Lights",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 2, "y": 1, "dir": 0, "word": "TAXI" },
+          { "x": 2, "y": 0, "dir": 0, "word": "PARK" },
+          { "x": 5, "y": 2, "dir": 2, "word": "ROAD" },
+          { "x": 4, "y": 3, "dir": 2, "word": "BUS" }
+        ],
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "TOWER" },
+          { "x": 4, "y": 4, "dir": 3, "word": "CAFE" },
+          { "x": 2, "y": 4, "dir": 3, "word": "MALL" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "METRO" },
+          { "x": 4, "y": 5, "dir": 3, "word": "SHOP" },
+          { "x": 2, "y": 5, "dir": 3, "word": "LANE" },
+          { "x": 3, "y": 0, "dir": 2, "word": "CAR" }
+        ]
+      ],
+      "validWords": ["ALL", "ARK", "BOX", "DAM", "EEL", "HOP", "MAD", "MET", "OWE", "PAR", "RAP", "RAW", "SUB", "TOW", "WAR"]
+    },
+    {
+      "id": 8,
+      "name": "Music Hall",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 6, "y": 4, "dir": 2, "word": "PIANO" },
+          { "x": 3, "y": 5, "dir": 0, "word": "DRUM" },
+          { "x": 6, "y": 3, "dir": 2, "word": "FLUTE" },
+          { "x": 6, "y": 2, "dir": 2, "word": "BANJO" }
+        ],
+        [
+          { "x": 5, "y": 1, "dir": 1, "word": "GUITAR" },
+          { "x": 4, "y": 1, "dir": 1, "word": "VIOLIN" },
+          { "x": 3, "y": 2, "dir": 1, "word": "CELLO" },
+          { "x": 6, "y": 6, "dir": 3, "word": "HARP" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 0, "word": "TEMPO" },
+          { "x": 5, "y": 0, "dir": 1, "word": "CHORD" },
+          { "x": 1, "y": 6, "dir": 0, "word": "MELODY" },
+          { "x": 4, "y": 0, "dir": 1, "word": "OPERA" },
+          { "x": 3, "y": 4, "dir": 3, "word": "BASS" }
+        ]
+      ],
+      "validWords": ["ARE", "BAD", "BAN", "BAT", "CELL", "DAB", "END", "ERA", "FLU", "IRE", "LAD", "LAG", "LIAR", "LIP", "MAR", "MARE", "MET", "NAB", "NIL", "OAR", "PER", "PIE", "PRO", "RAIL", "RAM", "RAT", "RIP", "ROE", "ROLE", "RUM", "RUT", "TAB", "TAR", "TOE"]
+    },
+    {
+      "id": 9,
+      "name": "Storm Front",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "THUNDER" },
+          { "x": 1, "y": 1, "dir": 0, "word": "STORM" },
+          { "x": 0, "y": 3, "dir": 0, "word": "CLOUD" },
+          { "x": 5, "y": 0, "dir": 2, "word": "FROST" }
+        ],
+        [
+          { "x": 6, "y": 1, "dir": 2, "word": "BREEZE" },
+          { "x": 6, "y": 0, "dir": 2, "word": "SLEET" },
+          { "x": 5, "y": 3, "dir": 2, "word": "MIST" },
+          { "x": 4, "y": 2, "dir": 0, "word": "HAIL" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 0, "word": "RAINBOW" },
+          { "x": 7, "y": 0, "dir": 2, "word": "SUNNY" },
+          { "x": 6, "y": 3, "dir": 2, "word": "WINDY" },
+          { "x": 0, "y": 0, "dir": 1, "word": "FOGGY" }
+        ],
+        [
+          { "x": 4, "y": 6, "dir": 3, "word": "TORNADO" },
+          { "x": 5, "y": 6, "dir": 3, "word": "DRIZZLE" },
+          { "x": 3, "y": 0, "dir": 1, "word": "HUMID" },
+          { "x": 2, "y": 1, "dir": 1, "word": "SNOW" }
+        ]
+      ],
+      "validWords": ["AIR", "ALE", "ALL", "ANT", "ANY", "ARE", "BOW", "DARE", "DIM", "DIN", "DINE", "DUE", "DUNE", "EEL", "END", "ERA", "FOG", "FOR", "HEN", "HER", "HIM", "HUM", "LOUD", "MALE", "MALL", "MAR", "MARE", "MUD", "NOW", "NUN", "RAIN", "RAM", "RAN", "RED", "RIM", "ROT", "RUN", "SAD", "SUN", "TAD", "TAN", "TEE", "TORN", "UNDER", "URN", "WIN", "WIND", "WON", "YEN"]
+    },
+    {
+      "id": 10,
+      "name": "Farmyard",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 2, "y": 1, "dir": 2, "word": "COW" },
+          { "x": 3, "y": 2, "dir": 2, "word": "BARN" },
+          { "x": 2, "y": 3, "dir": 2, "word": "HAY" },
+          { "x": 3, "y": 0, "dir": 2, "word": "GOAT" }
+        ],
+        [
+          { "x": 1, "y": 4, "dir": 3, "word": "PIG" },
+          { "x": 2, "y": 2, "dir": 1, "word": "HEN" },
+          { "x": 0, "y": 4, "dir": 3, "word": "CORN" },
+          { "x": 4, "y": 0, "dir": 2, "word": "LAMB" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "DUCK" },
+          { "x": 1, "y": 2, "dir": 0, "word": "MULE" },
+          { "x": 3, "y": 4, "dir": 2, "word": "CALF" }
+        ]
+      ],
+      "validWords": ["AGO", "BAR", "BOG", "CAP", "DIE", "DUE", "GAP", "MOB", "OAT", "PAR", "RAP", "RIP", "ROB"]
+    },
+    {
+      "id": 11,
+      "name": "Game Day",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 0, "y": 3, "dir": 1, "word": "GOAL" },
+          { "x": 1, "y": 1, "dir": 1, "word": "TENNIS" },
+          { "x": 2, "y": 1, "dir": 1, "word": "SKATE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "RUGBY" }
+        ],
+        [
+          { "x": 2, "y": 1, "dir": 1, "word": "SOCCER" },
+          { "x": 1, "y": 0, "dir": 1, "word": "HOCKEY" },
+          { "x": 3, "y": 1, "dir": 1, "word": "BOXING" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "SPRINT" },
+          { "x": 3, "y": 3, "dir": 3, "word": "RACE" },
+          { "x": 0, "y": 6, "dir": 0, "word": "SCORE" },
+          { "x": 0, "y": 5, "dir": 3, "word": "MEDAL" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "TEAM" },
+          { "x": 4, "y": 2, "dir": 2, "word": "COACH" },
+          { "x": 4, "y": 1, "dir": 2, "word": "PUCK" }
+        ]
+      ],
+      "validWords": ["ACE", "AGO", "AND", "ART", "ATE", "BOX", "CAKE", "CAR", "COG", "CORE", "COST", "CUP", "EGO", "GANG", "ICE", "INN", "KEY", "LAD", "LAG", "MAR", "NAG", "NET", "ORE", "PRINT", "PUN", "PUNK", "RAM", "RAN", "RUG", "SIN", "SORE", "SUP", "TEA", "TEE", "TEN", "TERM", "YEN"]
+    },
+    {
+      "id": 12,
+      "name": "Royal Keep",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "CASTLE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "KNIGHT" },
+          { "x": 2, "y": 1, "dir": 1, "word": "DRAGON" },
+          { "x": 1, "y": 2, "dir": 1, "word": "MOAT" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "THRONE" },
+          { "x": 2, "y": 0, "dir": 1, "word": "QUEEN" },
+          { "x": 4, "y": 4, "dir": 3, "word": "SWORD" },
+          { "x": 1, "y": 2, "dir": 1, "word": "TOWER" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "SHIELD" },
+          { "x": 1, "y": 4, "dir": 0, "word": "ARMOR" },
+          { "x": 0, "y": 2, "dir": 0, "word": "CROWN" },
+          { "x": 4, "y": 1, "dir": 2, "word": "LANCE" }
+        ],
+        [
+          { "x": 0, "y": 2, "dir": 0, "word": "WIZARD" },
+          { "x": 2, "y": 1, "dir": 0, "word": "GATE" },
+          { "x": 1, "y": 3, "dir": 0, "word": "BANNER" },
+          { "x": 0, "y": 4, "dir": 0, "word": "ROYAL" }
+        ],
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "KING" },
+          { "x": 6, "y": 1, "dir": 2, "word": "FEAST" },
+          { "x": 1, "y": 0, "dir": 1, "word": "TORCH" }
+        ]
+      ],
+      "validWords": ["ACE", "AGE", "AGO", "ALE", "ARE", "ARM", "ATE", "AWE", "BAN", "CAN", "CAST", "CREW", "CROW", "DARE", "DIE", "DON", "DONE", "DOOR", "DRAG", "EAST", "EEL", "ELK", "ERA", "FERN", "GEM", "GIN", "HAIL", "HEEL", "HER", "HOT", "INK", "ION", "KIN", "LAD", "LAY", "LIE", "MEN", "MOON", "MOW", "NAB", "NET", "NIGHT", "NOD", "NOR", "NOT", "OAR", "OAT", "ONE", "ORB", "OWE", "OWN", "RAG", "RAN", "RANG", "RED", "RIOT", "ROAD", "ROT", "ROW", "SEA", "SEE", "SHE", "SOAR", "TAG", "TEN", "TOE", "TON", "TOO", "TOT", "TOW", "TOWN", "WAD", "WET", "WORD"]
+    }
+  ]
+}

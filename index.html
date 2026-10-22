@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Layered Word Link</title>
+<style>
+  :root {
+    --bg1: #1d2147;
+    --bg2: #3a1f5d;
+    --panel: rgba(255,255,255,0.08);
+    --panel-border: rgba(255,255,255,0.14);
+    --text: #f4f1ff;
+    --muted: #b7b1d9;
+    --tile: #fff4df;
+    --tile-side: #e3c99a;
+    --tile-text: #3b2c5e;
+    --sel: #ffd166;
+    --sel-side: #d9a630;
+    --ok: #2ed8a3;
+    --ok-dark: #13a77a;
+    --extra: #ffb020;
+    --bad: #ff5c7a;
+    --badge: #6c4ad6;
+    --tile-size: 64px;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(120% 80% at 50% 0%, var(--bg2), var(--bg1) 70%);
+    background-color: var(--bg1);
+    color: var(--text);
+    font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #app {
+    height: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px 16px;
+    gap: 10px;
+  }
+
+  /* ---------- Header ---------- */
+  header { display: flex; align-items: center; gap: 10px; }
+  .level-info { flex: 1; min-width: 0; }
+  .level-title { font-weight: 800; font-size: 18px; letter-spacing: .3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .level-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .progress { height: 8px; border-radius: 99px; background: rgba(255,255,255,.12); overflow: hidden; margin-top: 6px; }
+  .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--ok), #7cf0c9); border-radius: 99px; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .icon-btn {
+    position: relative;
+    width: 44px; height: 44px; border-radius: 14px;
+    background: var(--panel); border: 1px solid var(--panel-border);
+    color: var(--text); font-size: 20px; cursor: pointer;
+    display: grid; place-items: center;
+    transition: transform .15s;
+  }
+  .icon-btn:active { transform: scale(.92); }
+  .icon-btn .count {
+    position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px; padding: 0 5px;
+    border-radius: 99px; background: var(--extra); color: #3a2400; font-size: 12px; font-weight: 800;
+    display: grid; place-items: center;
+  }
+  .bump { animation: bump .45s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
+
+  /* ---------- Target words ---------- */
+  #targets {
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px;
+    padding: 8px 10px; display: flex; flex-direction: column; gap: 6px;
+    max-height: 30vh; overflow-y: auto;
+  }
+  .layer-words { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+  .tword { display: flex; gap: 2px; }
+  .slot {
+    width: 18px; height: 22px; border-radius: 5px;
+    background: rgba(255,255,255,.12); border-bottom: 2px solid rgba(255,255,255,.18);
+    font-size: 13px; font-weight: 800; display: grid; place-items: center; color: var(--text);
+  }
+  .tword.found .slot { background: var(--ok); border-bottom-color: var(--ok-dark); color: #073d2c; animation: flip .45s both; }
+  /* Ten-words mode: a slot resizes in place when its word is swapped for one of another length. */
+  .tword.ten-anim { overflow: hidden; transition: width .25s ease, margin-right .25s ease, opacity .25s ease; }
+  .tword.ten-anim .slot { flex-shrink: 0; }
+  .tword.out .slot { opacity: 0; transition: opacity .15s; }
+  .tword.enter .slot { animation: flip .45s both; }
+  .word-strip {
+    display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity; touch-action: pan-x; padding-bottom: 4px; scrollbar-width: none;
+  }
+  .word-strip::-webkit-scrollbar { display: none; }
+  .word-strip .tword { flex-shrink: 0; scroll-snap-align: start; }
+  .len-counts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .len-chip {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 10px 4px 4px; border-radius: 12px;
+    background: rgba(255,255,255,.08); border: 1px solid var(--panel-border);
+    transition: opacity .3s, background .3s;
+  }
+  .len-chip .len {
+    width: 26px; height: 28px; border-radius: 7px;
+    background: var(--tile); color: var(--tile-text); box-shadow: 0 3px 0 var(--tile-side);
+    font-weight: 900; font-size: 15px; display: grid; place-items: center;
+  }
+  .len-chip .len-text { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .len-chip .left { font-size: 18px; font-weight: 900; }
+  .len-chip.done { background: rgba(46,216,163,.16); border-color: rgba(46,216,163,.5); }
+  .len-chip.done .len { background: var(--ok); box-shadow: 0 3px 0 var(--ok-dark); color: #053a2a; }
+  .len-chip.done .left { color: var(--ok); }
+  .len-chip.none { opacity: .45; }
+  .setting { text-align: left; margin-top: 14px; }
+  .setting-label { font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+  .seg { display: flex; background: rgba(0,0,0,.25); border-radius: 12px; padding: 4px; gap: 4px; }
+  .seg button {
+    flex: 1; padding: 10px 6px; border: 0; border-radius: 9px; cursor: pointer;
+    background: transparent; color: var(--muted); font: 700 14px inherit; font-family: inherit;
+  }
+  .seg button.on { background: var(--ok); color: #053a2a; }
+  .rate { margin-top: 14px; }
+  .rate-q { font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+  .rate-btns, .rate-reasons { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .rate-btns button, .rate-reasons button {
+    flex: 1; min-width: 90px; padding: 10px 6px; border-radius: 12px; cursor: pointer;
+    background: rgba(255,255,255,.1); color: var(--text); border: 1px solid var(--panel-border);
+    font: 700 13px inherit; font-family: inherit;
+  }
+  .rate-reasons { margin-top: 8px; }
+  .rate-reasons button { flex: 0 1 auto; min-width: 0; padding: 7px 10px; font-size: 12px; }
+  .rate-btns button[data-rating=""] { flex-basis: 100%; }
+  .rate-btns button:not([data-rating=""]) { min-width: 0; font-size: 18px; font-weight: 900; padding: 10px 0; }
+  .rate-scale { display: flex; justify-content: space-between; margin-top: 4px; font-size: 11px; color: var(--muted); font-weight: 700; }
+  .rate-btns button.on { background: var(--sel); color: #3a2a00; border-color: var(--sel); }
+  .rate-reasons button.on { background: rgba(139,233,255,.25); border-color: #8be9ff; }
+  #name-input {
+    width: 100%; margin-top: 10px; padding: 12px; border-radius: 12px; font: 700 16px inherit; font-family: inherit;
+    background: rgba(0,0,0,.25); color: var(--text); border: 1px solid var(--panel-border);
+  }
+  .setting select {
+    width: 100%; padding: 10px; border-radius: 12px; font: 700 14px inherit; font-family: inherit;
+    background: rgba(0,0,0,.25); color: var(--text); border: 1px solid var(--panel-border);
+  }
+  .setting-hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  @keyframes flip { 0% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
+
+  /* ---------- Preview bubble ---------- */
+  #preview-wrap { position: relative; height: 44px; display: grid; place-items: center; }
+  #hint-btn { position: absolute; right: 0; top: 0; }
+  #hint-btn.used { background: rgba(139,233,255,.22); border-color: rgba(139,233,255,.6); }
+
+  /* hint step 1: pulsing start tile + direction arrow; step 2: whole word path glows */
+  .tile.hint-start { z-index: 3; }
+  .tile.hint-start .face, .tile.hint-path .face { animation: hintGlow 1.1s ease-in-out infinite; }
+  @keyframes hintGlow {
+    0%, 100% { box-shadow: 0 5px 0 var(--tile-side), 0 0 0 0 rgba(139,233,255,0); }
+    50% { box-shadow: 0 5px 0 var(--tile-side), 0 0 0 4px rgba(139,233,255,.95), 0 0 22px rgba(139,233,255,.8); }
+  }
+  .tile .hint-arrow {
+    display: none; position: absolute; left: 50%; top: 50%;
+    width: calc(var(--tile-size) * .42); height: calc(var(--tile-size) * .42);
+    margin: calc(var(--tile-size) * -.21) 0 0 calc(var(--tile-size) * -.21);
+    border-radius: 50%; background: #8be9ff; color: #10304a;
+    font-size: calc(var(--tile-size) * .26); font-weight: 900;
+    place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,.35);
+    transform: rotate(var(--hint-rot)) translateX(calc(var(--tile-size) * .58));
+  }
+  .tile.hint-start .hint-arrow { display: grid; animation: nudge .9s ease-in-out infinite; }
+  @keyframes nudge {
+    0%, 100% { transform: rotate(var(--hint-rot)) translateX(calc(var(--tile-size) * .58)); }
+    50% { transform: rotate(var(--hint-rot)) translateX(calc(var(--tile-size) * .72)); }
+  }
+  #preview {
+    min-width: 44px; height: 40px; padding: 0 16px; border-radius: 12px;
+    background: var(--sel); color: #3a2a00; font-size: 22px; font-weight: 900; letter-spacing: 3px;
+    display: grid; place-items: center;
+    opacity: 0; transform: scale(.8); transition: opacity .15s, transform .15s, background .15s;
+  }
+  #preview.show { opacity: 1; transform: scale(1); }
+  #preview.ok { background: var(--ok); color: #053a2a; }
+  #preview.extra { background: var(--extra); color: #3a2400; }
+  #preview.bad { background: var(--bad); color: #fff; animation: shake .4s; }
+  #preview.dup { background: #8e88b3; color: #fff; }
+
+  /* ---------- Board ---------- */
+  #board-wrap { flex: 1; min-height: 0; display: grid; place-items: center; }
+  #board { position: relative; touch-action: none; }
+  #board svg { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 1; }
+  #board svg polyline { fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .55; transition: stroke .15s; }
+  .socket {
+    position: absolute; border-radius: 22%;
+    background: rgba(0,0,0,.18); box-shadow: inset 0 2px 6px rgba(0,0,0,.25);
+  }
+  .tile {
+    position: absolute; z-index: 2;
+    width: var(--tile-size); height: var(--tile-size);
+    pointer-events: none;
+  }
+  .tile .face {
+    position: absolute; inset: 0; border-radius: 22%;
+    background: var(--tile); color: var(--tile-text);
+    box-shadow: 0 5px 0 var(--tile-side), 0 7px 12px rgba(0,0,0,.35);
+    display: grid; place-items: center;
+    transition: background .12s, box-shadow .12s, transform .12s;
+  }
+  /* stacked look: extra plates peeking out under tiles with more letters */
+  .tile[data-count="2"] .face { box-shadow: 0 5px 0 var(--tile-side), 0 9px 0 #b99b6a, 0 11px 12px rgba(0,0,0,.35); }
+  .tile.deep .face { box-shadow: 0 5px 0 var(--tile-side), 0 9px 0 #b99b6a, 0 13px 0 #8f7550, 0 15px 12px rgba(0,0,0,.35); }
+  .tile .letter { font-size: calc(var(--tile-size) * .5); font-weight: 900; line-height: 1; }
+  .tile .badge {
+    position: absolute; top: 5%; right: 6%;
+    min-width: calc(var(--tile-size) * .3); height: calc(var(--tile-size) * .3);
+    padding: 0 3px; border-radius: 99px;
+    background: var(--badge); color: #fff;
+    font-size: calc(var(--tile-size) * .19); font-weight: 800;
+    display: grid; place-items: center;
+  }
+  .tile.sel .face { background: var(--sel); box-shadow: 0 5px 0 var(--sel-side), 0 7px 14px rgba(0,0,0,.35); transform: translateY(-3px) scale(1.04); }
+  .tile.ok .face { background: var(--ok); box-shadow: 0 5px 0 var(--ok-dark), 0 0 22px rgba(46,216,163,.7); color: #053a2a; }
+  .tile.extra .face { background: var(--extra); box-shadow: 0 5px 0 #c9800a, 0 0 22px rgba(255,176,32,.6); color: #3a2400; }
+  .tile.bad .face { background: var(--bad); box-shadow: 0 5px 0 #b8304b; color: #fff; }
+  .tile.bad { animation: shake .4s; }
+  .tile.dup .face { background: #b9b3dc; box-shadow: 0 5px 0 #8a83b3; }
+  .tile.pop { animation: pop .32s ease-in forwards; }
+  .tile.drop { animation: drop .38s cubic-bezier(.3,1.5,.5,1); }
+  .tile .badge.tick { animation: bump .4s; }
+  @keyframes shake { 0%,100% { translate: 0; } 20% { translate: -6px; } 40% { translate: 6px; } 60% { translate: -4px; } 80% { translate: 4px; } }
+  @keyframes pop { 0% { transform: scale(1); opacity: 1; } 40% { transform: scale(1.18); opacity: 1; } 100% { transform: scale(.2); opacity: 0; } }
+  @keyframes drop { 0% { transform: translateY(-40%) scale(.6); opacity: 0; } 100% { transform: none; opacity: 1; } }
+  .particle {
+    position: absolute; z-index: 3; width: 8px; height: 8px; border-radius: 2px; pointer-events: none;
+    animation: burst .7s ease-out forwards;
+  }
+  @keyframes burst {
+    0% { transform: translate(0,0) rotate(0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(.3); opacity: 0; }
+  }
+  .flyer {
+    position: fixed; z-index: 50; pointer-events: none;
+    padding: 4px 10px; border-radius: 10px; font-weight: 900; letter-spacing: 2px; font-size: 18px;
+    background: var(--extra); color: #3a2400; box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  }
+
+  /* ---------- Toast ---------- */
+  #toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px);
+    background: rgba(20,16,40,.92); border: 1px solid var(--panel-border);
+    padding: 10px 18px; border-radius: 99px; font-weight: 700; font-size: 14px;
+    opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; z-index: 60; white-space: nowrap;
+  }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- Modals ---------- */
+  .modal-bg {
+    position: fixed; inset: 0; z-index: 80; background: rgba(8,6,20,.6);
+    display: none; place-items: center; padding: 16px;
+    backdrop-filter: blur(3px);
+  }
+  .modal-bg.open { display: grid; animation: fade .2s; }
+  @keyframes fade { from { opacity: 0; } }
+  .modal {
+    width: min(360px, 100%); background: linear-gradient(180deg, #3d2c6e, #251c4a);
+    border: 1px solid var(--panel-border); border-radius: 22px; padding: 22px 20px 18px;
+    text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    animation: rise .35s cubic-bezier(.3,1.4,.5,1);
+    max-height: 90vh; overflow-y: auto;
+  }
+  @keyframes rise { from { transform: translateY(30px) scale(.9); opacity: 0; } }
+  .modal h2 { margin: 0 0 6px; font-size: 26px; }
+  .modal p { margin: 6px 0; color: var(--muted); }
+  .stars { font-size: 40px; letter-spacing: 6px; margin: 4px 0 8px; }
+  .stars span { display: inline-block; animation: starIn .5s cubic-bezier(.3,1.6,.5,1) both; }
+  .stars span:nth-child(2) { animation-delay: .15s; }
+  .stars span:nth-child(3) { animation-delay: .3s; }
+  @keyframes starIn { from { transform: scale(0) rotate(-90deg); } }
+  .btn {
+    margin-top: 14px; width: 100%; padding: 14px; border: 0; border-radius: 14px;
+    background: linear-gradient(180deg, #3ee6b1, #17b183); color: #053a2a;
+    font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 5px 0 #0d7f5d;
+    font-family: inherit;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #0d7f5d; }
+  .btn.secondary { background: rgba(255,255,255,.12); color: var(--text); box-shadow: none; font-size: 15px; padding: 10px; }
+  .bag-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+  .bag-list span { background: rgba(255,176,32,.18); border: 1px solid rgba(255,176,32,.45); color: #ffd58a; padding: 5px 10px; border-radius: 10px; font-weight: 800; letter-spacing: 1px; }
+  .confetti { position: fixed; top: -12px; width: 9px; height: 14px; z-index: 90; pointer-events: none; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translate(var(--drift), 110vh) rotate(var(--spin)); } }
+
+  /* ---------- Debug / errors ---------- */
+  #errors { display: none; background: #5a1630; border: 1px solid var(--bad); border-radius: 12px; padding: 8px 12px; font-size: 12px; white-space: pre-wrap; }
+  #errors.show { display: block; }
+  #debug-panel textarea { width: 100%; height: 160px; background: #120e26; color: #dcd6ff; border: 1px solid var(--panel-border); border-radius: 10px; font: 11px/1.4 ui-monospace, Menlo, monospace; padding: 8px; }
+  #debug-panel select { width: 100%; padding: 8px; border-radius: 10px; background: #120e26; color: var(--text); border: 1px solid var(--panel-border); margin-top: 8px; }
+  #debug-answers { text-align: left; font: 12px/1.6 ui-monospace, Menlo, monospace; color: var(--muted); margin-top: 8px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="level-info">
+      <div class="level-title" id="level-title">Level 1</div>
+      <div class="level-sub" id="level-sub">0 / 0 words</div>
+      <div class="progress"><div id="progress-bar"></div></div>
+    </div>
+    <button class="icon-btn hidden" id="debug-btn" title="Debug">🐞</button>
+    <button class="icon-btn" id="settings-btn" title="Settings" data-i18n-title="settings">⚙️</button>
+    <button class="icon-btn" id="mute-btn" title="Sound" data-i18n-title="sound">🔊</button>
+    <button class="icon-btn" id="bag-btn" title="Extra words" data-i18n-title="extraWords">👜<span class="count" id="bag-count">0</span></button>
+  </header>
+  <div id="errors"></div>
+  <div id="targets"></div>
+  <div id="preview-wrap"><div id="preview"></div><button class="icon-btn" id="hint-btn" title="Hint" data-i18n-title="hint">💡</button></div>
+  <div id="board-wrap"><div id="board"><svg><polyline id="sel-line"/></svg></div></div>
+</div>
+
+<div id="toast"></div>
+
+<div class="modal-bg" id="win-modal">
+  <div class="modal">
+    <div class="stars"><span>⭐</span><span>⭐</span><span>⭐</span></div>
+    <h2 id="win-title">Level Complete!</h2>
+    <p id="win-summary"></p>
+    <div class="rate">
+      <div class="rate-q" data-i18n="rateQ">How hard was this level?</div>
+      <div class="rate-btns" id="rate-btns">
+        <button data-rating="" data-i18n="no_feedback">No feedback</button>
+        <button data-rating="1">1</button>
+        <button data-rating="2">2</button>
+        <button data-rating="3">3</button>
+        <button data-rating="4">4</button>
+        <button data-rating="5">5</button>
+      </div>
+      <div class="rate-scale"><span data-i18n="too_easy">Too easy</span><span data-i18n="just_right">Just right</span><span data-i18n="too_hard">Too hard</span></div>
+      <div class="rate-reasons hidden" id="rate-reasons"></div>
+    </div>
+    <button class="btn" id="next-btn">Next Level</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="bag-modal">
+  <div class="modal">
+    <h2 data-i18n="extraWords">Extra Words</h2>
+    <p id="bag-empty" data-i18n="bagEmpty">Find words that aren't on the board's list to fill your bag.</p>
+    <div class="bag-list" id="bag-list"></div>
+    <button class="btn secondary" data-close data-i18n="close">Close</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="settings-modal">
+  <div class="modal">
+    <h2 data-i18n="settings">Settings</h2>
+    <div class="setting">
+      <div class="setting-label" data-i18n="wordList">Word list</div>
+      <select id="wordlist-select">
+        <option value="counts" data-i18n="counts">Counts by length</option>
+        <option value="slots" data-i18n="slots">All words</option>
+        <option value="strip" data-i18n="strip">All words (swipe)</option>
+        <option value="ten" data-i18n="ten">Ten words</option>
+        <option value="available" data-i18n="available">Available now by length</option>
+      </select>
+      <div class="setting-hint" id="wordlist-hint"></div>
+    </div>
+    <div class="setting">
+      <div class="setting-label" data-i18n="language">Language</div>
+      <div class="seg" id="language-seg">
+        <button data-value="en">English</button>
+        <button data-value="tr">Türkçe</button>
+      </div>
+      <div class="setting-hint" data-i18n="languageHint"></div>
+    </div>
+    <div class="setting" id="set-setting" hidden>
+      <div class="setting-label" data-i18n="levelSet">Level set</div>
+      <select id="set-select"></select>
+    </div>
+    <div class="setting">
+      <div class="setting-label" data-i18n="player">Player</div>
+      <div class="setting-hint" id="player-name"></div>
+    </div>
+    <div class="setting">
+      <div class="setting-label" data-i18n="jumpToLevel">Jump to level</div>
+      <select id="level-select"></select>
+    </div>
+    <button class="btn secondary" data-close data-i18n="close">Close</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="name-modal">
+  <div class="modal">
+    <h2 data-i18n="askName">What's your name?</h2>
+    <p data-i18n="askNameHint"></p>
+    <input id="name-input" maxlength="40" autocomplete="off" spellcheck="false">
+    <button class="btn" id="name-save" data-i18n="save">Save</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="debug-panel">
+  <div class="modal">
+    <h2>Debug</h2>
+    <select id="debug-level"></select>
+    <div id="debug-answers"></div>
+    <p style="font-size:12px">Paste a level object or <code>{"levels":[...]}</code>:</p>
+    <textarea id="debug-json" spellcheck="false"></textarea>
+    <button class="btn" id="debug-load">Load JSON</button>
+    <button class="btn secondary" id="debug-export">Export data</button>
+    <button class="btn secondary" data-close data-i18n="close">Close</button>
+  </div>
+</div>
+
+<!--
+  LEVEL FORMAT
+  layers[0] is the TOP layer. x = column, y = row (origin top-left).
+  dir: 0 = right, 1 = down, 2 = left, 3 = up.
+  difficulty: label shown under the title (easy / medium / hard / very hard).
+  validWords: bonus words for the level (target words always count as valid too).
+-->
+<script type="application/json" id="levels">
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "First Steps",
+      "difficulty": "easy",
+      "width": 5,
+      "height": 5,
+      "layers": [
+        [
+          { "x": 0, "y": 0, "dir": 0, "word": "CAT" },
+          { "x": 4, "y": 0, "dir": 1, "word": "SUN" },
+          { "x": 0, "y": 4, "dir": 0, "word": "DOG" }
+        ],
+        [
+          { "x": 0, "y": 0, "dir": 1, "word": "CUP" },
+          { "x": 4, "y": 2, "dir": 2, "word": "NET" },
+          { "x": 1, "y": 4, "dir": 3, "word": "OWL" }
+        ]
+      ],
+      "validWords": ["TEN", "GOD", "TAN", "NUT"]
+    },
+    {
+      "id": 2,
+      "name": "Garden Sky",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 4, "dir": 2, "word": "STAR" },
+          { "x": 1, "y": 5, "dir": 0, "word": "MOON" },
+          { "x": 4, "y": 3, "dir": 2, "word": "RAIN" },
+          { "x": 2, "y": 2, "dir": 0, "word": "SKY" }
+        ],
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "TREE" },
+          { "x": 3, "y": 4, "dir": 3, "word": "LEAF" },
+          { "x": 2, "y": 4, "dir": 3, "word": "ROSE" }
+        ],
+        [
+          { "x": 2, "y": 3, "dir": 3, "word": "SEED" },
+          { "x": 3, "y": 3, "dir": 3, "word": "ROOT" }
+        ]
+      ],
+      "validWords": ["RAT", "TAR", "ART", "SEE", "SIR", "TOO", "MOO", "RISE", "TYRE", "AFT", "LEA", "ROSED", "SKI", "RAN", "SEA"]
+    },
+    {
+      "id": 3,
+      "name": "Deep Space",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "PLANET" },
+          { "x": 1, "y": 0, "dir": 1, "word": "COMET" },
+          { "x": 3, "y": 2, "dir": 1, "word": "ORBIT" },
+          { "x": 5, "y": 6, "dir": 3, "word": "SPACE" }
+        ],
+        [
+          { "x": 2, "y": 6, "dir": 3, "word": "ROCKET" },
+          { "x": 1, "y": 1, "dir": 1, "word": "LUNAR" },
+          { "x": 3, "y": 4, "dir": 3, "word": "SOLAR" },
+          { "x": 5, "y": 0, "dir": 1, "word": "ALIEN" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "NOVA" },
+          { "x": 5, "y": 2, "dir": 2, "word": "STARS" },
+          { "x": 6, "y": 4, "dir": 2, "word": "GALAXY" },
+          { "x": 1, "y": 1, "dir": 0, "word": "MOONS" }
+        ]
+      ],
+      "validWords": ["ACE", "BET", "BIT", "CAP", "COME", "GAL", "GALA", "LANE", "LIE", "LIEN", "LOAN", "LUNA", "MOAN", "MOON", "MOO", "NET", "OAR", "ORB", "OVA", "PACE", "PLAN", "PLANE", "RAN", "RAT", "ROAR", "ROCK", "SPA", "STAR", "TAN", "TAR", "TARS", "TEN", "TOE", "SOY", "SLAG", "LAG", "LAX", "MET", "TAX"]
+    },
+    {
+      "id": 4,
+      "name": "Ocean Breeze",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 3, "y": 1, "dir": 2, "word": "FISH" },
+          { "x": 3, "y": 0, "dir": 2, "word": "WAVE" },
+          { "x": 0, "y": 2, "dir": 0, "word": "SAND" },
+          { "x": 0, "y": 3, "dir": 0, "word": "SHIP" }
+        ],
+        [
+          { "x": 2, "y": 4, "dir": 3, "word": "CRAB" },
+          { "x": 1, "y": 1, "dir": 1, "word": "REEF" },
+          { "x": 0, "y": 1, "dir": 1, "word": "TIDE" }
+        ],
+        [
+          { "x": 1, "y": 5, "dir": 3, "word": "SHELL" },
+          { "x": 2, "y": 5, "dir": 3, "word": "KELP" },
+          { "x": 0, "y": 5, "dir": 3, "word": "SEAL" }
+        ]
+      ],
+      "validWords": ["ALL", "AND", "ARC", "BAR", "EAR", "FEAR", "FEE", "HAS", "HER", "HID", "HIDE", "HIP", "HIS", "LED", "RED", "SEA", "SEE", "SHE", "SIT", "SITE"]
+    },
+    {
+      "id": 5,
+      "name": "Kitchen",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "BREAD" },
+          { "x": 2, "y": 3, "dir": 0, "word": "KNIFE" },
+          { "x": 2, "y": 4, "dir": 0, "word": "SPOON" },
+          { "x": 2, "y": 1, "dir": 0, "word": "PLATE" }
+        ],
+        [
+          { "x": 4, "y": 5, "dir": 3, "word": "BUTTER" },
+          { "x": 3, "y": 0, "dir": 1, "word": "HONEY" },
+          { "x": 5, "y": 1, "dir": 1, "word": "SUGAR" },
+          { "x": 2, "y": 3, "dir": 3, "word": "OVEN" }
+        ],
+        [
+          { "x": 5, "y": 4, "dir": 3, "word": "FLOUR" },
+          { "x": 3, "y": 2, "dir": 1, "word": "SALT" },
+          { "x": 4, "y": 1, "dir": 1, "word": "PEPPER" },
+          { "x": 2, "y": 2, "dir": 1, "word": "BOWL" },
+          { "x": 4, "y": 0, "dir": 2, "word": "TOAST" }
+        ]
+      ],
+      "validWords": ["ANY", "ATE", "BOW", "BUT", "DEN", "EAR", "FAR", "FIN", "FOR", "GUT", "HAS", "INK", "LATE", "NOR", "NOT", "OAT", "ODE", "ONE", "OTTER", "OUR", "OWL", "PEA", "PEN", "PEP", "PER", "RAG", "RAT", "RATIO", "READ", "ROAST", "SOB", "SOD", "TAR", "TEA", "TEAR", "TEE", "TON", "TUB", "TUG", "VOW", "WOVEN", "YEN"]
+    },
+    {
+      "id": 6,
+      "name": "Deep Forest",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "FOREST" },
+          { "x": 1, "y": 5, "dir": 3, "word": "CANOPY" },
+          { "x": 0, "y": 5, "dir": 3, "word": "BRANCH" },
+          { "x": 3, "y": 0, "dir": 1, "word": "MOSS" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 1, "word": "WILLOW" },
+          { "x": 0, "y": 0, "dir": 0, "word": "ACORN" },
+          { "x": 2, "y": 6, "dir": 3, "word": "FERN" },
+          { "x": 0, "y": 6, "dir": 3, "word": "BIRCH" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "MAPLE" },
+          { "x": 4, "y": 4, "dir": 2, "word": "CEDAR" },
+          { "x": 0, "y": 5, "dir": 0, "word": "PINE" },
+          { "x": 1, "y": 0, "dir": 0, "word": "TRAIL" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "BADGER" },
+          { "x": 4, "y": 5, "dir": 2, "word": "RAVEN" },
+          { "x": 5, "y": 4, "dir": 2, "word": "LICHEN" },
+          { "x": 2, "y": 0, "dir": 0, "word": "THORN" }
+        ]
+      ],
+      "validWords": ["ALE", "ARE", "ART", "BAD", "BADGE", "BIN", "BIT", "BITE", "CAN", "CAP", "CORN", "DAB", "EEL", "ELM", "ERA", "FOR", "HEN", "HORN", "ICE", "ILL", "ION", "LIAR", "LOW", "MAN", "MAP", "NIP", "NOR", "ONE", "ORE", "PIE", "PIN", "PIT", "POT", "RAIL", "RAN", "RANCH", "RARE", "RAVE", "REST", "RIB", "SEA", "SEE", "SPA", "TIP", "TOP", "WILL", "WOO"]
+    },
+    {
+      "id": 7,
+      "name": "City Lights",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 2, "y": 1, "dir": 0, "word": "TAXI" },
+          { "x": 2, "y": 0, "dir": 0, "word": "PARK" },
+          { "x": 5, "y": 2, "dir": 2, "word": "ROAD" },
+          { "x": 4, "y": 3, "dir": 2, "word": "BUS" }
+        ],
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "TOWER" },
+          { "x": 4, "y": 4, "dir": 3, "word": "CAFE" },
+          { "x": 2, "y": 4, "dir": 3, "word": "MALL" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "METRO" },
+          { "x": 4, "y": 5, "dir": 3, "word": "SHOP" },
+          { "x": 2, "y": 5, "dir": 3, "word": "LANE" },
+          { "x": 3, "y": 0, "dir": 2, "word": "CAR" }
+        ]
+      ],
+      "validWords": ["ALL", "ARK", "BOX", "DAM", "EEL", "HOP", "MAD", "MET", "OWE", "PAR", "RAP", "RAW", "SUB", "TOW", "WAR"]
+    },
+    {
+      "id": 8,
+      "name": "Music Hall",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 6, "y": 4, "dir": 2, "word": "PIANO" },
+          { "x": 3, "y": 5, "dir": 0, "word": "DRUM" },
+          { "x": 6, "y": 3, "dir": 2, "word": "FLUTE" },
+          { "x": 6, "y": 2, "dir": 2, "word": "BANJO" }
+        ],
+        [
+          { "x": 5, "y": 1, "dir": 1, "word": "GUITAR" },
+          { "x": 4, "y": 1, "dir": 1, "word": "VIOLIN" },
+          { "x": 3, "y": 2, "dir": 1, "word": "CELLO" },
+          { "x": 6, "y": 6, "dir": 3, "word": "HARP" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 0, "word": "TEMPO" },
+          { "x": 5, "y": 0, "dir": 1, "word": "CHORD" },
+          { "x": 1, "y": 6, "dir": 0, "word": "MELODY" },
+          { "x": 4, "y": 0, "dir": 1, "word": "OPERA" },
+          { "x": 3, "y": 4, "dir": 3, "word": "BASS" }
+        ]
+      ],
+      "validWords": ["ARE", "BAD", "BAN", "BAT", "CELL", "DAB", "END", "ERA", "FLU", "IRE", "LAD", "LAG", "LIAR", "LIP", "MAR", "MARE", "MET", "NAB", "NIL", "OAR", "PER", "PIE", "PRO", "RAIL", "RAM", "RAT", "RIP", "ROE", "ROLE", "RUM", "RUT", "TAB", "TAR", "TOE"]
+    },
+    {
+      "id": 9,
+      "name": "Storm Front",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "THUNDER" },
+          { "x": 1, "y": 1, "dir": 0, "word": "STORM" },
+          { "x": 0, "y": 3, "dir": 0, "word": "CLOUD" },
+          { "x": 5, "y": 0, "dir": 2, "word": "FROST" }
+        ],
+        [
+          { "x": 6, "y": 1, "dir": 2, "word": "BREEZE" },
+          { "x": 6, "y": 0, "dir": 2, "word": "SLEET" },
+          { "x": 5, "y": 3, "dir": 2, "word": "MIST" },
+          { "x": 4, "y": 2, "dir": 0, "word": "HAIL" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 0, "word": "RAINBOW" },
+          { "x": 7, "y": 0, "dir": 2, "word": "SUNNY" },
+          { "x": 6, "y": 3, "dir": 2, "word": "WINDY" },
+          { "x": 0, "y": 0, "dir": 1, "word": "FOGGY" }
+        ],
+        [
+          { "x": 4, "y": 6, "dir": 3, "word": "TORNADO" },
+          { "x": 5, "y": 6, "dir": 3, "word": "DRIZZLE" },
+          { "x": 3, "y": 0, "dir": 1, "word": "HUMID" },
+          { "x": 2, "y": 1, "dir": 1, "word": "SNOW" }
+        ]
+      ],
+      "validWords": ["AIR", "ALE", "ALL", "ANT", "ANY", "ARE", "BOW", "DARE", "DIM", "DIN", "DINE", "DUE", "DUNE", "EEL", "END", "ERA", "FOG", "FOR", "HEN", "HER", "HIM", "HUM", "LOUD", "MALE", "MALL", "MAR", "MARE", "MUD", "NOW", "NUN", "RAIN", "RAM", "RAN", "RED", "RIM", "ROT", "RUN", "SAD", "SUN", "TAD", "TAN", "TEE", "TORN", "UNDER", "URN", "WIN", "WIND", "WON", "YEN"]
+    },
+    {
+      "id": 10,
+      "name": "Farmyard",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 2, "y": 1, "dir": 2, "word": "COW" },
+          { "x": 3, "y": 2, "dir": 2, "word": "BARN" },
+          { "x": 2, "y": 3, "dir": 2, "word": "HAY" },
+          { "x": 3, "y": 0, "dir": 2, "word": "GOAT" }
+        ],
+        [
+          { "x": 1, "y": 4, "dir": 3, "word": "PIG" },
+          { "x": 2, "y": 2, "dir": 1, "word": "HEN" },
+          { "x": 0, "y": 4, "dir": 3, "word": "CORN" },
+          { "x": 4, "y": 0, "dir": 2, "word": "LAMB" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "DUCK" },
+          { "x": 1, "y": 2, "dir": 0, "word": "MULE" },
+          { "x": 3, "y": 4, "dir": 2, "word": "CALF" }
+        ]
+      ],
+      "validWords": ["AGO", "BAR", "BOG", "CAP", "DIE", "DUE", "GAP", "MOB", "OAT", "PAR", "RAP", "RIP", "ROB"]
+    },
+    {
+      "id": 11,
+      "name": "Game Day",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 0, "y": 3, "dir": 1, "word": "GOAL" },
+          { "x": 1, "y": 1, "dir": 1, "word": "TENNIS" },
+          { "x": 2, "y": 1, "dir": 1, "word": "SKATE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "RUGBY" }
+        ],
+        [
+          { "x": 2, "y": 1, "dir": 1, "word": "SOCCER" },
+          { "x": 1, "y": 0, "dir": 1, "word": "HOCKEY" },
+          { "x": 3, "y": 1, "dir": 1, "word": "BOXING" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "SPRINT" },
+          { "x": 3, "y": 3, "dir": 3, "word": "RACE" },
+          { "x": 0, "y": 6, "dir": 0, "word": "SCORE" },
+          { "x": 0, "y": 5, "dir": 3, "word": "MEDAL" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "TEAM" },
+          { "x": 4, "y": 2, "dir": 2, "word": "COACH" },
+          { "x": 4, "y": 1, "dir": 2, "word": "PUCK" }
+        ]
+      ],
+      "validWords": ["ACE", "AGO", "AND", "ART", "ATE", "BOX", "CAKE", "CAR", "COG", "CORE", "COST", "CUP", "EGO", "GANG", "ICE", "INN", "KEY", "LAD", "LAG", "MAR", "NAG", "NET", "ORE", "PRINT", "PUN", "PUNK", "RAM", "RAN", "RUG", "SIN", "SORE", "SUP", "TEA", "TEE", "TEN", "TERM", "YEN"]
+    },
+    {
+      "id": 12,
+      "name": "Royal Keep",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "CASTLE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "KNIGHT" },
+          { "x": 2, "y": 1, "dir": 1, "word": "DRAGON" },
+          { "x": 1, "y": 2, "dir": 1, "word": "MOAT" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "THRONE" },
+          { "x": 2, "y": 0, "dir": 1, "word": "QUEEN" },
+          { "x": 4, "y": 4, "dir": 3, "word": "SWORD" },
+          { "x": 1, "y": 2, "dir": 1, "word": "TOWER" }
+        ],
+        [
+          { "x": 0, "y": 3, "dir": 0, "word": "SHIELD" },
+          { "x": 1, "y": 4, "dir": 0, "word": "ARMOR" },
+          { "x": 0, "y": 2, "dir": 0, "word": "CROWN" },
+          { "x": 4, "y": 1, "dir": 2, "word": "LANCE" }
+        ],
+        [
+          { "x": 0, "y": 2, "dir": 0, "word": "WIZARD" },
+          { "x": 2, "y": 1, "dir": 0, "word": "GATE" },
+          { "x": 1, "y": 3, "dir": 0, "word": "BANNER" },
+          { "x": 0, "y": 4, "dir": 0, "word": "ROYAL" }
+        ],
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "KING" },
+          { "x": 6, "y": 1, "dir": 2, "word": "FEAST" },
+          { "x": 1, "y": 0, "dir": 1, "word": "TORCH" }
+        ]
+      ],
+      "validWords": ["ACE", "AGE", "AGO", "ALE", "ARE", "ARM", "ATE", "AWE", "BAN", "CAN", "CAST", "CREW", "CROW", "DARE", "DIE", "DON", "DONE", "DOOR", "DRAG", "EAST", "EEL", "ELK", "ERA", "FERN", "GEM", "GIN", "HAIL", "HEEL", "HER", "HOT", "INK", "ION", "KIN", "LAD", "LAY", "LIE", "MEN", "MOON", "MOW", "NAB", "NET", "NIGHT", "NOD", "NOR", "NOT", "OAR", "OAT", "ONE", "ORB", "OWE", "OWN", "RAG", "RAN", "RANG", "RED", "RIOT", "ROAD", "ROT", "ROW", "SEA", "SEE", "SHE", "SOAR", "TAG", "TEN", "TOE", "TON", "TOO", "TOT", "TOW", "TOWN", "WAD", "WET", "WORD"]
+    }
+  ]
+}
+</script>
+
+<!-- Turkish level set (Settings → Language → Türkçe). Same format as above. -->
+<script type="application/json" id="levels-tr">
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "İlk Adımlar",
+      "difficulty": "easy",
+      "width": 5,
+      "height": 5,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 2, "word": "KAR" },
+          { "x": 4, "y": 0, "dir": 2, "word": "SÜT" },
+          { "x": 2, "y": 2, "dir": 0, "word": "GÖZ" }
+        ],
+        [
+          { "x": 3, "y": 3, "dir": 3, "word": "KUŞ" },
+          { "x": 4, "y": 1, "dir": 1, "word": "ARI" },
+          { "x": 2, "y": 3, "dir": 3, "word": "DAĞ" }
+        ]
+      ],
+      "validWords": ["DAR", "SAR", "SARI", "SAZ"]
+    },
+    {
+      "id": 2,
+      "name": "Bahçe",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "ÇİÇEK" },
+          { "x": 4, "y": 4, "dir": 2, "word": "AĞAÇ" },
+          { "x": 3, "y": 2, "dir": 2, "word": "GÜL" },
+          { "x": 3, "y": 1, "dir": 2, "word": "ÇİM" }
+        ],
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "YAPRAK" },
+          { "x": 3, "y": 4, "dir": 3, "word": "TOHUM" },
+          { "x": 1, "y": 5, "dir": 3, "word": "KÖK" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "DAL" },
+          { "x": 1, "y": 4, "dir": 3, "word": "SAKSI" },
+          { "x": 4, "y": 1, "dir": 1, "word": "BÖCEK" }
+        ]
+      ],
+      "validWords": ["ARP", "ARPA", "AĞA", "GİT", "KAR", "KAS", "KEÇİ", "PAY", "SAL", "SAT", "TAS"]
+    },
+    {
+      "id": 3,
+      "name": "Uzay",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 1, "y": 5, "dir": 0, "word": "YILDIZ" },
+          { "x": 6, "y": 4, "dir": 2, "word": "GÜNEŞ" },
+          { "x": 2, "y": 3, "dir": 0, "word": "DÜNYA" },
+          { "x": 6, "y": 2, "dir": 2, "word": "ROKET" }
+        ],
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "UYDU" },
+          { "x": 4, "y": 6, "dir": 3, "word": "METEOR" },
+          { "x": 5, "y": 6, "dir": 3, "word": "GALAKSİ" },
+          { "x": 6, "y": 0, "dir": 1, "word": "YÖRÜNGE" }
+        ],
+        [
+          { "x": 4, "y": 0, "dir": 1, "word": "UZAY" },
+          { "x": 3, "y": 0, "dir": 1, "word": "MARS" },
+          { "x": 6, "y": 4, "dir": 2, "word": "SATÜRN" },
+          { "x": 2, "y": 6, "dir": 0, "word": "VENÜS" }
+        ]
+      ],
+      "validWords": ["GÜN", "KAL", "KAR", "NAR", "NEM", "SAT", "TAS", "TEK", "TUR", "YAZ", "YEL", "YIL"]
+    },
+    {
+      "id": 4,
+      "name": "Deniz",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 2, "dir": 2, "word": "BALIK" },
+          { "x": 0, "y": 3, "dir": 0, "word": "DALGA" },
+          { "x": 4, "y": 1, "dir": 2, "word": "KUM" },
+          { "x": 3, "y": 4, "dir": 2, "word": "GEMİ" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "YENGEÇ" },
+          { "x": 1, "y": 3, "dir": 1, "word": "ADA" },
+          { "x": 3, "y": 3, "dir": 3, "word": "KIYI" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "KABUK" },
+          { "x": 1, "y": 5, "dir": 3, "word": "MARTI" },
+          { "x": 5, "y": 0, "dir": 2, "word": "LİMAN" }
+        ]
+      ],
+      "validWords": ["AMA", "ARI", "AYI", "BAK", "BAL", "DAL", "MAT", "MİL", "TAM", "YAKA", "YEL", "YIK"]
+    },
+    {
+      "id": 5,
+      "name": "Mutfak",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 2, "word": "EKMEK" },
+          { "x": 0, "y": 0, "dir": 0, "word": "BIÇAK" },
+          { "x": 0, "y": 2, "dir": 0, "word": "KAŞIK" },
+          { "x": 0, "y": 3, "dir": 0, "word": "TABAK" }
+        ],
+        [
+          { "x": 6, "y": 1, "dir": 2, "word": "TEREYAĞ" },
+          { "x": 2, "y": 4, "dir": 3, "word": "BAL" },
+          { "x": 1, "y": 0, "dir": 0, "word": "ŞEKER" },
+          { "x": 1, "y": 2, "dir": 1, "word": "FIRIN" }
+        ],
+        [
+          { "x": 2, "y": 3, "dir": 1, "word": "TUZ" },
+          { "x": 3, "y": 4, "dir": 3, "word": "BİBER" },
+          { "x": 4, "y": 1, "dir": 1, "word": "KASE" },
+          { "x": 0, "y": 0, "dir": 1, "word": "ÇATAL" },
+          { "x": 5, "y": 0, "dir": 1, "word": "TENCERE" }
+        ]
+      ],
+      "validWords": ["ARI", "BAK", "BAŞ", "KABA", "KAL", "KAR", "KAS", "KAŞ", "KEK", "SAR", "TAÇ", "YAĞ", "YER"]
+    },
+    {
+      "id": 6,
+      "name": "Derin Orman",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "ORMAN" },
+          { "x": 4, "y": 0, "dir": 1, "word": "KOZALAK" },
+          { "x": 2, "y": 0, "dir": 1, "word": "BUDAK" },
+          { "x": 1, "y": 4, "dir": 3, "word": "YOSUN" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "SÖĞÜT" },
+          { "x": 3, "y": 2, "dir": 2, "word": "MEŞE" },
+          { "x": 4, "y": 1, "dir": 2, "word": "KAYIN" },
+          { "x": 0, "y": 0, "dir": 0, "word": "ÇAM" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 0, "word": "SEDİR" },
+          { "x": 5, "y": 3, "dir": 2, "word": "PATİKA" },
+          { "x": 1, "y": 2, "dir": 0, "word": "ÇINAR" },
+          { "x": 5, "y": 0, "dir": 2, "word": "KOVUK" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "PORSUK" },
+          { "x": 1, "y": 0, "dir": 1, "word": "KUZGUN" },
+          { "x": 3, "y": 5, "dir": 3, "word": "LİKEN" },
+          { "x": 5, "y": 0, "dir": 1, "word": "DİKEN" }
+        ]
+      ],
+      "validWords": ["ANI", "ARA", "AYI", "ERİK", "KAL", "KAS", "KES", "KIZ", "KOL", "KUŞ", "KİR", "KİTAP", "NAR", "OKU", "PARA", "ROL", "YER"]
+    },
+    {
+      "id": 7,
+      "name": "Şehir",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 5, "y": 0, "dir": 2, "word": "TAKSİ" },
+          { "x": 1, "y": 1, "dir": 0, "word": "PARK" },
+          { "x": 3, "y": 2, "dir": 2, "word": "YOL" },
+          { "x": 0, "y": 0, "dir": 1, "word": "OTOBÜS" }
+        ],
+        [
+          { "x": 1, "y": 3, "dir": 3, "word": "KULE" },
+          { "x": 2, "y": 0, "dir": 1, "word": "KAFE" },
+          { "x": 3, "y": 4, "dir": 3, "word": "ÇARŞI" }
+        ],
+        [
+          { "x": 1, "y": 0, "dir": 1, "word": "METRO" },
+          { "x": 3, "y": 5, "dir": 3, "word": "DÜKKAN" },
+          { "x": 2, "y": 4, "dir": 3, "word": "SOKAK" },
+          { "x": 4, "y": 0, "dir": 1, "word": "ARABA" }
+        ]
+      ],
+      "validWords": ["ARA", "BAK", "KABA", "KAN", "KAT", "KEK", "OKU", "OKUL", "OYA", "ÇAY", "ŞAL"]
+    },
+    {
+      "id": 8,
+      "name": "Müzik",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 5, "y": 1, "dir": 2, "word": "PİYANO" },
+          { "x": 5, "y": 0, "dir": 2, "word": "DAVUL" },
+          { "x": 4, "y": 2, "dir": 2, "word": "FLÜT" },
+          { "x": 0, "y": 3, "dir": 0, "word": "BAĞLAMA" }
+        ],
+        [
+          { "x": 2, "y": 4, "dir": 3, "word": "GİTAR" },
+          { "x": 3, "y": 4, "dir": 3, "word": "KEMAN" },
+          { "x": 4, "y": 4, "dir": 3, "word": "ÇELLO" },
+          { "x": 1, "y": 4, "dir": 3, "word": "ARP" }
+        ],
+        [
+          { "x": 5, "y": 2, "dir": 2, "word": "TEMPO" },
+          { "x": 6, "y": 1, "dir": 2, "word": "AKOR" },
+          { "x": 5, "y": 0, "dir": 2, "word": "MELODİ" },
+          { "x": 5, "y": 4, "dir": 2, "word": "OPERA" },
+          { "x": 0, "y": 4, "dir": 3, "word": "NOTA" }
+        ]
+      ],
+      "validWords": ["AMA", "GİT", "KEL", "MAL", "NAL", "NAR", "NEM", "NOT", "TON", "TOP", "TÜL", "YAN", "İLAÇ", "İLE"]
+    },
+    {
+      "id": 9,
+      "name": "Fırtına",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 1, "y": 0, "dir": 0, "word": "FIRTINA" },
+          { "x": 7, "y": 1, "dir": 2, "word": "BULUT" },
+          { "x": 7, "y": 2, "dir": 2, "word": "ŞİMŞEK" },
+          { "x": 3, "y": 3, "dir": 0, "word": "AYAZ" }
+        ],
+        [
+          { "x": 5, "y": 5, "dir": 3, "word": "RÜZGAR" },
+          { "x": 4, "y": 0, "dir": 1, "word": "SAĞANAK" },
+          { "x": 6, "y": 4, "dir": 3, "word": "SİS" },
+          { "x": 3, "y": 4, "dir": 3, "word": "DOLU" }
+        ],
+        [
+          { "x": 1, "y": 2, "dir": 0, "word": "YAĞMUR" },
+          { "x": 7, "y": 3, "dir": 2, "word": "GÜNEŞLİ" },
+          { "x": 6, "y": 1, "dir": 2, "word": "SİSLİ" },
+          { "x": 7, "y": 4, "dir": 2, "word": "KIRAĞI" }
+        ],
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "KASIRGA" },
+          { "x": 6, "y": 3, "dir": 2, "word": "ÇİSENTİ" },
+          { "x": 5, "y": 1, "dir": 2, "word": "NEMLİ" },
+          { "x": 3, "y": 4, "dir": 2, "word": "KAR" }
+        ]
+      ],
+      "validWords": ["AMA", "ANA", "ANI", "ARI", "AĞA", "AĞIR", "BUL", "DAL", "DAR", "GÜN", "GÜNEŞ", "GÜZ", "KAN", "KAS", "KIR", "NAL", "NEM", "SAĞ", "SIR", "TAŞ", "YAZ", "YAĞ"]
+    },
+    {
+      "id": 10,
+      "name": "Çiftlik",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 2, "dir": 1, "word": "İNEK" },
+          { "x": 5, "y": 5, "dir": 3, "word": "AHIR" },
+          { "x": 3, "y": 1, "dir": 1, "word": "SAMAN" },
+          { "x": 2, "y": 4, "dir": 3, "word": "KEÇİ" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "KUZU" },
+          { "x": 5, "y": 4, "dir": 2, "word": "TAVUK" },
+          { "x": 1, "y": 2, "dir": 0, "word": "MISIR" },
+          { "x": 1, "y": 5, "dir": 0, "word": "ÖRDEK" }
+        ],
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "KATIR" },
+          { "x": 3, "y": 0, "dir": 1, "word": "BUZAĞI" },
+          { "x": 2, "y": 0, "dir": 1, "word": "HOROZ" }
+        ]
+      ],
+      "validWords": ["AMA", "BUZ", "HİÇ", "KAR", "KAT", "KIR", "KUM", "KİN", "SAĞ", "SIR", "UZUN", "ÖRNEK"]
+    },
+    {
+      "id": 11,
+      "name": "Maç Günü",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 1, "y": 3, "dir": 1, "word": "GOL" },
+          { "x": 2, "y": 6, "dir": 3, "word": "TENİS" },
+          { "x": 3, "y": 2, "dir": 1, "word": "PATEN" },
+          { "x": 4, "y": 6, "dir": 3, "word": "RAGBİ" }
+        ],
+        [
+          { "x": 5, "y": 4, "dir": 2, "word": "FUTBOL" },
+          { "x": 5, "y": 3, "dir": 2, "word": "HOKEY" },
+          { "x": 5, "y": 5, "dir": 2, "word": "BOKS" }
+        ],
+        [
+          { "x": 3, "y": 3, "dir": 2, "word": "KOŞU" },
+          { "x": 2, "y": 4, "dir": 0, "word": "YARIŞ" },
+          { "x": 3, "y": 5, "dir": 0, "word": "SKOR" },
+          { "x": 0, "y": 6, "dir": 0, "word": "MADALYA" }
+        ],
+        [
+          { "x": 3, "y": 1, "dir": 1, "word": "TAKIM" },
+          { "x": 1, "y": 4, "dir": 3, "word": "KOÇ" },
+          { "x": 2, "y": 1, "dir": 1, "word": "TOP" }
+        ]
+      ],
+      "validWords": ["ADA", "ADAM", "AMA", "ARI", "BAK", "BOL", "DAL", "DAM", "DAR", "KAS", "KASA", "KAT", "KEL", "KOŞ", "MAT", "ROL", "TAM", "YAR", "ÇOK"]
+    },
+    {
+      "id": 12,
+      "name": "Kale",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 2, "y": 7, "dir": 3, "word": "KALE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "ŞÖVALYE" },
+          { "x": 4, "y": 1, "dir": 1, "word": "EJDERHA" },
+          { "x": 5, "y": 2, "dir": 1, "word": "HENDEK" }
+        ],
+        [
+          { "x": 1, "y": 5, "dir": 0, "word": "TAHT" },
+          { "x": 5, "y": 7, "dir": 3, "word": "KRALİÇE" },
+          { "x": 4, "y": 4, "dir": 3, "word": "KILIÇ" },
+          { "x": 1, "y": 6, "dir": 0, "word": "KULE" }
+        ],
+        [
+          { "x": 5, "y": 5, "dir": 2, "word": "KALKAN" },
+          { "x": 6, "y": 6, "dir": 2, "word": "ZIRH" },
+          { "x": 6, "y": 3, "dir": 2, "word": "TAÇ" },
+          { "x": 6, "y": 4, "dir": 2, "word": "MIZRAK" }
+        ],
+        [
+          { "x": 6, "y": 5, "dir": 2, "word": "BÜYÜCÜ" },
+          { "x": 7, "y": 4, "dir": 2, "word": "KAPI" },
+          { "x": 2, "y": 6, "dir": 0, "word": "SANCAK" },
+          { "x": 6, "y": 3, "dir": 2, "word": "SARAY" }
+        ],
+        [
+          { "x": 7, "y": 3, "dir": 2, "word": "KRAL" },
+          { "x": 7, "y": 5, "dir": 2, "word": "ZİYAFET" },
+          { "x": 0, "y": 6, "dir": 0, "word": "MEŞALE" }
+        ]
+      ],
+      "validWords": ["ADA", "AKIL", "ARA", "DAL", "HAT", "HIZ", "KAL", "KAN", "KAP", "KAR", "KERE", "SAR", "TAHTA", "YAR", "YARA", "YEL", "YER", "YIL", "ZAR", "ÇAY", "ŞAL"]
+    }
+  ]
+}
+</script>
+
+<!-- Optional local config, one per player (see player.example.js):
+       window.PLAYER_ID = "name";  window.TELEMETRY_API_KEY = "…";  -->
+<script src="player.js"></script>
+<script>
+(() => {
+  'use strict';
+
+  // dir: 0 = right, 1 = down, 2 = left, 3 = up
+  const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+  const TEN_MAX = 10;   // words shown at once in the ten-words list
+  const STORAGE_KEY = 'layered-word-link.level';
+  const DEBUG = new URLSearchParams(location.search).has('debug');
+  // A level handed over by generator.html as index.html#play=<encoded level JSON>. It is played on its own:
+  // saved progress isn't touched and no telemetry is recorded.
+  let PLAY = (() => {
+    try { const m = location.hash.match(/^#play=(.+)$/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }
+    catch (_) { return null; }
+  })();
+  window.addEventListener('hashchange', () => location.reload());
+
+  const $ = id => document.getElementById(id);
+  const els = {
+    title: $('level-title'), sub: $('level-sub'), bar: $('progress-bar'),
+    targets: $('targets'), preview: $('preview'), boardWrap: $('board-wrap'), board: $('board'),
+    line: $('sel-line'), hintBtn: $('hint-btn'), bagBtn: $('bag-btn'), bagCount: $('bag-count'), muteBtn: $('mute-btn'),
+    toast: $('toast'), errors: $('errors'),
+    winModal: $('win-modal'), winTitle: $('win-title'), winSummary: $('win-summary'), nextBtn: $('next-btn'),
+    bagModal: $('bag-modal'), bagList: $('bag-list'), bagEmpty: $('bag-empty'),
+    settingsBtn: $('settings-btn'), settingsModal: $('settings-modal'),
+    wordlistSelect: $('wordlist-select'), languageSeg: $('language-seg'), levelSelect: $('level-select'), wordlistHint: $('wordlist-hint'),
+    setSetting: $('set-setting'), setSelect: $('set-select'),
+    debugBtn: $('debug-btn'), debugPanel: $('debug-panel'), debugLevel: $('debug-level'),
+    rateBtns: $('rate-btns'), rateReasons: $('rate-reasons'),
+    nameModal: $('name-modal'), nameInput: $('name-input'), nameSave: $('name-save'), playerName: $('player-name'),
+    debugExport: $('debug-export'),
+    debugJson: $('debug-json'), debugLoad: $('debug-load'), debugAnswers: $('debug-answers'),
+  };
+
+  // ======================================================================
+  // Level loading & validation
+  // ======================================================================
+  const LEVEL_SETS = {
+    en: JSON.parse($('levels').textContent).levels,
+    tr: JSON.parse($('levels-tr').textContent).levels,
+  };
+  let LEVELS = LEVEL_SETS.en;
+
+  function validateLevel(lv) {
+    const errs = [];
+    const name = `Level ${lv && lv.id != null ? lv.id : '?'}`;
+    if (!lv || typeof lv !== 'object') return [`${name}: not an object`];
+    if (!Number.isInteger(lv.width) || lv.width < 1 || lv.width > 12) errs.push(`${name}: width must be an int 1..12`);
+    if (!Number.isInteger(lv.height) || lv.height < 1 || lv.height > 12) errs.push(`${name}: height must be an int 1..12`);
+    if (!Array.isArray(lv.layers) || !lv.layers.length) errs.push(`${name}: layers must be a non-empty array`);
+    if (errs.length) return errs;
+    const occupied = new Map(); // "layer:x,y" -> word
+    lv.layers.forEach((layer, L) => {
+      if (!Array.isArray(layer)) { errs.push(`${name} layer ${L}: must be an array of words`); return; }
+      layer.forEach((w, i) => {
+        const tag = `${name} layer ${L} word ${i}`;
+        if (typeof w.word !== 'string' || !/^\p{L}{2,}$/u.test(w.word)) { errs.push(`${tag}: word must be 2+ letters`); return; }
+        if (!Number.isInteger(w.x) || !Number.isInteger(w.y)) { errs.push(`${tag} (${w.word}): x/y must be ints`); return; }
+        if (!Number.isInteger(w.dir) || w.dir < 0 || w.dir > 3) { errs.push(`${tag} (${w.word}): dir must be 0..3`); return; }
+        const [dx, dy] = DIRS[w.dir];
+        for (let k = 0; k < w.word.length; k++) {
+          const x = w.x + dx * k, y = w.y + dy * k;
+          if (x < 0 || y < 0 || x >= lv.width || y >= lv.height) { errs.push(`${tag} (${w.word}): goes out of bounds`); return; }
+          const key = `${L}:${x},${y}`;
+          if (occupied.has(key)) { errs.push(`${tag} (${w.word}): overlaps ${occupied.get(key)} in the same layer at ${x},${y}`); return; }
+          occupied.set(key, w.word);
+        }
+      });
+    });
+    if (lv.validWords != null && !Array.isArray(lv.validWords)) errs.push(`${name}: validWords must be an array`);
+    return errs;
+  }
+
+  function showErrors(errs) {
+    els.errors.textContent = errs.join('\n');
+    els.errors.classList.toggle('show', errs.length > 0);
+    errs.forEach(e => console.error(e));
+  }
+
+  // ======================================================================
+  // Game state
+  // ======================================================================
+  let S = null;       // current level state
+  let levelIndex = 0;
+  let muted = false;
+
+  // ---- Settings (persisted per browser) ----
+  const SETTINGS_KEY = 'layered-word-link.settings';
+  // wordList: 'counts' = remaining words per length, 'slots' = per-word slots in one list, shortest first,
+  //           'strip' = per-word slots in one horizontally swipeable row, 'available' = linkable-right-now words per length
+  // language: 'tr' (default) or 'en' — switches both the UI text and the level set
+  // levelSet: which generated set to play when several are served next to the page (see LEVEL_FILES)
+  // Defaults: Turkish, "ten words" list, the variety set.
+  const settings = { wordList: 'ten', language: 'tr', levelSet: 'variety' };
+  try { Object.assign(settings, JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}); } catch (_) {}
+  if (!LEVEL_SETS[settings.language]) settings.language = 'tr';
+  if (!['counts', 'slots', 'strip', 'ten', 'available'].includes(settings.wordList)) settings.wordList = 'ten';
+  const saveSettings = () => { try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (_) {} };
+  // Generated sets fetched at start, per language: { funnel: [...], variety: [...] }.
+  const EXTERNAL_SETS = { en: {}, tr: {} };
+  const availableSets = () => Object.keys(EXTERNAL_SETS[settings.language] || {});
+  // The set in play: the chosen generated set, else the first generated one, else the built-in levels.
+  function activeSetName() { const names = availableSets(); return names.includes(settings.levelSet) ? settings.levelSet : names[0] || null; }
+  const activeLevels = () => { const name = activeSetName(); return name ? EXTERNAL_SETS[settings.language][name] : LEVEL_SETS[settings.language]; };
+  // Progress is kept per language and per set; the first set keeps the old per-language key.
+  const progressKey = () => { const name = activeSetName(); return `${STORAGE_KEY}.${settings.language}` + (name && name !== 'funnel' ? `.${name}` : ''); };
+
+  // ---- UI text ----
+  const I18N = {
+    en: {
+      level: 'Level', words: 'words', top: 'Top', layer: 'Layer', letters: 'letters',
+      alreadyInBag: 'Already in your bag', extraWord: 'Extra word', noHints: 'No hints available',
+      levelComplete: 'Level Complete!', allComplete: 'All Levels Complete!', nextLevel: 'Next Level', playAgain: 'Play Again',
+      summary: (n, e) => `${n} words found · ${e} extra word${e === 1 ? '' : 's'}`,
+      extraWords: 'Extra Words', bagEmpty: "Find words that aren't on the board's list to fill your bag.", close: 'Close',
+      settings: 'Settings', wordList: 'Word list', counts: 'Counts by length', slots: 'All words', strip: 'All words (swipe)', ten: 'Ten words', available: 'Available now by length',
+      countsHint: 'Shows only how many words of each length are left on the board.',
+      slotsHint: 'Shows every word in one list, shortest first; found words turn green.',
+      stripHint: 'Shows every word in a single row; found words turn green. Swipe sideways to see them all.',
+      tenHint: 'Shows up to 10 words at a time, from the words you can reach first. A found word is replaced by a new one.',
+      availableHint: 'Shows how many words of each length can be linked on the board right now. Updates after every found word.',
+      language: 'Language', languageHint: 'Switches the interface and the level set. Progress is kept per language.',
+      hint: 'Hint', sound: 'Sound', jumpToLevel: 'Jump to level',
+      levelSet: 'Level set', setFunnel: 'Funnel (3×3 → 7×7)', setVariety: 'Variety (few / medium / many words)',
+      rateQ: 'How hard was this level?', no_feedback: 'No feedback', too_easy: 'Too easy', just_right: 'Just right', too_hard: 'Too hard',
+      no_search: 'No searching needed', too_short: 'Too short',
+      couldnt_find: "Couldn't find words", unknown_words: "Didn't know the words", too_long: 'Too long', controls: 'Controls got in the way',
+      askName: "What's your name?", askNameHint: 'Used to label your play data. You can also set it in player.js.',
+      save: 'Save', player: 'Player', fromFile: 'from player.js',
+      easy: 'Easy', medium: 'Medium', hard: 'Hard', 'very hard': 'Very Hard',
+    },
+    tr: {
+      level: 'Bölüm', words: 'kelime', top: 'Üst', layer: 'Katman', letters: 'harf',
+      alreadyInBag: 'Zaten çantanda', extraWord: 'Ekstra kelime', noHints: 'İpucu yok',
+      levelComplete: 'Bölüm Tamamlandı!', allComplete: 'Tüm Bölümler Tamamlandı!', nextLevel: 'Sonraki Bölüm', playAgain: 'Tekrar Oyna',
+      summary: (n, e) => `${n} kelime bulundu · ${e} ekstra kelime`,
+      extraWords: 'Ekstra Kelimeler', bagEmpty: 'Listede olmayan kelimeleri bularak çantanı doldur.', close: 'Kapat',
+      settings: 'Ayarlar', wordList: 'Kelime listesi', counts: 'Uzunluğa göre sayılar', slots: 'Tüm kelimeler', strip: 'Tüm kelimeler (kaydır)', ten: 'On kelime', available: 'Şu an bulunabilenler',
+      countsHint: 'Sadece tahtada her uzunlukta kaç kelime kaldığını gösterir.',
+      slotsHint: 'Tüm kelimeleri kısadan uzuna tek listede gösterir; bulunanlar yeşile döner.',
+      stripHint: 'Tüm kelimeleri tek satırda gösterir; bulunanlar yeşile döner. Hepsini görmek için yana kaydır.',
+      tenHint: 'Aynı anda en fazla 10 kelime gösterir, önce ulaşılabilecek kelimelerden. Bulunan kelimenin yerine yenisi gelir.',
+      availableHint: 'Tahtada şu an bağlanabilecek kelimelerin uzunluğa göre sayısını gösterir. Her bulunan kelimeden sonra güncellenir.',
+      language: 'Dil', languageHint: 'Arayüzü ve bölüm setini değiştirir. İlerleme her dil için ayrı tutulur.',
+      hint: 'İpucu', sound: 'Ses', jumpToLevel: 'Bölüme git',
+      levelSet: 'Bölüm seti', setFunnel: 'Funnel (3×3 → 7×7)', setVariety: 'Çeşitli (az / orta / çok kelime)',
+      rateQ: 'Bu bölüm ne kadar zordu?', no_feedback: 'Geri bildirim yok', too_easy: 'Çok kolay', just_right: 'Tam kararında', too_hard: 'Çok zor',
+      no_search: 'Aramaya gerek kalmadı', too_short: 'Çok kısa',
+      couldnt_find: 'Kelimeleri bulamadım', unknown_words: 'Kelimeleri bilmiyordum', too_long: 'Çok uzun', controls: 'Kontroller zorladı',
+      askName: 'Adın ne?', askNameHint: 'Oyun verilerini etiketlemek için kullanılır. player.js dosyasına da yazabilirsin.',
+      save: 'Kaydet', player: 'Oyuncu', fromFile: "player.js'den",
+      easy: 'Kolay', medium: 'Orta', hard: 'Zor', 'very hard': 'Çok Zor',
+    },
+  };
+  const t = key => (I18N[settings.language] || I18N.en)[key] ?? I18N.en[key] ?? key;
+  // Locale-aware uppercase so Turkish i/ı map to İ/I correctly.
+  const upper = str => str.toLocaleUpperCase(settings.language === 'tr' ? 'tr-TR' : 'en-US');
+
+  function applyLanguage() {
+    document.documentElement.lang = settings.language;
+    LEVELS = activeLevels();
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  }
+
+  // ======================================================================
+  // Telemetry: one record per level attempt, kept locally. Exactly one POST per completed level,
+  // carrying every queued record (abandoned attempts ride along with the next completion).
+  // The API key is not stored here; it comes from the local player.js (window.TELEMETRY_API_KEY).
+  // ======================================================================
+  const ENDPOINT = 'https://json-sink-gsrfgmi47q-ew.a.run.app';
+  const API_KEY = (typeof window.TELEMETRY_API_KEY === 'string' && window.TELEMETRY_API_KEY.trim()) || '';
+  const GAME_VERSION = '0.6.0';
+  const QUEUE_KEY = 'layered-word-link.telemetry-queue';
+  const PLAYER_KEY = 'layered-word-link.player';
+  // rating: difficulty 1 (too easy) .. 3 (just right) .. 5 (too hard), or null for "No feedback"
+  const reasonsFor = r => !r ? [] : r <= 2 ? ['no_search', 'too_short'] : r >= 4 ? ['couldnt_find', 'unknown_words', 'too_long', 'controls'] : [];
+
+  const uuid = () => (window.crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  const sessionId = uuid();
+  let record = null;   // current level attempt
+  let recordT0 = 0;    // performance.now() at level start
+  let memQueue = [];   // used when localStorage is unavailable
+  let sending = false;
+  let memPlayer = null; // used when localStorage is unavailable
+  const PASSIVE_EVENTS = new Set(['start', 'visibility', 'setting']);
+
+  const fileName = () => (typeof window.PLAYER_ID === 'string' && window.PLAYER_ID.trim()) || null;
+  function playerId() {
+    if (fileName()) return fileName();
+    try { return localStorage.getItem(PLAYER_KEY) || memPlayer; } catch (_) { return memPlayer; }
+  }
+
+  function readQueue() {
+    try { const q = JSON.parse(localStorage.getItem(QUEUE_KEY)); return Array.isArray(q) ? q : memQueue; } catch (_) { return memQueue; }
+  }
+  function writeQueue(q) {
+    memQueue = q;
+    try { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); } catch (_) {}
+  }
+
+  function startRecord(lv) {
+    recordT0 = performance.now();
+    record = {
+      schema: 2, ratingScale: 'difficulty_1_5', recordId: uuid(), gameVersion: GAME_VERSION,
+      playerId: playerId(), sessionId,
+      language: settings.language, wordListMode: settings.wordList,
+      viewport: [window.innerWidth, window.innerHeight],
+      levelIndex, level: JSON.parse(JSON.stringify(lv)),
+      startedAt: new Date().toISOString(),
+      events: [], completed: false, outcome: null, rating: null, reason: null,
+    };
+    logEvent('start');
+  }
+
+  function logEvent(type, data) {
+    if (!record) return;
+    record.events.push({ t: Math.round(performance.now() - recordT0), type, ...data });
+  }
+
+  // Moves the current attempt into the local queue. Attempts without any player action are dropped.
+  function finishRecord() {
+    if (!record) return;
+    const r = record;
+    record = null;
+    if (!r.events.some(e => !PASSIVE_EVENTS.has(e.type))) return;
+    r.outcome = r.completed ? 'completed' : 'abandoned';
+    r.endedAt = new Date().toISOString();
+    r.durationMs = Math.round(performance.now() - recordT0);
+    r.playerId = r.playerId || playerId();
+    delete r.completed;
+    writeQueue(readQueue().concat(r));
+  }
+
+  // The single request made per completed level: posts the whole queue as one JSON array.
+  function sendQueue() {
+    const q = readQueue();
+    if (!ENDPOINT || sending || !q.length) return;
+    if (!API_KEY) { console.warn('Telemetry: no TELEMETRY_API_KEY in player.js; records kept locally.'); return; }
+    sending = true;
+    const body = JSON.stringify(q);
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body,
+      keepalive: body.length < 60000,   // browsers cap keepalive bodies at 64 KB
+    }).then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const sent = new Set(q.map(r => r.recordId));
+      writeQueue(readQueue().filter(r => !sent.has(r.recordId)));
+    }).catch(err => {
+      console.warn(`Telemetry send failed (${q.length} record(s) kept for the next level):`, err.message);
+    }).finally(() => { sending = false; });
+  }
+
+  function exportQueue() {
+    const data = readQueue().concat(record ? [{ ...record, outcome: 'in_progress' }] : []);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+    a.download = `word-link-data-${playerId() || 'unknown'}-${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  function renderRating() {
+    const rating = record && record.rating;
+    els.rateBtns.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.rating === String(rating || '')));
+    const reasons = reasonsFor(rating);
+    els.rateReasons.classList.toggle('hidden', !reasons.length);
+    els.rateReasons.innerHTML = reasons.map(r =>
+      `<button data-reason="${r}" class="${record.reason === r ? 'on' : ''}">${t(r)}</button>`).join('');
+  }
+
+  function renderPlayer() {
+    const name = playerId();
+    els.playerName.textContent = name ? (fileName() ? `${name} (${t('fromFile')})` : name) : '—';
+  }
+
+  function askNameIfMissing() {
+    if (playerId()) return;
+    els.nameModal.classList.add('open');
+    setTimeout(() => els.nameInput.focus(), 50);
+  }
+
+  function saveName() {
+    const name = els.nameInput.value.trim();
+    if (!name) { els.nameInput.focus(); return; }
+    memPlayer = name;
+    try { localStorage.setItem(PLAYER_KEY, name); } catch (_) {}
+    if (record && !record.playerId) record.playerId = name;
+    els.nameModal.classList.remove('open');
+    renderPlayer();
+  }
+
+  function buildState(lv) {
+    const W = lv.width, H = lv.height;
+    const stacks = Array.from({ length: W * H }, () => []);
+    const words = [];
+    lv.layers.forEach((layer, L) => layer.forEach(w => {
+      const word = upper(w.word);
+      const [dx, dy] = DIRS[w.dir];
+      const id = words.length;
+      const cells = [];
+      for (let k = 0; k < word.length; k++) {
+        const ci = (w.y + dy * k) * W + (w.x + dx * k);
+        cells.push(ci);
+        stacks[ci].push({ letter: word[k], layer: L, wordId: id });
+      }
+      words.push({ id, layer: L, x: w.x, y: w.y, dir: w.dir, word, cells, found: false });
+    }));
+    stacks.forEach(s => s.sort((a, b) => a.layer - b.layer));
+    const valid = new Set((lv.validWords || []).map(v => upper(String(v))));
+    words.forEach(w => valid.add(w.word));
+    const shuffle = arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    };
+    // Display order for the word lists: shuffled once per level so it stays put while the player finds words.
+    const listOrder = shuffle(words.slice());
+    // Ten-words list: words in wave order, shuffled within each wave; the first TEN_MAX are shown.
+    const tenQueue = wordWaves(words, stacks).flatMap(shuffle);
+    const shown = tenQueue.splice(0, TEN_MAX);
+    return {
+      lv, W, H, stacks, words, valid, listOrder, tenQueue, shown,
+      everUsed: stacks.map(s => s.length > 0),
+      bag: [], busy: false, tiles: [], won: false, hint: null,
+    };
+  }
+
+  // Waves as in the generator's simulation: a wave is every word linkable once all earlier waves are cleared.
+  function wordWaves(words, stacks) {
+    const st = stacks.map(s => s.slice()), left = new Set(words), waves = [];
+    while (left.size) {
+      const wave = [...left].filter(w => w.cells.every(ci => st[ci][0] && st[ci][0].wordId === w.id));
+      if (!wave.length) break;
+      wave.forEach(w => { left.delete(w); w.cells.forEach(ci => st[ci].shift()); });
+      waves.push(wave);
+    }
+    if (left.size) waves.push([...left]);   // never reachable (broken level): keep them last
+    return waves;
+  }
+
+  // A word is linkable only when every one of its cells shows this word's letter on top.
+  const isAvailable = w => !w.found && w.cells.every(ci => S.stacks[ci][0] && S.stacks[ci][0].wordId === w.id);
+  const topLetter = ci => (S.stacks[ci][0] ? S.stacks[ci][0].letter : null);
+  const foundCount = () => S.words.filter(w => w.found).length;
+
+  // ======================================================================
+  // Rendering
+  // ======================================================================
+  let tileSize = 64;
+
+  function layoutBoard() {
+    const wrapW = els.boardWrap.clientWidth, wrapH = els.boardWrap.clientHeight;
+    tileSize = Math.max(28, Math.floor(Math.min(wrapW / S.W, (wrapH - 10) / S.H, 86)));
+    const g = Math.max(4, Math.round(tileSize * 0.09));
+    const inner = tileSize - g;
+    els.board.style.width = `${tileSize * S.W}px`;
+    els.board.style.height = `${tileSize * S.H}px`;
+    els.board.style.setProperty('--tile-size', `${inner}px`);
+    for (let ci = 0; ci < S.W * S.H; ci++) {
+      const x = ci % S.W, y = Math.floor(ci / S.W);
+      const left = `${x * tileSize + g / 2}px`, top = `${y * tileSize + g / 2}px`;
+      const t = S.tiles[ci];
+      if (t) { t.style.left = left; t.style.top = top; }
+      const sock = S.sockets[ci];
+      if (sock) { Object.assign(sock.style, { left, top, width: `${inner}px`, height: `${inner}px` }); }
+    }
+    els.line.setAttribute('stroke-width', tileSize * 0.5);
+    drawSelection();
+  }
+
+  function renderBoard() {
+    els.board.querySelectorAll('.tile, .socket, .particle').forEach(n => n.remove());
+    S.tiles = new Array(S.W * S.H).fill(null);
+    S.sockets = new Array(S.W * S.H).fill(null);
+    for (let ci = 0; ci < S.W * S.H; ci++) {
+      if (!S.everUsed[ci]) continue;
+      const sock = document.createElement('div');
+      sock.className = 'socket';
+      els.board.appendChild(sock);
+      S.sockets[ci] = sock;
+      const t = document.createElement('div');
+      t.className = 'tile';
+      t.innerHTML = '<div class="face"><span class="letter"></span><span class="badge"></span></div><span class="hint-arrow">➜</span>';
+      els.board.appendChild(t);
+      S.tiles[ci] = t;
+      updateTile(ci);
+    }
+    layoutBoard();
+    renderHint();
+  }
+
+  function updateTile(ci, animate) {
+    const t = S.tiles[ci];
+    if (!t) return;
+    const stack = S.stacks[ci];
+    t.className = 'tile';
+    if (!stack.length) { t.style.visibility = 'hidden'; return; }
+    t.style.visibility = '';
+    t.dataset.count = stack.length;
+    t.classList.toggle('deep', stack.length >= 3);
+    t.querySelector('.letter').textContent = stack[0].letter;
+    const badge = t.querySelector('.badge');
+    badge.textContent = stack.length;
+    if (animate) {
+      void t.offsetWidth;
+      t.classList.add('drop');
+      badge.classList.remove('tick'); void badge.offsetWidth; badge.classList.add('tick');
+    }
+  }
+
+  // ======================================================================
+  // Hints: 1st press shows a linkable word's start tile + direction, 2nd press shows its whole path.
+  // ======================================================================
+  function useHint() {
+    if (!S || S.busy || S.won) return;
+    Audio.unlock();
+    const cur = S.hint && S.words[S.hint.wordId];
+    if (cur && !cur.found && isAvailable(cur) && S.hint.step === 1) {
+      S.hint.step = 2;
+    } else {
+      let open = S.words.filter(isAvailable);
+      // Ten-words mode: point at a word the player can see on the list.
+      if (settings.wordList === 'ten' && open.some(w => S.shown.includes(w))) open = open.filter(w => S.shown.includes(w));
+      if (!open.length) { toast(t('noHints')); logEvent('hint_none'); return; }
+      // shortest words first so hints nudge rather than give away the big ones
+      const minLen = Math.min(...open.map(w => w.word.length));
+      const pool = open.filter(w => w.word.length === minLen);
+      S.hint = { wordId: pool[Math.floor(Math.random() * pool.length)].id, step: 1 };
+    }
+    Audio.hint();
+    renderHint();
+    logEvent('hint', { step: S.hint.step, wordId: S.hint.wordId });
+  }
+
+  function renderHint() {
+    S.tiles.forEach(t => t && t.classList.remove('hint-start', 'hint-path'));
+    const w = S.hint && S.words[S.hint.wordId];
+    if (!w || w.found) { S.hint = null; els.hintBtn.classList.remove('used'); return; }
+    els.hintBtn.classList.add('used');
+    const start = S.tiles[w.cells[0]];
+    start.classList.add('hint-start');
+    start.style.setProperty('--hint-rot', `${w.dir * 90}deg`);
+    if (S.hint.step === 2) w.cells.forEach(ci => S.tiles[ci].classList.add('hint-path'));
+  }
+
+  function renderTargets() {
+    els.targets.innerHTML = '';
+    if (settings.wordList === 'counts') return renderLengthCounts(w => !w.found);
+    if (settings.wordList === 'available') return renderLengthCounts(isAvailable);
+    if (settings.wordList === 'strip') return renderWordStrip();
+    if (settings.wordList === 'ten') return renderTenWords();
+    // One list, not grouped by layer: the shuffled order, sorted shortest to longest (sort is stable).
+    const holder = document.createElement('div');
+    holder.className = 'layer-words';
+    [...S.listOrder].sort((a, b) => a.word.length - b.word.length).forEach(w => holder.appendChild(wordSlots(w)));
+    els.targets.appendChild(holder);
+  }
+
+  function wordSlots(w) {
+    const el = document.createElement('div');
+    el.className = 'tword' + (w.found ? ' found' : '');
+    el.dataset.id = w.id;
+    el.innerHTML = [...w.word].map((c, i) => `<div class="slot" style="animation-delay:${i * 60}ms">${c}</div>`).join('');
+    return el;
+  }
+
+  // Every word in one row, shuffled across all layers so the order doesn't tell which words are on top;
+  // the player swipes to see the rest.
+  function renderWordStrip() {
+    const strip = document.createElement('div');
+    strip.className = 'word-strip';
+    S.listOrder.forEach(w => strip.appendChild(wordSlots(w)));
+    els.targets.appendChild(strip);
+  }
+
+  // Up to TEN_MAX words, nearest wave first. Found words are swapped out in place by refillTenWords.
+  function renderTenWords() {
+    S.shown = S.shown.filter(w => !w.found);
+    S.tenQueue = S.tenQueue.filter(w => !w.found);
+    while (S.shown.length < TEN_MAX && S.tenQueue.length) S.shown.push(S.tenQueue.shift());
+    if (!S.shown.some(isAvailable)) {
+      const k = S.tenQueue.findIndex(isAvailable);
+      if (k >= 0) S.shown.push(...S.tenQueue.splice(k, 1));
+    }
+    const holder = document.createElement('div');
+    holder.className = 'layer-words';
+    S.shown.forEach(w => holder.appendChild(wordSlots(w)));
+    els.targets.appendChild(holder);
+  }
+
+  // After `found` left the board: its slot gets the next word, words the find uncovered are always added
+  // (even past TEN_MAX), and while the list is over TEN_MAX found slots just close.
+  function refillTenWords(found, wasAvailable) {
+    const idx = S.shown.indexOf(found);
+    S.tenQueue = S.tenQueue.filter(w => !w.found);
+    const forced = S.tenQueue.filter(w => isAvailable(w) && !wasAvailable.has(w));
+    S.tenQueue = S.tenQueue.filter(w => !forced.includes(w));
+    if (idx >= 0) S.shown.splice(idx, 1);
+    const replacement = forced.shift() || (S.shown.length < TEN_MAX ? S.tenQueue.shift() : null) || null;
+    const added = forced;
+    if (replacement) { if (idx >= 0) S.shown.splice(idx, 0, replacement); else added.unshift(replacement); }
+    while (S.shown.length + added.length < TEN_MAX && S.tenQueue.length) added.push(S.tenQueue.shift());
+    // Never leave the list without a linkable word while one is on the board.
+    if (![...S.shown, ...added].some(isAvailable)) {
+      const k = S.tenQueue.findIndex(isAvailable);
+      if (k >= 0) added.push(...S.tenQueue.splice(k, 1));
+    }
+    S.shown.push(...added);
+
+    const holder = els.targets.querySelector('.layer-words');
+    if (!holder) return;
+    const el = holder.querySelector(`.tword[data-id="${found.id}"]`);
+    if (el) tenSwap(el, idx >= 0 ? replacement : null);
+    added.forEach(w => tenGrow(holder, w));
+  }
+
+  const TEN_OUT_MS = 150, TEN_RESIZE_MS = 250, TEN_GAP = 10;   // TEN_GAP = .layer-words column gap
+
+  // Fades the slot's letters out, resizes it to the new word's width (or closes it when `w` is null), then flips the new letters in.
+  function tenSwap(el, w) {
+    el.style.width = `${el.getBoundingClientRect().width}px`;
+    el.classList.add('ten-anim', 'out');
+    setTimeout(() => {
+      if (!w) {
+        Object.assign(el.style, { width: '0px', marginRight: `-${TEN_GAP}px`, opacity: '0' });
+        setTimeout(() => el.remove(), TEN_RESIZE_MS);
+        return;
+      }
+      const fresh = wordSlots(w);
+      el.innerHTML = fresh.innerHTML;
+      el.dataset.id = w.id;
+      el.classList.remove('found');
+      el.style.width = `${el.scrollWidth}px`;
+      setTimeout(() => tenReveal(el), TEN_RESIZE_MS);
+    }, TEN_OUT_MS);
+  }
+
+  function tenGrow(holder, w) {
+    const el = wordSlots(w);
+    el.classList.add('ten-anim', 'out');
+    Object.assign(el.style, { width: '0px', marginRight: `-${TEN_GAP}px` });
+    holder.appendChild(el);
+    void el.offsetWidth;
+    Object.assign(el.style, { width: `${el.scrollWidth}px`, marginRight: '' });
+    setTimeout(() => tenReveal(el), TEN_RESIZE_MS);
+  }
+
+  function tenReveal(el) {
+    el.classList.remove('ten-anim', 'out');
+    el.style.width = '';
+    if (el.classList.contains('found')) return;
+    el.classList.add('enter');
+    // Drop it once the flip is over so a later .found flip can play.
+    setTimeout(() => el.classList.remove('enter'), 450 + el.children.length * 60);
+  }
+
+  // Only shows how many words of each length match `counted` (still left / linkable now); never which words or where.
+  function renderLengthCounts(counted) {
+    const byLen = new Map();
+    S.words.forEach(w => {
+      const e = byLen.get(w.word.length) || { total: 0, left: 0, unfound: 0 };
+      e.total++; if (counted(w)) e.left++; if (!w.found) e.unfound++;
+      byLen.set(w.word.length, e);
+    });
+    const holder = document.createElement('div');
+    holder.className = 'len-counts';
+    [...byLen.keys()].sort((a, b) => a - b).forEach(len => {
+      const { left, unfound } = byLen.get(len);
+      const chip = document.createElement('div');
+      // done = every word of this length found; in 'available' mode a length can be at ×0 while words are still buried.
+      chip.className = 'len-chip' + (unfound === 0 ? ' done' : left === 0 ? ' none' : '');
+      chip.dataset.len = len;
+      chip.innerHTML = `<div class="len">${len}</div><span class="len-text">${t('letters')}</span><span class="left">${unfound === 0 ? '✓' : '×' + left}</span>`;
+      holder.appendChild(chip);
+    });
+    els.targets.appendChild(holder);
+  }
+
+  function markTargetFound(w) {
+    if (settings.wordList === 'counts' || settings.wordList === 'available') {
+      renderTargets();
+      const chip = els.targets.querySelector(`.len-chip[data-len="${w.word.length}"]`);
+      if (chip) { chip.classList.add('bump'); chip.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+      return;
+    }
+    const tw = els.targets.querySelector(`.tword[data-id="${w.id}"]`);
+    if (tw) { tw.classList.add('found'); tw.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' }); }
+  }
+
+  function renderSettings() {
+    els.wordlistSelect.value = settings.wordList;
+    els.wordlistHint.textContent = t(`${settings.wordList}Hint`);
+    els.languageSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.value === settings.language));
+    const sets = availableSets();
+    els.setSetting.hidden = sets.length < 2;
+    const setLabel = name => t('set' + name[0].toUpperCase() + name.slice(1));
+    els.setSelect.innerHTML = sets.map(name => `<option value="${name}" ${name === activeSetName() ? 'selected' : ''}>${setLabel(name)} · ${EXTERNAL_SETS[settings.language][name].length}</option>`).join('');
+    els.levelSelect.innerHTML = LEVELS.map((lv, i) =>
+      `<option value="${i}" ${i === levelIndex ? 'selected' : ''}>${t('level')} ${i + 1} · ${lv.name || ''}${lv.difficulty ? ' · ' + t(lv.difficulty) : ''}</option>`).join('');
+  }
+
+  function renderHud() {
+    const n = foundCount(), total = S.words.length;
+    els.title.textContent = `${t('level')} ${levelIndex + 1} · ${S.lv.name || ''}`;
+    const diff = S.lv.difficulty ? ` · ${t(S.lv.difficulty)}` : '';
+    els.sub.textContent = `${n} / ${total} ${t('words')}${diff}`;
+    els.bar.style.width = `${(n / total) * 100}%`;
+    els.bagCount.textContent = S.bag.length;
+  }
+
+  // ======================================================================
+  // Selection / input
+  // ======================================================================
+  const sel = { active: false, cells: [], dir: null, pointerId: null };
+
+  const cellXY = ci => [ci % S.W, Math.floor(ci / S.W)];
+  const cellCenter = ci => { const [x, y] = cellXY(ci); return [(x + 0.5) * tileSize, (y + 0.5) * tileSize]; };
+  const selWord = () => sel.cells.map(topLetter).join('');
+
+  function boardPoint(e) {
+    const r = els.board.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  }
+
+  function cellAtPoint(px, py) {
+    const x = Math.floor(px / tileSize), y = Math.floor(py / tileSize);
+    if (x < 0 || y < 0 || x >= S.W || y >= S.H) return -1;
+    // only count presses reasonably near the center so gaps don't misfire
+    const cx = (x + 0.5) * tileSize, cy = (y + 0.5) * tileSize;
+    if (Math.abs(px - cx) > tileSize * 0.48 || Math.abs(py - cy) > tileSize * 0.48) return -1;
+    return y * S.W + x;
+  }
+
+  // Cells reachable from start along dir, stopping at the edge or a hole.
+  function ray(start, dir, maxLen) {
+    const [sx, sy] = cellXY(start);
+    const [dx, dy] = DIRS[dir];
+    const out = [start];
+    for (let k = 1; k < maxLen; k++) {
+      const x = sx + dx * k, y = sy + dy * k;
+      if (x < 0 || y < 0 || x >= S.W || y >= S.H) break;
+      const ci = y * S.W + x;
+      if (!S.stacks[ci].length) break;
+      out.push(ci);
+    }
+    return out;
+  }
+
+  function onPointerDown(e) {
+    if (!S || S.busy || S.won || sel.active) return;
+    Audio.unlock();
+    const [px, py] = boardPoint(e);
+    const ci = cellAtPoint(px, py);
+    if (ci < 0 || !S.stacks[ci].length) return;
+    e.preventDefault();
+    clearFeedback();
+    sel.active = true; sel.cells = [ci]; sel.dir = null; sel.pointerId = e.pointerId;
+    try { els.board.setPointerCapture(e.pointerId); } catch (_) {}
+    Audio.tick(1);
+    refreshSelection();
+  }
+
+  function onPointerMove(e) {
+    if (!sel.active || e.pointerId !== sel.pointerId) return;
+    const [px, py] = boardPoint(e);
+    const start = sel.cells[0];
+    const [cx, cy] = cellCenter(start);
+    const dx = (px - cx) / tileSize, dy = (py - cy) / tileSize;
+    let next = sel.cells;
+
+    if (sel.dir === null) {
+      // Lock direction once the pointer clearly enters a neighbouring tile.
+      if (Math.max(Math.abs(dx), Math.abs(dy)) >= 0.6) {
+        const dir = Math.abs(dx) >= Math.abs(dy) ? (dx > 0 ? 0 : 2) : (dy > 0 ? 1 : 3);
+        const r = ray(start, dir, 2);
+        if (r.length > 1) { sel.dir = dir; next = r; }
+      }
+    } else {
+      const [ux, uy] = DIRS[sel.dir];
+      const proj = dx * ux + dy * uy;
+      if (proj < 0.35) {
+        // Dragged back onto the start tile: unlock so the player can pick a new direction.
+        sel.dir = null; next = [start];
+      } else {
+        const n = Math.max(1, Math.round(proj));
+        next = ray(start, sel.dir, n + 1);
+      }
+    }
+
+    if (next.length !== sel.cells.length) {
+      const grew = next.length > sel.cells.length;
+      sel.cells = next;
+      if (grew) { Audio.tick(next.length); vibrate(8); }
+      refreshSelection();
+    }
+  }
+
+  function onPointerUp(e) {
+    if (!sel.active || e.pointerId !== sel.pointerId) return;
+    sel.active = false;
+    try { els.board.releasePointerCapture(e.pointerId); } catch (_) {}
+    if (sel.cells.length < 2 || e.type === 'pointercancel') {
+      const [x, y] = cellXY(sel.cells[0]);
+      logEvent('drag_cancel', { x, y, dir: sel.dir, len: sel.cells.length, letters: selWord(), cancelled: e.type === 'pointercancel' });
+      resetSelection();
+      return;
+    }
+    resolveLink(sel.cells.slice(), sel.dir);
+  }
+
+  function refreshSelection() {
+    S.tiles.forEach((t, ci) => t && t.classList.toggle('sel', sel.cells.includes(ci)));
+    drawSelection();
+    const w = selWord();
+    els.preview.className = w ? 'show' : '';
+    els.preview.textContent = w;
+  }
+
+  function drawSelection(color) {
+    if (!S || !sel.cells.length) { els.line.setAttribute('points', ''); return; }
+    els.line.setAttribute('points', sel.cells.map(ci => cellCenter(ci).join(',')).join(' '));
+    els.line.style.stroke = color || 'var(--sel)';
+  }
+
+  function resetSelection() {
+    sel.cells = []; sel.dir = null;
+    S.tiles.forEach(t => t && t.classList.remove('sel'));
+    drawSelection();
+    els.preview.className = '';
+  }
+
+  let feedbackTimer = null;
+  function clearFeedback() {
+    clearTimeout(feedbackTimer);
+    S.tiles.forEach(t => t && t.classList.remove('ok', 'extra', 'bad', 'dup'));
+  }
+
+  // ======================================================================
+  // Link resolution
+  // ======================================================================
+  function resolveLink(cells, dir) {
+    const str = cells.map(topLetter).join('');
+    const [sx, sy] = cellXY(cells[0]);
+    const target = S.words.find(w =>
+      !w.found && w.x === sx && w.y === sy && w.dir === dir && w.word === str && isAvailable(w));
+
+    const link = { x: sx, y: sy, dir, len: cells.length, letters: str };
+    if (target) {
+      logEvent('link', { ...link, result: 'target', wordId: target.id });
+      return onTargetFound(target, cells);
+    }
+    // A level word spelled somewhere else on the board (its own spot may still be buried): it still counts as
+    // found. The word's real letters leave their stacks, wherever they are; the dragged tiles only flash.
+    const alt = S.words.find(w => !w.found && w.word === str);
+    if (alt) {
+      logEvent('link', { ...link, result: 'target_alt', wordId: alt.id });
+      return onTargetFound(alt, cells);
+    }
+    // A level word spelled here but already found.
+    const same = S.words.find(w => w.word === str);
+    if (same) link.sameAsWordId = same.id;
+
+    if (S.valid.has(str)) {
+      if (S.bag.includes(str)) {
+        logEvent('link', { ...link, result: 'dup' });
+        return onFeedback(cells, 'dup', t('alreadyInBag'), Audio.dup);
+      }
+      logEvent('link', { ...link, result: 'extra' });
+      return onExtraWord(str, cells);
+    }
+    logEvent('link', { ...link, result: 'wrong' });
+    return onFeedback(cells, 'bad', null, Audio.wrong, true);
+  }
+
+  function onFeedback(cells, cls, toastMsg, sound, buzz) {
+    sound();
+    if (buzz) vibrate([30, 40, 30]);
+    S.tiles.forEach(t => t && t.classList.remove('sel'));
+    cells.forEach(ci => S.tiles[ci].classList.add(cls));
+    els.preview.className = 'show ' + cls;
+    drawSelection(cls === 'bad' ? 'var(--bad)' : '#b9b3dc');
+    if (toastMsg) toast(toastMsg);
+    feedbackTimer = setTimeout(() => { clearFeedback(); resetSelection(); }, 520);
+  }
+
+  function onExtraWord(str, cells) {
+    S.bag.push(str);
+    Audio.extra();
+    vibrate(20);
+    S.tiles.forEach(t => t && t.classList.remove('sel'));
+    cells.forEach(ci => S.tiles[ci].classList.add('extra'));
+    els.preview.className = 'show extra';
+    drawSelection('var(--extra)');
+    flyWord(str, els.preview, els.bagBtn, () => {
+      els.bagCount.textContent = S.bag.length;
+      els.bagBtn.classList.remove('bump'); void els.bagBtn.offsetWidth; els.bagBtn.classList.add('bump');
+    });
+    toast(`${t('extraWord')}: ${str}`);
+    feedbackTimer = setTimeout(() => { clearFeedback(); resetSelection(); }, 560);
+  }
+
+  function onTargetFound(w, cells) {
+    S.busy = true;
+    w.found = true;
+    Audio.success(w.word.length);
+    vibrate(25);
+    S.tiles.forEach(t => t && t.classList.remove('sel'));
+    cells.forEach(ci => S.tiles[ci].classList.add('ok'));
+    els.preview.className = 'show ok';
+    drawSelection('var(--ok)');
+
+    markTargetFound(w);
+    renderHud();
+
+    setTimeout(() => {
+      cells.forEach((ci, i) => {
+        const t = S.tiles[ci];
+        setTimeout(() => {
+          t.classList.remove('ok'); t.classList.add('pop');
+          burst(ci);
+        }, i * 45);
+      });
+      resetSelection();
+      els.preview.className = 'show ok';
+    }, 260);
+
+    const popDone = 260 + cells.length * 45 + 320;
+    setTimeout(() => {
+      // Remove the word's own letters from their stacks (on top in the normal case; possibly buried when the
+      // word was spelled elsewhere), then refresh both the word's cells and the dragged ones.
+      const wasAvailable = new Set(S.words.filter(isAvailable));
+      w.cells.forEach(ci => {
+        const k = S.stacks[ci].findIndex(e => e.wordId === w.id);
+        if (k >= 0) S.stacks[ci].splice(k, 1);
+      });
+      new Set([...w.cells, ...cells]).forEach(ci => updateTile(ci, true));
+      if (settings.wordList === 'available') renderTargets();   // new board state may have uncovered words
+      if (settings.wordList === 'ten') refillTenWords(w, wasAvailable);
+      renderHint();
+      els.preview.className = '';
+      S.busy = false;
+      if (S.words.every(x => x.found)) {
+        S.won = true;
+        logEvent('complete');
+        if (record) record.completed = true;
+        setTimeout(showWin, 450);
+      }
+    }, popDone);
+  }
+
+  // ======================================================================
+  // Effects
+  // ======================================================================
+  function burst(ci) {
+    const [cx, cy] = cellCenter(ci);
+    const colors = ['#2ed8a3', '#ffd166', '#ffffff', '#8be9ff', '#ff9ad5'];
+    for (let i = 0; i < 9; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const a = Math.random() * Math.PI * 2, d = tileSize * (0.6 + Math.random() * 0.8);
+      p.style.left = `${cx - 4}px`; p.style.top = `${cy - 4}px`;
+      p.style.background = colors[i % colors.length];
+      p.style.setProperty('--dx', `${Math.cos(a) * d}px`);
+      p.style.setProperty('--dy', `${Math.sin(a) * d}px`);
+      p.style.setProperty('--rot', `${Math.random() * 540 - 270}deg`);
+      els.board.appendChild(p);
+      setTimeout(() => p.remove(), 750);
+    }
+  }
+
+  function flyWord(text, fromEl, toEl, done) {
+    const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+    const f = document.createElement('div');
+    f.className = 'flyer';
+    f.textContent = text;
+    document.body.appendChild(f);
+    const fw = f.offsetWidth, fh = f.offsetHeight;
+    const x0 = a.left + a.width / 2 - fw / 2, y0 = a.top + a.height / 2 - fh / 2;
+    const x1 = b.left + b.width / 2 - fw / 2, y1 = b.top + b.height / 2 - fh / 2;
+    f.style.left = '0px'; f.style.top = '0px';
+    const anim = f.animate([
+      { transform: `translate(${x0}px, ${y0}px) scale(1)`, opacity: 1 },
+      { transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - 40}px) scale(1.1)`, opacity: 1, offset: 0.45 },
+      { transform: `translate(${x1}px, ${y1}px) scale(.3)`, opacity: 0.2 },
+    ], { duration: 650, easing: 'cubic-bezier(.5,0,.6,1)', fill: 'forwards' });
+    anim.onfinish = () => { f.remove(); done && done(); };
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    els.toast.textContent = msg;
+    els.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => els.toast.classList.remove('show'), 1400);
+  }
+
+  function vibrate(p) {
+    try {
+      const ua = navigator.userActivation;
+      if (navigator.vibrate && (!ua || ua.hasBeenActive)) navigator.vibrate(p);
+    } catch (_) {}
+  }
+
+  function confetti() {
+    const colors = ['#2ed8a3', '#ffd166', '#ff5c7a', '#8be9ff', '#b48cff', '#ffffff'];
+    for (let i = 0; i < 70; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = `${Math.random() * 100}vw`;
+      c.style.background = colors[i % colors.length];
+      c.style.animationDuration = `${1.6 + Math.random() * 1.6}s`;
+      c.style.animationDelay = `${Math.random() * 0.5}s`;
+      c.style.setProperty('--drift', `${Math.random() * 160 - 80}px`);
+      c.style.setProperty('--spin', `${Math.random() * 900 - 450}deg`);
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4000);
+    }
+  }
+
+  // ======================================================================
+  // Audio (tiny WebAudio synth, no assets)
+  // ======================================================================
+  const Audio = (() => {
+    let ctx = null;
+    function unlock() {
+      if (!ctx) { try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (_) { return; } }
+      if (ctx.state === 'suspended') ctx.resume();
+    }
+    function tone(freq, dur, { type = 'sine', gain = 0.18, delay = 0, slide = 0 } = {}) {
+      if (muted || !ctx) return;
+      const t0 = ctx.currentTime + delay;
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type;
+      o.frequency.setValueAtTime(freq, t0);
+      if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(40, freq + slide), t0 + dur);
+      g.gain.setValueAtTime(0, t0);
+      g.gain.linearRampToValueAtTime(gain, t0 + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      o.connect(g).connect(ctx.destination);
+      o.start(t0); o.stop(t0 + dur + 0.02);
+    }
+    const scale = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66, 1318.5, 1568];
+    return {
+      unlock,
+      tick: n => tone(scale[Math.min(n - 1, scale.length - 1)], 0.12, { type: 'triangle', gain: 0.14 }),
+      success: len => [523.25, 659.25, 783.99, 1046.5].forEach((f, i) =>
+        tone(f, 0.28, { type: 'triangle', gain: 0.18, delay: i * 0.07 })),
+      extra: () => { tone(880, 0.18, { gain: 0.15 }); tone(1318.5, 0.3, { gain: 0.15, delay: 0.09 }); tone(1760, 0.35, { gain: 0.08, delay: 0.18 }); },
+      hint: () => { tone(1046.5, 0.15, { gain: 0.1 }); tone(1568, 0.25, { gain: 0.08, delay: 0.08 }); },
+      dup: () => { tone(440, 0.1, { gain: 0.12 }); tone(440, 0.1, { gain: 0.12, delay: 0.13 }); },
+      wrong: () => tone(220, 0.3, { type: 'square', gain: 0.07, slide: -110 }),
+      win: () => [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5, 1318.5].forEach((f, i) =>
+        tone(f, 0.35, { type: 'triangle', gain: 0.17, delay: i * 0.11 })),
+    };
+  })();
+
+  // ======================================================================
+  // Level flow
+  // ======================================================================
+  function loadLevel(i) {
+    finishRecord();
+    levelIndex = ((i % LEVELS.length) + LEVELS.length) % LEVELS.length;
+    if (!PLAY) try { localStorage.setItem(progressKey(), String(levelIndex)); } catch (_) {}
+    const lv = LEVELS[levelIndex];
+    const errs = validateLevel(lv);
+    showErrors(errs);
+    if (errs.length) { S = null; els.board.querySelectorAll('.tile,.socket').forEach(n => n.remove()); return; }
+    S = buildState(lv);
+    if (!PLAY) startRecord(lv);
+    sel.active = false; sel.cells = []; sel.dir = null;
+    els.winModal.classList.remove('open');
+    renderTargets();
+    renderHud();
+    renderBoard();
+    if (DEBUG) renderDebug();
+  }
+
+  function showWin() {
+    Audio.win();
+    confetti();
+    const last = levelIndex === LEVELS.length - 1;
+    els.winTitle.textContent = t(last ? 'allComplete' : 'levelComplete');
+    els.winSummary.textContent = t('summary')(S.words.length, S.bag.length);
+    els.nextBtn.textContent = t(last ? 'playAgain' : 'nextLevel');
+    renderRating();
+    els.winModal.classList.add('open');
+  }
+
+  function openBag() {
+    logEvent('bag_open');
+    els.bagList.innerHTML = S ? S.bag.map(w => `<span>${w}</span>`).join('') : '';
+    els.bagEmpty.style.display = S && S.bag.length ? 'none' : '';
+    els.bagModal.classList.add('open');
+  }
+
+  // ======================================================================
+  // Debug panel (?debug)
+  // ======================================================================
+  function renderDebug() {
+    els.debugLevel.innerHTML = LEVELS.map((lv, i) =>
+      `<option value="${i}" ${i === levelIndex ? 'selected' : ''}>Level ${i + 1} · ${lv.name || ''}</option>`).join('');
+    const dirName = ['→', '↓', '←', '↑'];
+    els.debugAnswers.innerHTML = S ? S.words.map(w =>
+      `${w.found ? '✅' : isAvailable(w) ? '🟢' : '🔒'} L${w.layer} ${w.word} @${w.x},${w.y} ${dirName[w.dir]}`).join('<br>') : '';
+    if (!els.debugJson.value) els.debugJson.value = JSON.stringify(LEVELS[levelIndex], null, 2);
+  }
+
+  if (DEBUG) {
+    els.debugBtn.classList.remove('hidden');
+    els.debugBtn.addEventListener('click', () => { renderDebug(); els.debugPanel.classList.add('open'); });
+    els.debugLevel.addEventListener('change', () => {
+      els.debugJson.value = '';
+      loadLevel(+els.debugLevel.value);
+      els.debugPanel.classList.remove('open');
+    });
+    els.debugExport.addEventListener('click', exportQueue);
+    els.debugLoad.addEventListener('click', () => {
+      try {
+        const data = JSON.parse(els.debugJson.value);
+        if (Array.isArray(data.levels)) { LEVELS = LEVEL_SETS[settings.language] = data.levels; loadLevel(0); }
+        else { LEVELS[levelIndex] = data; loadLevel(levelIndex); }
+        els.debugPanel.classList.remove('open');
+      } catch (err) { showErrors([`JSON parse error: ${err.message}`]); }
+    });
+  }
+
+  // ======================================================================
+  // Wiring
+  // ======================================================================
+  els.board.addEventListener('pointerdown', onPointerDown);
+  els.board.addEventListener('pointermove', onPointerMove);
+  els.board.addEventListener('pointerup', onPointerUp);
+  els.board.addEventListener('pointercancel', onPointerUp);
+  els.nextBtn.addEventListener('click', () => {
+    const completed = record && record.completed;
+    loadLevel(levelIndex + 1);   // queues the finished record
+    if (completed) sendQueue();  // the one request per completed level
+  });
+  els.rateBtns.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || !record) return;
+    record.rating = b.dataset.rating ? Number(b.dataset.rating) : null;   // "No feedback" (the default) is sent as null
+    record.reason = null;
+    renderRating();
+  });
+  els.rateReasons.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || !record) return;
+    record.reason = record.reason === b.dataset.reason ? null : b.dataset.reason;
+    renderRating();
+  });
+  els.nameSave.addEventListener('click', saveName);
+  els.nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
+  document.addEventListener('visibilitychange', () => logEvent('visibility', { state: document.visibilityState }));
+  window.addEventListener('pagehide', finishRecord);
+  els.bagBtn.addEventListener('click', openBag);
+  els.settingsBtn.addEventListener('click', () => { renderSettings(); renderPlayer(); els.settingsModal.classList.add('open'); });
+  els.hintBtn.addEventListener('click', useHint);
+  els.wordlistSelect.addEventListener('change', () => {
+    settings.wordList = els.wordlistSelect.value;
+    saveSettings();
+    logEvent('setting', { wordListMode: settings.wordList });
+    renderSettings();
+    if (S) renderTargets();
+  });
+  els.languageSeg.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || b.dataset.value === settings.language) return;
+    settings.language = b.dataset.value;
+    saveSettings();
+    if (PLAY) { PLAY = null; history.replaceState(null, '', location.pathname + location.search); } // back to the normal levels
+    applyLanguage();
+    renderSettings();
+    loadLevel(savedLevel());
+  });
+  els.levelSelect.addEventListener('change', () => {
+    loadLevel(+els.levelSelect.value);
+    els.settingsModal.classList.remove('open');
+  });
+  els.setSelect.addEventListener('change', () => {
+    if (els.setSelect.value === activeSetName()) return;
+    settings.levelSet = els.setSelect.value;
+    saveSettings();
+    logEvent('setting', { levelSet: settings.levelSet });
+    if (PLAY) { PLAY = null; history.replaceState(null, '', location.pathname + location.search); }
+    applyLanguage();
+    renderSettings();
+    loadLevel(savedLevel());
+  });
+  els.muteBtn.addEventListener('click', () => {
+    muted = !muted;
+    els.muteBtn.textContent = muted ? '🔇' : '🔊';
+  });
+  document.querySelectorAll('[data-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.modal-bg').classList.remove('open')));
+  document.querySelectorAll('.modal-bg').forEach(bg => bg.addEventListener('click', e => {
+    if (e.target === bg && bg !== els.winModal && bg !== els.nameModal) bg.classList.remove('open');
+  }));
+  window.addEventListener('resize', () => { if (S) layoutBoard(); });
+
+  function savedLevel() {
+    let saved = 0;
+    try { saved = parseInt(localStorage.getItem(progressKey()), 10) || 0; } catch (_) {}
+    return Math.min(saved, LEVELS.length - 1);
+  }
+
+  // Generated sets next to the page (from generator.html) replace the built-in set of their language; with more
+  // than one set per language a selector appears in Settings. Only works when served over http; opened from
+  // disk the built-in sets are used.
+  const LEVEL_FILES = { funnel: 'levels_{lang}_funnel.json', variety: 'levels_{lang}_variety.json' };
+  async function loadExternalSets() {
+    const jobs = [];
+    for (const lang of Object.keys(EXTERNAL_SETS)) for (const [name, pattern] of Object.entries(LEVEL_FILES)) {
+      const file = pattern.replace('{lang}', lang);
+      jobs.push((async () => {
+        try {
+          const res = await fetch(file, { cache: 'no-store' });
+          if (!res.ok) return;
+          const data = await res.json();
+          if (!Array.isArray(data.levels) || !data.levels.length) return;
+          const errs = data.levels.flatMap(validateLevel);
+          if (errs.length) { console.warn(`${file}: ${errs[0]}`); return; }
+          EXTERNAL_SETS[lang][name] = data.levels;
+        } catch (_) {}
+      })());
+    }
+    await Promise.all(jobs);
+  }
+
+  (async () => {
+    if (PLAY) {
+      // Use the level's language for UI and uppercasing, without saving it as the player's setting.
+      if (PLAY.gen && LEVEL_SETS[PLAY.gen.lang]) settings.language = PLAY.gen.lang;
+      applyLanguage();
+      LEVELS = [PLAY];
+      loadLevel(0);
+      return;
+    }
+    await loadExternalSets();
+    applyLanguage();
+    loadLevel(savedLevel());
+    askNameIfMissing();
+  })();
+
+  // Exposed for console testing.
+  window.__game = { get state() { return S; }, get record() { return record; }, loadLevel, isAvailable, readQueue, sendQueue };
+})();
+</script>
+</body>
+</html>

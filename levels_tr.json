@@ -1,0 +1,355 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "İlk Adımlar",
+      "difficulty": "easy",
+      "width": 5,
+      "height": 5,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 2, "word": "KAR" },
+          { "x": 4, "y": 0, "dir": 2, "word": "SÜT" },
+          { "x": 2, "y": 2, "dir": 0, "word": "GÖZ" }
+        ],
+        [
+          { "x": 3, "y": 3, "dir": 3, "word": "KUŞ" },
+          { "x": 4, "y": 1, "dir": 1, "word": "ARI" },
+          { "x": 2, "y": 3, "dir": 3, "word": "DAĞ" }
+        ]
+      ],
+      "validWords": ["DAR", "SAR", "SARI", "SAZ"]
+    },
+    {
+      "id": 2,
+      "name": "Bahçe",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "ÇİÇEK" },
+          { "x": 4, "y": 4, "dir": 2, "word": "AĞAÇ" },
+          { "x": 3, "y": 2, "dir": 2, "word": "GÜL" },
+          { "x": 3, "y": 1, "dir": 2, "word": "ÇİM" }
+        ],
+        [
+          { "x": 2, "y": 0, "dir": 1, "word": "YAPRAK" },
+          { "x": 3, "y": 4, "dir": 3, "word": "TOHUM" },
+          { "x": 1, "y": 5, "dir": 3, "word": "KÖK" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "DAL" },
+          { "x": 1, "y": 4, "dir": 3, "word": "SAKSI" },
+          { "x": 4, "y": 1, "dir": 1, "word": "BÖCEK" }
+        ]
+      ],
+      "validWords": ["ARP", "ARPA", "AĞA", "GİT", "KAR", "KAS", "KEÇİ", "PAY", "SAL", "SAT", "TAS"]
+    },
+    {
+      "id": 3,
+      "name": "Uzay",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 1, "y": 5, "dir": 0, "word": "YILDIZ" },
+          { "x": 6, "y": 4, "dir": 2, "word": "GÜNEŞ" },
+          { "x": 2, "y": 3, "dir": 0, "word": "DÜNYA" },
+          { "x": 6, "y": 2, "dir": 2, "word": "ROKET" }
+        ],
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "UYDU" },
+          { "x": 4, "y": 6, "dir": 3, "word": "METEOR" },
+          { "x": 5, "y": 6, "dir": 3, "word": "GALAKSİ" },
+          { "x": 6, "y": 0, "dir": 1, "word": "YÖRÜNGE" }
+        ],
+        [
+          { "x": 4, "y": 0, "dir": 1, "word": "UZAY" },
+          { "x": 3, "y": 0, "dir": 1, "word": "MARS" },
+          { "x": 6, "y": 4, "dir": 2, "word": "SATÜRN" },
+          { "x": 2, "y": 6, "dir": 0, "word": "VENÜS" }
+        ]
+      ],
+      "validWords": ["GÜN", "KAL", "KAR", "NAR", "NEM", "SAT", "TAS", "TEK", "TUR", "YAZ", "YEL", "YIL"]
+    },
+    {
+      "id": 4,
+      "name": "Deniz",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 2, "dir": 2, "word": "BALIK" },
+          { "x": 0, "y": 3, "dir": 0, "word": "DALGA" },
+          { "x": 4, "y": 1, "dir": 2, "word": "KUM" },
+          { "x": 3, "y": 4, "dir": 2, "word": "GEMİ" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "YENGEÇ" },
+          { "x": 1, "y": 3, "dir": 1, "word": "ADA" },
+          { "x": 3, "y": 3, "dir": 3, "word": "KIYI" }
+        ],
+        [
+          { "x": 3, "y": 5, "dir": 3, "word": "KABUK" },
+          { "x": 1, "y": 5, "dir": 3, "word": "MARTI" },
+          { "x": 5, "y": 0, "dir": 2, "word": "LİMAN" }
+        ]
+      ],
+      "validWords": ["AMA", "ARI", "AYI", "BAK", "BAL", "DAL", "MAT", "MİL", "TAM", "YAKA", "YEL", "YIK"]
+    },
+    {
+      "id": 5,
+      "name": "Mutfak",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 4, "y": 1, "dir": 2, "word": "EKMEK" },
+          { "x": 0, "y": 0, "dir": 0, "word": "BIÇAK" },
+          { "x": 0, "y": 2, "dir": 0, "word": "KAŞIK" },
+          { "x": 0, "y": 3, "dir": 0, "word": "TABAK" }
+        ],
+        [
+          { "x": 6, "y": 1, "dir": 2, "word": "TEREYAĞ" },
+          { "x": 2, "y": 4, "dir": 3, "word": "BAL" },
+          { "x": 1, "y": 0, "dir": 0, "word": "ŞEKER" },
+          { "x": 1, "y": 2, "dir": 1, "word": "FIRIN" }
+        ],
+        [
+          { "x": 2, "y": 3, "dir": 1, "word": "TUZ" },
+          { "x": 3, "y": 4, "dir": 3, "word": "BİBER" },
+          { "x": 4, "y": 1, "dir": 1, "word": "KASE" },
+          { "x": 0, "y": 0, "dir": 1, "word": "ÇATAL" },
+          { "x": 5, "y": 0, "dir": 1, "word": "TENCERE" }
+        ]
+      ],
+      "validWords": ["ARI", "BAK", "BAŞ", "KABA", "KAL", "KAR", "KAS", "KAŞ", "KEK", "SAR", "TAÇ", "YAĞ", "YER"]
+    },
+    {
+      "id": 6,
+      "name": "Derin Orman",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 3, "y": 4, "dir": 3, "word": "ORMAN" },
+          { "x": 4, "y": 0, "dir": 1, "word": "KOZALAK" },
+          { "x": 2, "y": 0, "dir": 1, "word": "BUDAK" },
+          { "x": 1, "y": 4, "dir": 3, "word": "YOSUN" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "SÖĞÜT" },
+          { "x": 3, "y": 2, "dir": 2, "word": "MEŞE" },
+          { "x": 4, "y": 1, "dir": 2, "word": "KAYIN" },
+          { "x": 0, "y": 0, "dir": 0, "word": "ÇAM" }
+        ],
+        [
+          { "x": 1, "y": 1, "dir": 0, "word": "SEDİR" },
+          { "x": 5, "y": 3, "dir": 2, "word": "PATİKA" },
+          { "x": 1, "y": 2, "dir": 0, "word": "ÇINAR" },
+          { "x": 5, "y": 0, "dir": 2, "word": "KOVUK" }
+        ],
+        [
+          { "x": 2, "y": 5, "dir": 3, "word": "PORSUK" },
+          { "x": 1, "y": 0, "dir": 1, "word": "KUZGUN" },
+          { "x": 3, "y": 5, "dir": 3, "word": "LİKEN" },
+          { "x": 5, "y": 0, "dir": 1, "word": "DİKEN" }
+        ]
+      ],
+      "validWords": ["ANI", "ARA", "AYI", "ERİK", "KAL", "KAS", "KES", "KIZ", "KOL", "KUŞ", "KİR", "KİTAP", "NAR", "OKU", "PARA", "ROL", "YER"]
+    },
+    {
+      "id": 7,
+      "name": "Şehir",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 5, "y": 0, "dir": 2, "word": "TAKSİ" },
+          { "x": 1, "y": 1, "dir": 0, "word": "PARK" },
+          { "x": 3, "y": 2, "dir": 2, "word": "YOL" },
+          { "x": 0, "y": 0, "dir": 1, "word": "OTOBÜS" }
+        ],
+        [
+          { "x": 1, "y": 3, "dir": 3, "word": "KULE" },
+          { "x": 2, "y": 0, "dir": 1, "word": "KAFE" },
+          { "x": 3, "y": 4, "dir": 3, "word": "ÇARŞI" }
+        ],
+        [
+          { "x": 1, "y": 0, "dir": 1, "word": "METRO" },
+          { "x": 3, "y": 5, "dir": 3, "word": "DÜKKAN" },
+          { "x": 2, "y": 4, "dir": 3, "word": "SOKAK" },
+          { "x": 4, "y": 0, "dir": 1, "word": "ARABA" }
+        ]
+      ],
+      "validWords": ["ARA", "BAK", "KABA", "KAN", "KAT", "KEK", "OKU", "OKUL", "OYA", "ÇAY", "ŞAL"]
+    },
+    {
+      "id": 8,
+      "name": "Müzik",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 5, "y": 1, "dir": 2, "word": "PİYANO" },
+          { "x": 5, "y": 0, "dir": 2, "word": "DAVUL" },
+          { "x": 4, "y": 2, "dir": 2, "word": "FLÜT" },
+          { "x": 0, "y": 3, "dir": 0, "word": "BAĞLAMA" }
+        ],
+        [
+          { "x": 2, "y": 4, "dir": 3, "word": "GİTAR" },
+          { "x": 3, "y": 4, "dir": 3, "word": "KEMAN" },
+          { "x": 4, "y": 4, "dir": 3, "word": "ÇELLO" },
+          { "x": 1, "y": 4, "dir": 3, "word": "ARP" }
+        ],
+        [
+          { "x": 5, "y": 2, "dir": 2, "word": "TEMPO" },
+          { "x": 6, "y": 1, "dir": 2, "word": "AKOR" },
+          { "x": 5, "y": 0, "dir": 2, "word": "MELODİ" },
+          { "x": 5, "y": 4, "dir": 2, "word": "OPERA" },
+          { "x": 0, "y": 4, "dir": 3, "word": "NOTA" }
+        ]
+      ],
+      "validWords": ["AMA", "GİT", "KEL", "MAL", "NAL", "NAR", "NEM", "NOT", "TON", "TOP", "TÜL", "YAN", "İLAÇ", "İLE"]
+    },
+    {
+      "id": 9,
+      "name": "Fırtına",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 1, "y": 0, "dir": 0, "word": "FIRTINA" },
+          { "x": 7, "y": 1, "dir": 2, "word": "BULUT" },
+          { "x": 7, "y": 2, "dir": 2, "word": "ŞİMŞEK" },
+          { "x": 3, "y": 3, "dir": 0, "word": "AYAZ" }
+        ],
+        [
+          { "x": 5, "y": 5, "dir": 3, "word": "RÜZGAR" },
+          { "x": 4, "y": 0, "dir": 1, "word": "SAĞANAK" },
+          { "x": 6, "y": 4, "dir": 3, "word": "SİS" },
+          { "x": 3, "y": 4, "dir": 3, "word": "DOLU" }
+        ],
+        [
+          { "x": 1, "y": 2, "dir": 0, "word": "YAĞMUR" },
+          { "x": 7, "y": 3, "dir": 2, "word": "GÜNEŞLİ" },
+          { "x": 6, "y": 1, "dir": 2, "word": "SİSLİ" },
+          { "x": 7, "y": 4, "dir": 2, "word": "KIRAĞI" }
+        ],
+        [
+          { "x": 6, "y": 2, "dir": 2, "word": "KASIRGA" },
+          { "x": 6, "y": 3, "dir": 2, "word": "ÇİSENTİ" },
+          { "x": 5, "y": 1, "dir": 2, "word": "NEMLİ" },
+          { "x": 3, "y": 4, "dir": 2, "word": "KAR" }
+        ]
+      ],
+      "validWords": ["AMA", "ANA", "ANI", "ARI", "AĞA", "AĞIR", "BUL", "DAL", "DAR", "GÜN", "GÜNEŞ", "GÜZ", "KAN", "KAS", "KIR", "NAL", "NEM", "SAĞ", "SIR", "TAŞ", "YAZ", "YAĞ"]
+    },
+    {
+      "id": 10,
+      "name": "Çiftlik",
+      "difficulty": "medium",
+      "width": 6,
+      "height": 6,
+      "layers": [
+        [
+          { "x": 4, "y": 2, "dir": 1, "word": "İNEK" },
+          { "x": 5, "y": 5, "dir": 3, "word": "AHIR" },
+          { "x": 3, "y": 1, "dir": 1, "word": "SAMAN" },
+          { "x": 2, "y": 4, "dir": 3, "word": "KEÇİ" }
+        ],
+        [
+          { "x": 4, "y": 3, "dir": 2, "word": "KUZU" },
+          { "x": 5, "y": 4, "dir": 2, "word": "TAVUK" },
+          { "x": 1, "y": 2, "dir": 0, "word": "MISIR" },
+          { "x": 1, "y": 5, "dir": 0, "word": "ÖRDEK" }
+        ],
+        [
+          { "x": 4, "y": 1, "dir": 1, "word": "KATIR" },
+          { "x": 3, "y": 0, "dir": 1, "word": "BUZAĞI" },
+          { "x": 2, "y": 0, "dir": 1, "word": "HOROZ" }
+        ]
+      ],
+      "validWords": ["AMA", "BUZ", "HİÇ", "KAR", "KAT", "KIR", "KUM", "KİN", "SAĞ", "SIR", "UZUN", "ÖRNEK"]
+    },
+    {
+      "id": 11,
+      "name": "Maç Günü",
+      "difficulty": "hard",
+      "width": 7,
+      "height": 7,
+      "layers": [
+        [
+          { "x": 1, "y": 3, "dir": 1, "word": "GOL" },
+          { "x": 2, "y": 6, "dir": 3, "word": "TENİS" },
+          { "x": 3, "y": 2, "dir": 1, "word": "PATEN" },
+          { "x": 4, "y": 6, "dir": 3, "word": "RAGBİ" }
+        ],
+        [
+          { "x": 5, "y": 4, "dir": 2, "word": "FUTBOL" },
+          { "x": 5, "y": 3, "dir": 2, "word": "HOKEY" },
+          { "x": 5, "y": 5, "dir": 2, "word": "BOKS" }
+        ],
+        [
+          { "x": 3, "y": 3, "dir": 2, "word": "KOŞU" },
+          { "x": 2, "y": 4, "dir": 0, "word": "YARIŞ" },
+          { "x": 3, "y": 5, "dir": 0, "word": "SKOR" },
+          { "x": 0, "y": 6, "dir": 0, "word": "MADALYA" }
+        ],
+        [
+          { "x": 3, "y": 1, "dir": 1, "word": "TAKIM" },
+          { "x": 1, "y": 4, "dir": 3, "word": "KOÇ" },
+          { "x": 2, "y": 1, "dir": 1, "word": "TOP" }
+        ]
+      ],
+      "validWords": ["ADA", "ADAM", "AMA", "ARI", "BAK", "BOL", "DAL", "DAM", "DAR", "KAS", "KASA", "KAT", "KEL", "KOŞ", "MAT", "ROL", "TAM", "YAR", "ÇOK"]
+    },
+    {
+      "id": 12,
+      "name": "Kale",
+      "difficulty": "very hard",
+      "width": 8,
+      "height": 8,
+      "layers": [
+        [
+          { "x": 2, "y": 7, "dir": 3, "word": "KALE" },
+          { "x": 3, "y": 1, "dir": 1, "word": "ŞÖVALYE" },
+          { "x": 4, "y": 1, "dir": 1, "word": "EJDERHA" },
+          { "x": 5, "y": 2, "dir": 1, "word": "HENDEK" }
+        ],
+        [
+          { "x": 1, "y": 5, "dir": 0, "word": "TAHT" },
+          { "x": 5, "y": 7, "dir": 3, "word": "KRALİÇE" },
+          { "x": 4, "y": 4, "dir": 3, "word": "KILIÇ" },
+          { "x": 1, "y": 6, "dir": 0, "word": "KULE" }
+        ],
+        [
+          { "x": 5, "y": 5, "dir": 2, "word": "KALKAN" },
+          { "x": 6, "y": 6, "dir": 2, "word": "ZIRH" },
+          { "x": 6, "y": 3, "dir": 2, "word": "TAÇ" },
+          { "x": 6, "y": 4, "dir": 2, "word": "MIZRAK" }
+        ],
+        [
+          { "x": 6, "y": 5, "dir": 2, "word": "BÜYÜCÜ" },
+          { "x": 7, "y": 4, "dir": 2, "word": "KAPI" },
+          { "x": 2, "y": 6, "dir": 0, "word": "SANCAK" },
+          { "x": 6, "y": 3, "dir": 2, "word": "SARAY" }
+        ],
+        [
+          { "x": 7, "y": 3, "dir": 2, "word": "KRAL" },
+          { "x": 7, "y": 5, "dir": 2, "word": "ZİYAFET" },
+          { "x": 0, "y": 6, "dir": 0, "word": "MEŞALE" }
+        ]
+      ],
+      "validWords": ["ADA", "AKIL", "ARA", "DAL", "HAT", "HIZ", "KAL", "KAN", "KAP", "KAR", "KERE", "SAR", "TAHTA", "YAR", "YARA", "YEL", "YER", "YIL", "ZAR", "ÇAY", "ŞAL"]
+    }
+  ]
+}

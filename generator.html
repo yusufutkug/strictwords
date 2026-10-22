@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level Generator</title>
+<style>
+  :root {
+    --bg1: #1d2147;
+    --bg2: #3a1f5d;
+    --panel: rgba(255,255,255,0.08);
+    --panel-border: rgba(255,255,255,0.14);
+    --text: #f4f1ff;
+    --muted: #b7b1d9;
+    --tile: #fff4df;
+    --tile-text: #3b2c5e;
+    --sel: #ffd166;
+    --ok: #2ed8a3;
+    --extra: #ffb020;
+    --bad: #ff5c7a;
+    --knot: #ff5c7a;
+    --chain: #2ed8a3;
+    --grid: rgba(255,255,255,.10);
+    --faint: rgba(183,177,217,.14);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: radial-gradient(120% 80% at 50% 0%, var(--bg2), var(--bg1) 70%) fixed;
+    background-color: var(--bg1);
+    color: var(--text);
+    font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+  }
+  #app { max-width: 1360px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  h1 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: .3px; }
+  h2 { margin: 0 0 10px; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px; padding: 14px; min-width: 0; }
+  details.panel > summary { cursor: pointer; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); list-style: none; }
+  details.panel > summary::before { content: '▸ '; }
+  details.panel[open] > summary::before { content: '▾ '; }
+  details.panel[open] > summary { margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  .warn { color: var(--extra); }
+  .err { color: var(--bad); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+  header.row { align-items: center; justify-content: space-between; }
+
+  label.field { display: flex; flex-direction: column; gap: 4px; font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea {
+    padding: 8px 10px; border-radius: 10px; font: 700 14px inherit; font-family: inherit;
+    background: rgba(0,0,0,.25); color: var(--text); border: 1px solid var(--panel-border); width: 96px;
+  }
+  textarea { width: 100%; font: 600 12px ui-monospace, Menlo, monospace; line-height: 1.5; min-height: 150px; white-space: pre; overflow: auto; }
+  select { width: auto; }
+  input[type=checkbox] { width: 16px; height: 16px; padding: 0; accent-color: var(--ok); }
+  .btn {
+    padding: 10px 16px; border: 0; border-radius: 12px; cursor: pointer; font: 900 14px inherit; font-family: inherit;
+    background: linear-gradient(180deg, #3ee6b1, #17b183); color: #053a2a; box-shadow: 0 4px 0 #0d7f5d;
+  }
+  .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #0d7f5d; }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .btn.secondary { background: rgba(255,255,255,.12); color: var(--text); box-shadow: none; font-weight: 800; }
+
+  #dict-status { font-size: 12px; }
+  #dict-files { display: none; gap: 10px; align-items: center; font-size: 12px; }
+  #dict-files.show { display: flex; flex-wrap: wrap; }
+  #dict-files input { width: auto; font-size: 12px; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+  .tile { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px; padding: 10px 12px; }
+  .tile .k { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
+  .tile .v { font-size: 22px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+  .main { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 14px; align-items: start; }
+  @media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+  .table-wrap { max-height: 700px; overflow: auto; border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { padding: 5px 7px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--grid); font-size: 12px; }
+  th { position: sticky; top: 0; background: #2a2152; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); cursor: pointer; user-select: none; z-index: 1; }
+  th.nosort { cursor: default; }
+  th.sorted::after { content: ' ▾'; }
+  th.sorted.asc::after { content: ' ▴'; }
+  td.l, th.l { text-align: left; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: rgba(255,255,255,.05); }
+  tbody tr.active { background: rgba(255,209,102,.14); }
+  tbody tr.miss td.status { color: var(--extra); }
+  tbody tr.alt td.status { color: var(--bad); font-weight: 800; }
+  .pattern { color: var(--muted); font-size: 11px; }
+
+  .filters input { width: 64px; }
+  .pair { display: flex; gap: 6px; align-items: center; }
+  .pair input[type=checkbox] { margin: 0 2px; }
+
+  #detail-empty { padding: 30px 0; text-align: center; }
+  .board { display: grid; gap: 3px; margin: 4px 0 12px; width: max-content; max-width: 100%; }
+  .cell {
+    position: relative; width: var(--cs); height: var(--cs); border-radius: 6px; display: grid; place-items: center;
+    font-weight: 900; font-size: calc(var(--cs) * .48); color: var(--tile-text); background: var(--tile);
+  }
+  .cell.empty { background: rgba(255,255,255,.04); }
+  .cell.under { background: rgba(255,255,255,.04); outline: 1px dashed rgba(255,255,255,.22); outline-offset: -1px; }
+  .cell.buried { opacity: .55; }
+  .seg { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+  .seg button {
+    padding: 5px 10px; border-radius: 99px; border: 1px solid var(--panel-border); background: transparent;
+    color: var(--muted); font: 800 12px inherit; font-family: inherit; cursor: pointer;
+  }
+  .seg button.on { background: var(--sel); border-color: var(--sel); color: #3a2a00; }
+  .detail-head { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+  .detail-head .btn { padding: 8px 14px; flex-shrink: 0; }
+  .pb-wrap { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); }
+  .pb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; text-transform: none; letter-spacing: 0; }
+  .pb .arrow { color: var(--muted); font-size: 16px; }
+  .seg-card { display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 12px; background: rgba(0,0,0,.18); border: 1px solid var(--panel-border); }
+  .seg-card.branch { border-color: rgba(255,209,102,.45); }
+  .seg-card .line { display: flex; align-items: center; gap: 6px; }
+  .seg-card input { width: 170px; }
+  .seg-card .tag { width: 46px; font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; }
+  .seg-card .x { border: 0; background: transparent; color: var(--muted); font-size: 16px; cursor: pointer; padding: 0 4px; }
+  .flip { padding: 6px 10px; border-radius: 99px; border: 1px solid var(--panel-border); background: transparent; color: var(--text);
+    font: 800 12px inherit; font-family: inherit; cursor: pointer; white-space: nowrap; }
+  .flip:hover { border-color: var(--sel); }
+  .pb-summary { font-size: 12px; font-weight: 700; text-transform: none; letter-spacing: 0; }
+  .pb-help { font-size: 11px; font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--muted); line-height: 1.5; }
+  .pb-help b { color: var(--text); }
+  .cell.cut-top::before, .cell.cut-left::before { content: ''; position: absolute; pointer-events: none; }
+  .cell.cut-top::before { left: -3px; right: -3px; top: -3px; border-top: 2px dashed var(--sel); }
+  .cell.cut-left::before { top: -3px; bottom: -3px; left: -3px; border-left: 2px dashed var(--sel); }
+  .board-legend { font-size: 11px; margin-bottom: 4px; }
+  .cell .d { position: absolute; right: 2px; bottom: 0; font-size: 9px; font-weight: 800; color: var(--tile-text); opacity: .6; }
+  .layers { display: flex; flex-direction: column; gap: 6px; font-size: 12px; margin-bottom: 12px; }
+  .layers b { color: var(--muted); font-size: 11px; letter-spacing: .6px; text-transform: uppercase; margin-right: 6px; }
+  .w { display: inline-block; margin: 0 6px 2px 0; }
+  .w sub { color: var(--muted); font-size: 10px; }
+  .w.knot { color: var(--knot); }
+  .w.rev::after { content: ' ⇠'; color: var(--muted); }
+  details.sub { font-size: 12px; margin-bottom: 12px; }
+  details.sub summary { cursor: pointer; color: var(--muted); font-weight: 800; }
+  .bonus-list { margin-top: 6px; line-height: 1.6; word-break: break-word; }
+  #misses { font-size: 12px; margin-bottom: 8px; }
+  .steps td, .steps th { font-size: 11px; padding: 3px 6px; }
+  .steps tr.knot td { color: var(--knot); }
+  .steps tr.chain td { color: var(--chain); }
+  .steps th { cursor: default; }
+
+  .chart { position: relative; margin-bottom: 14px; }
+  .chart-title { font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+  .chart-sub { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .chart svg { display: block; width: 100%; overflow: visible; }
+  .chart text { fill: var(--muted); font-size: 11px; font-family: inherit; }
+  .tip {
+    position: absolute; pointer-events: none; background: #120f2b; border: 1px solid var(--panel-border); border-radius: 8px;
+    padding: 6px 8px; font-size: 12px; white-space: nowrap; display: none; z-index: 2;
+  }
+  .tip .tv { font-weight: 800; }
+
+  .model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px 12px; }
+  .model-grid label.field { font-size: 10px; }
+  .model-grid input { width: 100%; }
+  .model-help { font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+
+  #reuse .detail-head .btn { padding: 8px 14px; }
+  #reuse table th { cursor: default; }
+  #reuse-note { margin-bottom: 10px; }
+  .reuse-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 14px; align-items: start; margin-bottom: 10px; }
+  @media (max-width: 960px) { .reuse-grid { grid-template-columns: minmax(0, 1fr); } }
+  .reuse-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 6px; line-height: 1.6; }
+  .better { color: var(--ok); } .worse { color: var(--bad); }
+
+  #progress, #fn-progress { font-size: 12px; }
+  #toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: #120f2b; border: 1px solid var(--panel-border);
+    padding: 8px 14px; border-radius: 10px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 5; }
+  #toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="row">
+    <div>
+      <h1>Level Generator</h1>
+      <div class="muted" id="dict-status">Loading dictionaries…</div>
+    </div>
+    <a class="muted" href="index.html" style="font-size:12px">Open game →</a>
+  </header>
+
+  <div id="dict-files" class="panel">
+    <span class="muted" id="dict-files-msg"></span>
+    <label>EN <input type="file" accept=".csv" data-lang="en"></label>
+    <label>TR <input type="file" accept=".csv" data-lang="tr"></label>
+  </div>
+
+  <section class="panel">
+    <h2>Funnel</h2>
+    <div class="pb-help" style="margin-bottom:10px">Builds a level set stage by stage. Every level draws its own profile from its stage, is simulated with the tempo model below,
+      and is kept only when it meets the stage's targets (knots, chains, decoys, extras, easy opening and ending). No target word is used twice in the whole set.
+      Levels that miss a target after all tries are kept anyway and marked in the Status column.</div>
+    <div class="row">
+      <label class="field">Language
+        <select id="fn-lang"><option value="tr">Türkçe</option><option value="en">English</option></select>
+      </label>
+      <label class="field" title="Stage preset; fills the Stages JSON below and names the download">Set
+        <select id="fn-preset"><option value="funnel">Funnel (3×3 → 7×7)</option><option value="variety">Variety (few / medium / many)</option></select>
+      </label>
+      <label class="field">Levels <input id="fn-count" type="number" min="1" max="500" value="50"></label>
+      <label class="field">Seed <input id="fn-seed" type="number" value="1"></label>
+      <label class="field" title="Word swaps per level while optimizing letters (extras, decoys, tempo targets)">Swaps <input id="fn-swaps" type="number" min="0" value="150"></label>
+      <label class="field" title="Attempts per level before the best near miss is kept">Tries / level <input id="fn-tries" type="number" min="1" value="200"></label>
+      <label class="field" title="Stop a level early once this many attempts pass; the best of them is kept">Candidates <input id="fn-cands" type="number" min="1" value="3"></label>
+      <label class="field" title="Loads the other sets' levels_<lang>_<set>.json files served next to this page and never uses their target words (only works over http)">Avoid other sets' words
+        <span class="pair"><input id="fn-avoid" type="checkbox" checked></span>
+      </label>
+      <button class="btn" id="fn-generate" disabled>Generate funnel</button>
+      <span class="muted" id="fn-progress"></span>
+    </div>
+    <details class="sub" style="margin-top:10px">
+      <summary>Stages (JSON)</summary>
+      <div class="pb-help" style="margin:6px 0">One stage per line, covering levels <b>from</b>–<b>to</b>. <b>words</b>/<b>layers</b> ranges, <b>top</b> = words on the top layer, <b>knots</b> range,
+        <b>knotSingleMax</b> = knots with a single linkable word, <b>reversed</b> = max share reading left/up, <b>decoy</b> = max decoys / near misses at easy and knot steps,
+        <b>maxBonus</b>, <b>maxThreeLetter</b>, <b>maxStartNoise</b>, <b>loose</b>/<b>looseKnot</b> = chance of L on a layer / knot layer, <b>hardEnding</b> = chance of a harder last step,
+        <b>opening</b>/<b>ending</b> = max cost of the first 3 / last 2 steps as a multiple of the median, <b>chainAfterKnot</b> = steps of the chain expected after the knot, <b>lenBias</b> = weight toward long words.
+        A fixed <b>profile</b> string replaces the random one.
+        A stage may give <b>sizes</b> (list of [W, H], one drawn per level) instead of W/H and <b>tiers</b>, cycled in order over the levels
+        (level <b>tierBase</b> → first tier, the next → second, …); a tier overrides the stage's fields and may use <b>wordsBySize</b> ({"5x5": [10, 10], …}) or
+        <b>density</b> (words per cell) instead of <b>words</b>, clamped to <b>minWords</b>–<b>maxWords</b>, and <b>bonusPerWord</b> instead of <b>maxBonus</b>.
+        <b>fullBoard</b> = every cell gets a letter (placement pulls words onto open cells, levels with gaps are rejected),
+        <b>reversedBias</b> = backwards words lean toward deep layers (weight (layer+1)^bias; 0 = anywhere), <b>reversedCenter</b> = min mean solve position of backwards words,
+        <b>knotReversed</b> = chance a knot layer is forced backwards.
+        <b>maxExtra4</b> / <b>maxExtra3</b> = max extras any solve order can reveal, independent 4+ letter ones (firm) and 3-letter ones (soft); stems/extensions of a target are never counted.</div>
+      <textarea id="fn-stages" spellcheck="false"></textarea>
+      <div class="row" style="margin-top:6px"><button class="btn secondary" id="fn-reset">Reset to defaults</button><span class="muted" id="fn-stages-msg"></span></div>
+    </details>
+  </section>
+
+  <details class="panel" id="model-panel">
+    <summary>Tempo model</summary>
+    <div class="model-grid" id="model"></div>
+    <div class="model-help">A simulated player who knows the word list finds, at every step, the cheapest linkable word. Word cost = (1 + dist × cells from the last find / distScale)
+      × reversed (if it reads left/up) × (1 + crowd × other visible tiles with its first letter); a forward word that was already ≥ preVis visible and near the last find
+      (≤ preVisCells) or visible at the start costs × preVisFactor. Step cost = cheapest word ÷ √(linkable words) + decoy per decoy + nearMiss per one-letter-short decoy.
+      Knot: step ≥ knotMul × median. Chain: chainMin+ steps ≤ chainMul × median, each within chainDist cells of the previous find.
+      <button class="btn secondary" id="model-reset" style="padding:4px 10px;margin-left:8px">Reset</button></div>
+  </details>
+
+  <details class="panel">
+    <summary>Single configuration batch</summary>
+    <div class="field pb-wrap">
+      <span title="Words per layer, top first. With the strict cover rule this is also the number of words available in each wave.">Profile (words per layer)</span>
+      <div id="pb" class="pb"></div>
+      <div id="pb-summary" class="pb-summary"></div>
+      <div class="pb-help">Flags after a count apply to that layer only, e.g. <b>2,2,3(R,C,H,D)</b> ·
+        <b>R</b> random direction · <b>C</b> the next layer's words cross these at right angles · <b>H</b> hard: long words ·
+        <b>D</b> backwards: every word reads right to left or bottom to top · <b>F</b> forward: never reversed ·
+        <b>L</b> loose: may lie under any layer above, not just the one directly above · <b>K</b> knot layer: first in line for the reversed share</div>
+      <input type="hidden" id="o-profile" value='[{"type":"single","counts":"1,4,6,4,2,1"}]'>
+    </div>
+    <div class="row" id="settings">
+      <label class="field">Language
+        <select id="o-lang"><option value="en">English</option><option value="tr">Türkçe</option></select>
+      </label>
+      <label class="field">Width <input id="o-w" type="number" min="3" max="12" value="6"></label>
+      <label class="field">Height <input id="o-h" type="number" min="3" max="12" value="6"></label>
+      <label class="field">Min len <input id="o-min" type="number" min="2" max="12" value="3"></label>
+      <label class="field">Max len <input id="o-max" type="number" min="2" max="12" value="6"></label>
+      <label class="field">Cover rule
+        <select id="o-cover">
+          <option value="strict">Strict (layer directly above)</option>
+          <option value="loose">Loose (any layer above)</option>
+        </select>
+      </label>
+      <label class="field" title="Placement weight ∝ length^bias: 0 = every spot equal (many short words), 1 = ∝ length, 2–3 = long words preferred">Length bias <input id="o-lenbias" type="number" min="0" max="4" step="0.5" value="1"></label>
+      <label class="field" title="Top-layer words come from the easy pool (score 4) when it has enough words of that length, and start with distinct letters">Easy top layer
+        <span class="pair"><input id="o-easytop" type="checkbox" checked></span>
+      </label>
+      <label class="field" title="After placing the words, keep swapping a word for another of the same length when it lowers alternative spellings, extras, decoys at easy steps and the reuse penalty.">Optimize words
+        <span class="pair"><input id="o-optimize" type="checkbox" checked><input id="o-swaps" type="number" min="1" value="300" title="Swap tries per level" style="width:72px"></span>
+      </label>
+      <label class="field" title="Every earlier use of a word in this batch counts as this many extra bonus words while optimizing. 0 = ignore reuse.">Reuse penalty <input id="o-reusepen" type="number" min="0" step="0.5" value="1"></label>
+      <label class="field" title="Reject a level if, at any step, bonus words make up more than this share of the linkable words. Leave empty for no limit.">Max bonus % <input id="o-maxbonus" type="number" min="0" max="100" placeholder="none"></label>
+      <label class="field">Levels <input id="o-count" type="number" min="1" max="5000" value="50"></label>
+      <label class="field" title="Reject a level when solving a word would reveal another word lying in the same line right under it.">Reject in-place reveals
+        <span class="pair"><input id="o-noinplace" type="checkbox"></span>
+      </label>
+      <label class="field" title="Reject a level when an R layer with two or more words has them all running the same way.">Require R mix
+        <span class="pair"><input id="o-rmix" type="checkbox"></span>
+      </label>
+      <label class="field" title="Reject a level when any cell of the top view is empty, i.e. no layer puts a letter there.">Full board
+        <span class="pair"><input id="o-fullboard" type="checkbox"></span>
+      </label>
+      <label class="field" title="Share of words that read backwards. Never exceeded (rounded down); D layers count toward it, F layers never flip.">Reversed % <input id="o-reversed" type="number" min="0" max="100" value="30"></label>
+      <label class="field" title="Total levels tried before giving up, kept or not">Max tries <input id="o-maxtries" type="number" min="1" value="10000"></label>
+      <label class="field">Seed <input id="o-seed" type="number" value="1"></label>
+      <button class="btn" id="generate" disabled>Generate</button>
+      <span class="muted" id="progress"></span>
+    </div>
+  </details>
+
+  <section class="tiles" id="summary"></section>
+
+  <section class="panel" id="reuse" hidden>
+    <div class="detail-head">
+      <h2 title="Over every kept level of the last run, ignoring the filters">Word reuse</h2>
+      <span class="pair">
+        <button class="btn secondary" id="reuse-base" title="Keep these stats in this browser to compare later runs against">Set as baseline</button>
+        <button class="btn secondary" id="reuse-copy">Copy stats JSON</button>
+      </span>
+    </div>
+    <div class="pb-help" id="reuse-note"></div>
+    <div class="reuse-grid">
+      <div class="table-wrap"><table id="reuse-table"></table></div>
+      <div class="table-wrap"><table id="reuse-len"></table></div>
+    </div>
+    <details class="sub"><summary>Most used words (current · baseline)</summary><div class="reuse-top" id="reuse-top"></div></details>
+  </section>
+
+  <section class="panel">
+    <h2>Filters &amp; export</h2>
+    <div class="row filters">
+      <label class="field">Words <span class="pair"><input id="f-tmin" type="number" placeholder="min"><input id="f-tmax" type="number" placeholder="max"></span></label>
+      <label class="field">Bonus / word <span class="pair"><input id="f-rmin" type="number" step="0.1" placeholder="min"><input id="f-rmax" type="number" step="0.1" placeholder="max"></span></label>
+      <label class="field">Knots <span class="pair"><input id="f-kmin" type="number" placeholder="min"><input id="f-kmax" type="number" placeholder="max"></span></label>
+      <label class="field">Only misses <span class="pair"><input id="f-miss" type="checkbox"></span></label>
+      <button class="btn secondary" id="sel-all">Select shown</button>
+      <button class="btn secondary" id="sel-none">Clear selection</button>
+      <button class="btn secondary" id="copy">Copy selected JSON</button>
+      <button class="btn" id="download">Download selected</button>
+    </div>
+  </section>
+
+  <div class="main">
+    <section class="panel">
+      <h2>Levels</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th class="nosort l"><input type="checkbox" id="sel-toggle" title="Select / clear shown"></th>
+            <th data-k="i">#</th>
+            <th data-k="seed">Seed</th>
+            <th data-k="cells" title="Board">Board</th>
+            <th data-k="targets">Words</th>
+            <th data-k="letters" title="Letters on the board, all layers">Ltr</th>
+            <th data-k="bonusCount" title="Extra words met by the simulated solves">Bonus</th>
+            <th data-k="extra4" title="Extras any solve order can reveal: independent 4+ letter · 3-letter (· stems of a target)">Extras</th>
+            <th data-k="peakBonus" title="Highest bonus share of linkable words at any step">Peak</th>
+            <th data-k="reversedShare" title="Share of words reading left/up">Rev</th>
+            <th data-k="revCenter" title="Mean position of the backwards words in the solve (0 = first step, 1 = last)">Rev@</th>
+            <th data-k="emptyCells" title="Cells no layer fills (empty in the top view)">Empty</th>
+            <th data-k="knotCount" title="Knots (step indexes)">Knots</th>
+            <th data-k="longestChain" title="Longest chain">Chain</th>
+            <th data-k="totalDecoys" title="Decoys over all steps / near misses">Decoy</th>
+            <th data-k="opening" title="Mean cost of the first 3 steps ÷ median">Open</th>
+            <th data-k="ending" title="Mean cost of the last 2 steps ÷ median">End</th>
+            <th data-k="startNoise" title="Share of visible letters at the start that belong to words not linkable yet">Noise</th>
+            <th class="nosort l">Status</th>
+            <th class="nosort l" title="Words available per wave (profile)">Waves</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="detail">
+      <div class="detail-head">
+        <h2 id="detail-title">Level detail</h2>
+        <button class="btn" id="play" hidden>▶ Play</button>
+      </div>
+      <div id="detail-empty" class="muted">Generate levels, then click a row.</div>
+      <div id="detail-body" hidden>
+        <div id="misses"></div>
+        <div class="chart" id="chart-tempo">
+          <div class="chart-title">Tempo: search cost per step</div>
+          <div class="chart-sub">Red = knot steps · green band = chain · dashed = median and knot threshold</div>
+        </div>
+        <div id="layer-tabs" class="seg"></div>
+        <div class="board-legend muted" id="board-legend"></div>
+        <div id="board" class="board"></div>
+        <div id="layer-words" class="layers"></div>
+        <details class="sub"><summary id="steps-sum">Steps</summary><div class="table-wrap" style="max-height:320px"><table class="steps" id="steps"></table></div></details>
+        <details class="sub"><summary id="bonus-sum">Bonus words</summary><div class="bonus-list" id="bonus-list"></div></details>
+        <div class="chart" id="chart-avail">
+          <div class="chart-title">Available words per wave</div>
+          <div class="chart-sub">Highlighted: this level · faint: every level that passes the filters</div>
+        </div>
+        <div class="chart" id="chart-ratio">
+          <div class="chart-title">Available ÷ remaining words per wave</div>
+          <div class="chart-sub">Share of the words left on the board that can be linked at the start of the wave</div>
+        </div>
+        <div class="chart" id="chart-bonus">
+          <div class="chart-title">Bonus ÷ all linkable words per wave</div>
+          <div class="chart-sub">Bonus words visible at the start of the wave, out of bonus + available target words</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script src="generator-core.js"></script>
+<script>
+(() => {
+  'use strict';
+  const G = window.GenCore;
+  const { DIRS, FLAG_NAMES } = G;
+  const FILES = { en: 'Dictionary_EN.csv', tr: 'Dictionary_TR.csv' };
+  const SETTINGS_KEY = 'layered-word-link.generator';
+  const $ = id => document.getElementById(id);
+
+  // ======================================================================
+  // Dictionaries
+  // ======================================================================
+  const DICT = {};
+
+  // Opened straight from disk (file://), the browser won't let the page read the CSVs, so a picked file is
+  // saved in IndexedDB and reused on the next visit. Served over http the CSVs are always read fresh.
+  const DB_NAME = 'layered-word-link.generator', STORE = 'csv';
+  function openDb() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, 1);
+      req.onupgradeneeded = () => req.result.createObjectStore(STORE);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+  async function cacheGet(lang) {
+    try {
+      const db = await openDb();
+      return await new Promise((resolve, reject) => {
+        const req = db.transaction(STORE).objectStore(STORE).get(lang);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => reject(req.error);
+      });
+    } catch (_) { return null; }
+  }
+  async function cachePut(lang, entry) {
+    try {
+      const db = await openDb();
+      db.transaction(STORE, 'readwrite').objectStore(STORE).put(entry, lang);
+    } catch (_) {}
+  }
+
+  const source = {};
+
+  async function loadDicts() {
+    await Promise.all(Object.keys(FILES).map(async lang => {
+      try {
+        const res = await fetch(FILES[lang]);
+        if (!res.ok) throw new Error(res.status);
+        DICT[lang] = G.parseDict(await res.text(), lang);
+        source[lang] = 'file';
+      } catch (_) {
+        const saved = await cacheGet(lang);
+        if (saved) { DICT[lang] = G.parseDict(saved.text, lang); source[lang] = saved; }
+      }
+    }));
+    renderDictStatus();
+  }
+
+  $('dict-files').addEventListener('change', async e => {
+    const input = e.target, file = input.files && input.files[0];
+    if (!file) return;
+    const lang = input.dataset.lang, text = await file.text();
+    DICT[lang] = G.parseDict(text, lang);
+    source[lang] = { name: file.name, savedAt: Date.now() };
+    await cachePut(lang, { text, ...source[lang] });
+    input.value = '';
+    renderDictStatus();
+  });
+
+  function renderDictStatus() {
+    const parts = Object.keys(FILES).map(lang => DICT[lang]
+      ? `${lang.toUpperCase()}: ${DICT[lang].targets.toLocaleString()} target words (${[...DICT[lang].easy.values()].reduce((s, a) => s + a.length, 0).toLocaleString()} easy), ${DICT[lang].bonus.size.toLocaleString()} bonus words`
+      : `${lang.toUpperCase()}: not loaded`);
+    $('dict-status').textContent = parts.join(' · ');
+    const langs = Object.keys(FILES);
+    const missing = langs.filter(l => !DICT[l]), saved = langs.filter(l => source[l] && source[l] !== 'file');
+    $('dict-files').classList.toggle('show', missing.length > 0 || saved.length > 0);
+    $('dict-files-msg').textContent = missing.length
+      ? "Couldn't read the CSV files automatically (the page is opened from disk). Pick them once; they're remembered in this browser."
+      : 'Using saved copies of the CSVs (' + saved.map(l => `${l.toUpperCase()} from ${new Date(source[l].savedAt).toLocaleString()}`).join(', ') + '). Pick a file again if you edited it.';
+    renderPlanSummary();
+    updateButtons();
+  }
+
+  function updateButtons() {
+    if (running) return;
+    $('fn-generate').disabled = !DICT[$('fn-lang').value] || !parseStages();
+  }
+
+  // ======================================================================
+  // Tempo model panel
+  // ======================================================================
+  const MODEL_LABELS = {
+    dist: 'dist', distScale: 'distScale (cells)', reversed: 'reversed ×', crowd: 'crowd', crowdMax: 'crowdMax', preVis: 'preVis', preVisCells: 'preVisCells',
+    preVisFactor: 'preVisFactor', decoy: 'decoy +', nearMiss: 'nearMiss +', knotMul: 'knotMul', chainMul: 'chainMul', chainMin: 'chainMin', chainDist: 'chainDist',
+  };
+  function renderModel(model) {
+    $('model').innerHTML = Object.keys(G.DEFAULT_MODEL).map(k =>
+      `<label class="field">${MODEL_LABELS[k] || k}<input data-m="${k}" type="number" step="any" value="${model[k]}"></label>`).join('');
+  }
+  function readModel() {
+    const m = { ...G.DEFAULT_MODEL };
+    document.querySelectorAll('#model input').forEach(i => { const v = parseFloat(i.value); if (Number.isFinite(v)) m[i.dataset.m] = v; });
+    return m;
+  }
+  $('model-reset').addEventListener('click', () => { renderModel(G.DEFAULT_MODEL); saveSettings(); });
+  $('model').addEventListener('input', saveSettings);
+
+  // ======================================================================
+  // Stages (funnel)
+  // ======================================================================
+  const stagesText = stages => '[\n' + stages.map(s => '  ' + JSON.stringify(s)).join(',\n') + '\n]';
+  function parseStages() {
+    try {
+      const st = JSON.parse($('fn-stages').value);
+      if (!Array.isArray(st) || !st.length) throw new Error('expected a list of stages');
+      st.forEach((s, i) => {
+        const sized = (s.W >= 3 && s.H >= 3) || (Array.isArray(s.sizes) && s.sizes.length && s.sizes.every(z => Array.isArray(z) && z[0] >= 3 && z[1] >= 3));
+        if (!(s.from >= 1 && s.to >= s.from && sized)) throw new Error(`stage ${i + 1}: needs from, to and W, H (or sizes)`);
+        if (s.tiers != null && !(Array.isArray(s.tiers) && s.tiers.length)) throw new Error(`stage ${i + 1}: tiers must be a non-empty list`);
+      });
+      $('fn-stages-msg').textContent = `${st.length} stages, levels ${st[0].from}–${st[st.length - 1].to}`;
+      $('fn-stages-msg').className = 'muted';
+      return st;
+    } catch (e) {
+      $('fn-stages-msg').textContent = String(e.message || e);
+      $('fn-stages-msg').className = 'err';
+      return null;
+    }
+  }
+  const presetStages = () => G.STAGE_PRESETS[$('fn-preset').value] || G.DEFAULT_STAGES;
+  $('fn-stages').addEventListener('input', () => { updateButtons(); saveSettings(); });
+  $('fn-reset').addEventListener('click', () => { $('fn-stages').value = stagesText(presetStages()); updateButtons(); saveSettings(); });
+  $('fn-preset').addEventListener('change', () => { $('fn-stages').value = stagesText(presetStages()); updateButtons(); saveSettings(); });
+
+  // ======================================================================
+  // Profile builder (single configuration batch)
+  // ======================================================================
+  let segments = [{ type: 'single', counts: '1,4,6,4,2,1' }];
+
+  function boardSize() {
+    const n = (id, d) => Math.min(12, Math.max(3, parseInt($(id).value, 10) || d));
+    return { W: n('o-w', 6), H: n('o-h', 6) };
+  }
+
+  function renderBuilder() {
+    const { W, H } = boardSize(), sp = G.splitInfo(W, H);
+    const orientLabel = o => (o === 'h' ? '↔ Horizontal' : '↕ Vertical');
+    const last = segments.length - 1;
+    const parts = segments.map((seg, i) => {
+      const x = i === last && i > 0 ? `<button class="x" data-act="remove" title="Remove this part">×</button>` : '';
+      if (seg.type === 'single') {
+        return `<div class="seg-card" data-seg="${i}"><div class="line">
+          <input data-k="counts" value="${seg.counts}" placeholder="e.g. 3(F),2(K),3">${x}</div></div>`;
+      }
+      const half = (k, n) => `<div class="line"><span class="tag">${sp.names[n]}</span>
+          <input data-k="${k}" value="${seg[k].counts}" placeholder="e.g. 3,2(R)">
+          <button class="flip" data-act="flip" data-b="${k}" title="Flip the preferred word direction for this half">${orientLabel(G.flipOrient(sp.orient[n], seg[k].flip))}</button>
+          ${n === 0 ? x : ''}</div>`;
+      return `<div class="seg-card branch" data-seg="${i}">${half('a', 0)}${half('b', 1)}</div>`;
+    });
+    const action = segments[last].type === 'single'
+      ? `<button class="btn secondary" data-act="branch">⑂ Branch</button>`
+      : `<button class="btn secondary" data-act="collapse">Collapse branch</button>`;
+    $('pb').innerHTML = parts.join('<span class="arrow">→</span>') + action;
+    renderPlanSummary();
+  }
+
+  function renderPlanSummary() {
+    const { W, H } = boardSize();
+    const plan = G.expandPlan(segments, W, H);
+    const waves = plan.layers.map(l => l.zones.map(z => z.count + G.flagText(z.flags)).join('+')).join(' · ');
+    $('pb-summary').innerHTML = plan.errors.length
+      ? plan.errors.map(e => `<div class="err">${e}</div>`).join('')
+      : `<span class="muted">Waves: ${waves} (${plan.layers.length} layers)</span>` +
+        plan.warnings.map(w => `<div class="warn">${w}</div>`).join('');
+    $('o-profile').value = JSON.stringify(segments);
+    if (!running) $('generate').disabled = !DICT[$('o-lang').value] || plan.errors.length > 0;
+  }
+
+  $('pb').addEventListener('input', e => {
+    const card = e.target.closest('[data-seg]');
+    if (!card) return;
+    const seg = segments[+card.dataset.seg], k = e.target.dataset.k;
+    if (k === 'counts') seg.counts = e.target.value; else seg[k].counts = e.target.value;
+    renderPlanSummary();
+  });
+  $('pb').addEventListener('click', e => {
+    const b = e.target.closest('[data-act]');
+    if (!b) return;
+    const card = b.closest('[data-seg]'), seg = card && segments[+card.dataset.seg];
+    if (b.dataset.act === 'branch') segments.push({ type: 'branch', a: { counts: '2,2', flip: false }, b: { counts: '2,2', flip: false } });
+    else if (b.dataset.act === 'collapse') segments.push({ type: 'single', counts: '2,1' });
+    else if (b.dataset.act === 'remove') segments.pop();
+    else if (b.dataset.act === 'flip') seg[b.dataset.b].flip = !seg[b.dataset.b].flip;
+    renderBuilder();
+  });
+  ['o-w', 'o-h'].forEach(id => $(id).addEventListener('input', renderBuilder));
+
+  // ======================================================================
+  // Runs
+  // ======================================================================
+  let results = [];   // levels of the last run
+  let runInfo = null; // { kind: 'batch' | 'funnel', lang, dict }
+  let reuse = null;
+  let selected = new Set();
+  let activeIdx = -1;
+  let sort = { k: 'i', asc: true };
+  let running = false, stopRequested = false;
+
+  const yieldUi = () => new Promise(r => setTimeout(r));
+
+  function readOpts() {
+    const num = (id, lo, hi) => Math.min(hi, Math.max(lo, parseInt($(id).value, 10) || lo));
+    const o = {
+      lang: $('o-lang').value,
+      W: num('o-w', 3, 12), H: num('o-h', 3, 12),
+      minLen: num('o-min', 2, 12), maxLen: num('o-max', 2, 12),
+      cover: $('o-cover').value,
+      count: num('o-count', 1, 5000),
+      seed: parseInt($('o-seed').value, 10) || 0,
+      maxTries: num('o-maxtries', 1, Infinity),
+      noInPlace: $('o-noinplace').checked,
+      rMix: $('o-rmix').checked,
+      fullBoard: $('o-fullboard').checked,
+      easyTop: $('o-easytop').checked,
+      lenBias: Math.max(0, parseFloat($('o-lenbias').value) || 0),
+      reversed: Math.min(100, Math.max(0, parseInt($('o-reversed').value, 10) || 0)) / 100,
+      swaps: $('o-optimize').checked ? num('o-swaps', 1, Infinity) : 0,
+      reusePenalty: Math.max(0, parseFloat($('o-reusepen').value) || 0),
+      maxBonus: $('o-maxbonus').value === '' ? null : Math.min(100, Math.max(0, +$('o-maxbonus').value)),
+      model: readModel(),
+    };
+    if (o.maxLen < o.minLen) o.maxLen = o.minLen;
+    o.segments = JSON.parse(JSON.stringify(segments));
+    o.plan = G.expandPlan(segments, o.W, o.H);
+    o.profile = o.plan.totals;
+    return o;
+  }
+
+  function startRun(kind, lang) {
+    running = true; stopRequested = false;
+    results = []; selected = new Set(); activeIdx = -1;
+    runInfo = { kind, lang, dict: DICT[lang] };
+    $('generate').textContent = kind === 'batch' ? 'Stop' : 'Generate';
+    $('fn-generate').textContent = kind === 'funnel' ? 'Stop' : 'Generate funnel';
+    $('generate').disabled = kind !== 'batch';
+    $('fn-generate').disabled = kind !== 'funnel';
+  }
+  function finishRun(settings) {
+    running = false;
+    $('generate').textContent = 'Generate';
+    $('fn-generate').textContent = 'Generate funnel';
+    renderPlanSummary();
+    updateButtons();
+    reuse = G.reuseStats(results, runInfo.dict, settings);
+    render();
+    renderReuse();
+    const shown = filtered();
+    if (shown.length) showDetail(shown[0].i - 1);
+  }
+
+  async function runBatch() {
+    const o = readOpts();
+    saveSettings();
+    const dict = DICT[o.lang];
+    if (!dict) return;
+    if (o.plan.errors.length) return toast(o.plan.errors[0]);
+    startRun('batch', o.lang);
+    const rejects = {};
+    const usage = new Map();
+    let attempts = 0, lastYield = performance.now();
+    for (let a = 0; results.length < o.count && a < o.maxTries && !stopRequested; a++) {
+      attempts++;
+      if (performance.now() - lastYield > 50) {
+        lastYield = performance.now();
+        $('progress').textContent = `${results.length} / ${o.count} (${a} tried)`;
+        await yieldUi();
+      }
+      const seed = G.levelSeed(o.seed, a);
+      const r = G.runLevel(dict, o, seed, usage);
+      if (r.reject) { rejects[r.reject] = (rejects[r.reject] || 0) + 1; continue; }
+      r.layers.forEach(l => l.forEach(w => usage.set(w.word, (usage.get(w.word) || 0) + 1)));
+      r.i = results.length + 1;
+      r.why = r.alts.length ? ['alt spelling'] : [];
+      results.push(r);
+    }
+    const names = { noRoom: 'no room', inPlace: 'in-place reveal', noMix: 'R layer ran one way', notFull: 'an empty cell in the top view', bonus: `bonus over ${o.maxBonus}%` };
+    const notes = Object.entries(rejects).map(([k, v]) => `${v} rejected (${names[k] || k})`);
+    if (stopRequested) notes.push(`stopped by you after ${attempts} tries`);
+    else if (results.length < o.count) notes.push(`stopped at the max of ${attempts} tries`);
+    $('progress').textContent = `${results.length} levels` + (notes.length ? ', ' + notes.join(', ') : '');
+    finishRun(settingsSnapshot());
+  }
+
+  // Target words of the other presets' exported sets served next to this page (levels_<lang>_<preset>.json).
+  async function otherSetWords(lang, preset) {
+    const words = new Set(), files = [];
+    await Promise.all(Object.keys(G.STAGE_PRESETS).filter(p => p !== preset).map(async p => {
+      const file = `levels_${lang}_${p}.json`;
+      try {
+        const res = await fetch(file, { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!Array.isArray(data.levels)) return;
+        data.levels.forEach(lv => (lv.layers || []).flat().forEach(w => words.add(w.word)));
+        files.push(file);
+      } catch (_) {}
+    }));
+    return { words, files };
+  }
+
+  async function runFunnel() {
+    const stages = parseStages();
+    const lang = $('fn-lang').value, dict = DICT[lang];
+    if (!stages || !dict) return;
+    saveSettings();
+    const settings = {
+      lang, model: readModel(),
+      swaps: Math.max(0, parseInt($('fn-swaps').value, 10) || 0),
+      tries: Math.max(1, parseInt($('fn-tries').value, 10) || 200),
+      candidates: Math.max(1, parseInt($('fn-cands').value, 10) || 3),
+    };
+    const count = Math.max(1, parseInt($('fn-count').value, 10) || 50), seed = parseInt($('fn-seed').value, 10) || 0;
+    startRun('funnel', lang);
+    runInfo.preset = $('fn-preset').value;
+    const usage = new Map(), usedSigs = new Set();
+    if ($('fn-avoid').checked) {
+      const loaded = await otherSetWords(lang, runInfo.preset);
+      loaded.words.forEach(w => usage.set(w, 1));
+      runInfo.avoided = loaded;
+      if (loaded.files.length) toast(`Avoiding ${loaded.words.size} words from ${loaded.files.join(', ')}`);
+    }
+    let missed = 0, lastYield = performance.now();
+    const t0 = performance.now();
+    for (let n = 1; n <= count && !stopRequested; n++) {
+      const rawStage = G.stageFor(stages, n);
+      if (!rawStage) { toast(`No stage covers level ${n}`); break; }
+      const stage = G.concreteStage(rawStage, n, seed);
+      const it = G.funnelLevelGen(dict, rawStage, n, seed, usage, usedSigs, settings);
+      let out;
+      for (;;) {
+        const step = it.next();
+        if (step.done) { out = step.value; break; }
+        if (performance.now() - lastYield > 60) {
+          lastYield = performance.now();
+          $('fn-progress').textContent = `Level ${n} / ${count} · ${stage.W}×${stage.H}${stage.tier ? ' ' + stage.tier : ''} · attempt ${step.value.attempts}, ${step.value.passed} passed · ${Math.round((performance.now() - t0) / 1000)}s`;
+          await yieldUi();
+          if (stopRequested) break;
+        }
+      }
+      if (!out || !out.chosen) { if (out) toast(`Level ${n}: nothing could be placed`); continue; }
+      const r = out.chosen;
+      r.i = results.length + 1;
+      r.tries = out.attempts; r.passed = out.passed; r.rejects = out.rejects;
+      if (r.why.length) missed++;
+      results.push(r);
+      if (results.length % 5 === 0) { render(); }
+    }
+    const secs = Math.round((performance.now() - t0) / 1000);
+    $('fn-progress').textContent = `${results.length} levels in ${secs}s` + (missed ? `, ${missed} with misses (see Status)` : ', all targets met') + (stopRequested ? ' · stopped' : '');
+    results.forEach(r => selected.add(r.i - 1));
+    finishRun({ ...settingsSnapshot(), stages: $('fn-stages').value });
+  }
+
+  // ======================================================================
+  // Filters, summary, table
+  // ======================================================================
+  function filtered() {
+    const v = id => { const x = parseFloat($(id).value); return Number.isFinite(x) ? x : null; };
+    const f = { tmin: v('f-tmin'), tmax: v('f-tmax'), rmin: v('f-rmin'), rmax: v('f-rmax'), kmin: v('f-kmin'), kmax: v('f-kmax'), miss: $('f-miss').checked };
+    const inRange = (x, lo, hi) => (lo == null || x >= lo) && (hi == null || x <= hi);
+    return results.filter(r => inRange(r.targets, f.tmin, f.tmax) && inRange(r.ratio, f.rmin, f.rmax) && inRange(r.knotCount, f.kmin, f.kmax) && (!f.miss || r.why.length));
+  }
+
+  const avg = (arr, k) => arr.length ? arr.reduce((s, r) => s + r[k], 0) / arr.length : 0;
+  const fmt1 = x => x.toFixed(1), fmt2 = x => x.toFixed(2);
+  const pct = x => Math.round(x * 100) + '%';
+
+  function renderSummary(shown) {
+    const words = shown.flatMap(r => r.layers.flat().map(w => w.word));
+    const tiles = [
+      ['Levels', results.length],
+      ['Shown', shown.length],
+      ['Selected', selected.size],
+      ['With misses', shown.filter(r => r.why.length).length],
+      ['Avg words', fmt1(avg(shown, 'targets'))],
+      ['Avg bonus', fmt1(avg(shown, 'bonusCount'))],
+      ['Avg knots', fmt1(avg(shown, 'knotCount'))],
+      ['Avg chain', fmt1(avg(shown, 'longestChain'))],
+      ['Reversed', pct(avg(shown, 'reversedShare'))],
+      ['Repeated words', words.length - new Set(words).size],
+    ];
+    $('summary').innerHTML = tiles.map(([k, v]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+  }
+
+  const statusOf = r => r.alts.length ? `alt ×${r.alts.length}` : r.why.length ? r.why.join(', ') : 'ok';
+
+  function renderTable(shown) {
+    const key = sort.k;
+    const val = r => key === 'cells' ? r.o.W * r.o.H : r[key];
+    const rows = shown.slice().sort((a, b) => (val(a) - val(b)) * (sort.asc ? 1 : -1) || a.i - b.i);
+    document.querySelectorAll('th[data-k]').forEach(th => {
+      th.classList.toggle('sorted', th.dataset.k === sort.k);
+      th.classList.toggle('asc', th.dataset.k === sort.k && sort.asc);
+    });
+    $('rows').innerHTML = rows.map(r => `
+      <tr data-i="${r.i - 1}" class="${r.i - 1 === activeIdx ? 'active' : ''} ${r.alts.length ? 'alt' : r.why.length ? 'miss' : ''}">
+        <td class="l"><input type="checkbox" ${selected.has(r.i - 1) ? 'checked' : ''}></td>
+        <td>${r.i}</td><td>${r.seed}</td><td>${r.o.W}×${r.o.H}</td><td>${r.targets}</td><td>${r.letters}</td><td>${r.bonusCount}</td><td title="${r.extraRoot} stems of a target (not counted)">${r.extra4} · ${r.extra3}</td><td>${Math.round(r.peakBonus)}%</td>
+        <td>${pct(r.reversedShare)}</td><td>${r.revCenter == null ? '–' : fmt2(r.revCenter)}</td><td${r.emptyCells ? ' class="warn"' : ''}>${r.emptyCells}</td><td title="steps ${r.knots.join(', ')}">${r.knotCount}${r.knotSingle ? '·' + r.knotSingle + 's' : ''}</td><td>${r.longestChain}</td>
+        <td>${r.totalDecoys}/${r.totalNearMiss}</td><td>${fmt2(r.opening)}</td><td>${fmt2(r.ending)}</td><td>${pct(r.startNoise)}</td>
+        <td class="l status" title="${r.tries ? `${r.passed} of ${r.tries} attempts passed` : ''}">${statusOf(r)}</td>
+        <td class="l pattern">${r.stage && r.stage.tier ? `<b>${r.stage.tier}</b> · ` : ''}${r.profileStr || r.perWave.map(w => w.available).join(' · ')}</td>
+      </tr>`).join('');
+    const allSel = shown.length > 0 && shown.every(r => selected.has(r.i - 1));
+    $('sel-toggle').checked = allSel;
+  }
+
+  function render() {
+    const shown = filtered();
+    renderSummary(shown);
+    renderTable(shown);
+    if (activeIdx >= 0 && results[activeIdx]) renderCharts(results[activeIdx], shown);
+  }
+
+  $('rows').addEventListener('click', e => {
+    const tr = e.target.closest('tr');
+    if (!tr) return;
+    const idx = +tr.dataset.i;
+    if (e.target.type === 'checkbox') {
+      e.target.checked ? selected.add(idx) : selected.delete(idx);
+      renderSummary(filtered());
+      return;
+    }
+    showDetail(idx);
+  });
+  document.querySelectorAll('th[data-k]').forEach(th => th.addEventListener('click', () => {
+    sort = { k: th.dataset.k, asc: sort.k === th.dataset.k ? !sort.asc : th.dataset.k === 'i' };
+    renderTable(filtered());
+  }));
+  ['f-tmin', 'f-tmax', 'f-rmin', 'f-rmax', 'f-kmin', 'f-kmax', 'f-miss'].forEach(id => $(id).addEventListener('input', render));
+  const selectShown = on => { filtered().forEach(r => on ? selected.add(r.i - 1) : selected.delete(r.i - 1)); render(); };
+  $('sel-all').addEventListener('click', () => selectShown(true));
+  $('sel-none').addEventListener('click', () => { selected.clear(); render(); });
+  $('sel-toggle').addEventListener('change', e => selectShown(e.target.checked));
+
+  // ======================================================================
+  // Detail: tempo chart, board preview, words per layer, steps, bonus list
+  // ======================================================================
+  let boardView = -1;
+
+  function showDetail(idx) {
+    activeIdx = idx;
+    const r = results[idx], { W, H } = r.o;
+    document.querySelectorAll('#rows tr').forEach(tr => tr.classList.toggle('active', +tr.dataset.i === idx));
+    $('detail-empty').hidden = true;
+    $('detail-body').hidden = false;
+    $('play').hidden = false;
+    const stage = r.stage ? ` · stage ${r.stage.from}–${r.stage.to}${r.stage.tier ? ' · ' + r.stage.tier : ''}` : '';
+    $('detail-title').textContent = `Level ${r.i} · ${W}×${H} · ${r.layers.length} layers · ${r.targets} words · ${r.letters} letters · seed ${r.seed}${stage}`;
+    $('misses').innerHTML = (r.alts.length ? `<div class="err">Target spelled elsewhere: ${r.alts.join(', ')}</div>` : '')
+      + (r.why.length ? `<div class="warn">Misses: ${r.why.join(', ')}</div>` : (r.stage ? `<div class="muted">All stage targets met${r.variant && r.variant.hardEnding ? ' (harder ending variant)' : ''}</div>` : ''))
+      + `<div class="muted">median step ${fmt2(r.median)} · knots at ${r.knotGroups.map(g => g.start === g.end ? g.start + 1 : `${g.start + 1}–${g.end + 1}`).join(', ') || '—'} · chains ${r.chains.map(c => `${c.start + 1}–${c.start + c.len}`).join(', ') || '—'} · sweep ${fmt2(r.sweep)} · top spread ${pct(r.topSpread)}</div>`;
+    tempoChart($('chart-tempo'), r);
+
+    if (boardView >= r.layers.length) boardView = -1;
+    $('layer-tabs').innerHTML = ['Top view', ...r.layers.map((_, L) => L === 0 ? 'Top layer' : `Layer ${L + 1}`)]
+      .map((label, k) => `<button data-v="${k - 1}" class="${k - 1 === boardView ? 'on' : ''}">${label}</button>`).join('');
+    renderBoard(r);
+
+    const stepOf = new Map(r.steps.map((s, i) => [s.wordId, i]));
+    const knotSet = new Set(r.knots);
+    let n = 0;
+    $('layer-words').innerHTML = r.layers.map((layer, L) => {
+      const flags = r.o.plan.layers[L] ? r.o.plan.layers[L].zones.map(z => G.flagText(z.flags)).join('') : '';
+      return `<div><b>${L === 0 ? 'Top' : 'Layer ' + (L + 1)}${flags ? ' ' + flags : ''}</b>${layer.map(w => {
+        const id = n++, s = stepOf.get(id);
+        return `<span class="w ${knotSet.has(s) ? 'knot' : ''} ${w.dir >= 2 ? 'rev' : ''}" title="step ${s + 1}">${w.word}<sub> ${s + 1}</sub></span>`;
+      }).join('')}</div>`;
+    }).join('');
+
+    const chainSet = new Set();
+    r.chains.forEach(c => { for (let i = c.start; i < c.start + c.len; i++) chainSet.add(i); });
+    $('steps-sum').textContent = `Steps (${r.steps.length})`;
+    $('steps').innerHTML = `<thead><tr><th>#</th><th class="l">Word</th><th>Layer</th><th>Cost</th><th>Word cost</th><th>Open</th><th>Dist</th><th>Rev</th><th>Crowd</th><th>Pre-vis</th><th>Adj</th><th>Decoys</th><th>Bonus</th><th>Noise</th></tr></thead><tbody>`
+      + r.steps.map((s, i) => `<tr class="${knotSet.has(i) ? 'knot' : chainSet.has(i) ? 'chain' : ''}"><td>${i + 1}</td><td class="l">${s.word}</td><td>${s.layer + 1}</td><td>${fmt2(s.cost)}</td><td>${fmt2(s.wordCost)}</td><td>${s.avail}</td><td>${fmt2(s.dist)}</td><td>${s.reversed ? '⇠' : ''}</td><td>${s.crowd}</td><td>${s.preVis == null ? '' : pct(s.preVis)}</td><td>${s.adjacent ? '•' : ''}</td><td>${s.decoys}${s.nearMiss ? ' (' + s.nearMiss + ' near)' : ''}</td><td>${s.bonus}</td><td>${pct(s.noise)}</td></tr>`).join('')
+      + '</tbody>';
+    const shipped = r.validWords || r.bonus, simSet = new Set(r.bonus);
+    $('bonus-sum').textContent = `Extra words (${shipped.length} shipped as validWords: ${r.extra4} independent 4+ · ${r.extra3} three-letter · ${r.extraRoot} stems of a target; ${r.bonus.length} met by the simulated solves)`;
+    const kind = w => (r.extraRootWords || []).includes(w) ? 'stem of a target (not counted)' : w.length >= 4 ? 'independent 4+ letter extra' : '3-letter extra';
+    const span = w => `<span class="${(r.extraRootWords || []).includes(w) ? 'muted' : w.length >= 4 ? 'warn' : ''}" title="${kind(w)}${simSet.has(w) ? '' : ' · reachable in some solve order only'}">${simSet.has(w) ? `<b>${w}</b>` : w}</span>`;
+    $('bonus-list').innerHTML = shipped.length ? shipped.map(span).join(', ') : '—';
+    renderCharts(r, filtered());
+  }
+
+  function renderBoard(r) {
+    const { W, H } = r.o;
+    const cells = Array.from({ length: W * H }, () => []);
+    const stepOf = new Map(r.steps.map((s, i) => [s.wordId, i + 1]));
+    let n = 0;
+    r.layers.forEach((layer, L) => layer.forEach(w => {
+      const [dx, dy] = DIRS[w.dir], step = stepOf.get(n++);
+      for (let k = 0; k < w.word.length; k++) cells[(w.y + dy * k) * W + (w.x + dx * k)].push({ letter: w.word[k], layer: L, step });
+    }));
+    const maxDepth = Math.max(1, ...cells.map(c => c.length));
+    const board = $('board');
+    const avail = board.parentElement.clientWidth || 420;
+    const cs = Math.max(18, Math.min(40, Math.floor((avail - 3 * (W - 1)) / W)));
+    board.style.gridTemplateColumns = `repeat(${W}, ${cs}px)`;
+    board.style.setProperty('--cs', cs + 'px');
+
+    const plan = r.o.plan, sp = plan.split;
+    const showCut = plan.hasBranch && (boardView < 0 || (plan.layers[boardView] && plan.layers[boardView].zones.length > 1));
+    const cut = ci => {
+      if (!showCut) return '';
+      const x = ci % W, y = Math.floor(ci / W);
+      return sp.rows ? (y === sp.cut ? ' cut-top' : '') : (x === sp.cut ? ' cut-left' : '');
+    };
+    const cutNote = showCut ? ` · yellow dashes = branch split (${sp.names[0].toLowerCase()} / ${sp.names[1].toLowerCase()})` : '';
+
+    if (boardView < 0) {
+      $('board-legend').textContent = 'Top letter of every cell · corner number = letters stacked in the cell' + cutNote;
+      board.innerHTML = cells.map((c, ci) => !c.length
+        ? `<div class="cell empty${cut(ci)}"></div>`
+        : `<div class="cell${cut(ci)}" style="filter: brightness(${1 - 0.28 * (c.length - 1) / Math.max(1, maxDepth - 1)})" title="${c.length} letters deep">${c[0].letter}<span class="d">${c.length}</span></div>`).join('');
+      return;
+    }
+    const L = boardView;
+    $('board-legend').textContent = `Only ${L === 0 ? 'the top layer' : 'layer ' + (L + 1)} · corner number = step the word is found at · faded = covered by a layer above at the start · dashed = empty here, filled above` + cutNote;
+    board.innerHTML = cells.map((c, ci) => {
+      const own = c.find(e => e.layer === L), above = c.some(e => e.layer < L);
+      if (!own) return `<div class="cell ${above ? 'under' : 'empty'}${cut(ci)}"></div>`;
+      return `<div class="cell ${above ? 'buried' : ''}${cut(ci)}" title="step ${own.step}">${own.letter}<span class="d">${own.step}</span></div>`;
+    }).join('');
+  }
+
+  $('layer-tabs').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || activeIdx < 0) return;
+    boardView = +b.dataset.v;
+    document.querySelectorAll('#layer-tabs button').forEach(x => x.classList.toggle('on', x === b));
+    renderBoard(results[activeIdx]);
+  });
+
+  // ======================================================================
+  // Charts (inline SVG with hover)
+  // ======================================================================
+  const NS = 'http://www.w3.org/2000/svg';
+  const niceMax = v => {
+    if (v <= 5) return 5;
+    const p = Math.pow(10, Math.floor(Math.log10(v))), n = v / p;
+    return (n <= 2 ? 2 : n <= 5 ? 5 : 10) * p;
+  };
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    parent.appendChild(n);
+    return n;
+  };
+  function attachTip(host, svg, hit, Wd, xOf, yOf, count, html) {
+    const cross = el('line', { y1: 0, y2: hit.getAttribute('height'), stroke: 'var(--muted)', 'stroke-width': 1, 'stroke-dasharray': '3 3', visibility: 'hidden' }, svg);
+    const tipEl = document.createElement('div');
+    tipEl.className = 'tip';
+    host.appendChild(tipEl);
+    hit.addEventListener('mousemove', e => {
+      const box = svg.getBoundingClientRect(), scale = Wd / box.width;
+      const px = (e.clientX - box.left) * scale;
+      let i = 0, best = Infinity;
+      for (let k = 0; k < count; k++) { const d = Math.abs(xOf(k) - px); if (d < best) { best = d; i = k; } }
+      cross.setAttribute('x1', xOf(i)); cross.setAttribute('x2', xOf(i)); cross.setAttribute('visibility', 'visible');
+      tipEl.innerHTML = html(i);
+      tipEl.style.display = 'block';
+      const left = xOf(i) / scale + svg.offsetLeft, hostW = host.clientWidth;
+      tipEl.style.left = Math.min(hostW - tipEl.offsetWidth, Math.max(0, left + 10)) + 'px';
+      tipEl.style.top = (yOf(i) / scale + svg.offsetTop - 44) + 'px';
+    });
+    hit.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); tipEl.style.display = 'none'; });
+  }
+
+  function tempoChart(host, r) {
+    host.querySelectorAll('svg, .tip').forEach(n => n.remove());
+    const steps = r.steps, n = steps.length;
+    const Wd = Math.max(280, host.clientWidth), Ht = 190, m = { l: 36, r: 14, t: 10, b: 26 };
+    const yMax = Math.max(1, ...steps.map(s => s.cost)) * 1.1;
+    const bw = (Wd - m.l - m.r) / Math.max(1, n);
+    const sx = i => m.l + (i + 0.5) * bw;
+    const sy = v => m.t + (1 - v / yMax) * (Ht - m.t - m.b);
+    const svg = el('svg', { viewBox: `0 0 ${Wd} ${Ht}`, height: Ht }, host);
+    for (let k = 0; k <= 4; k++) {
+      const v = yMax * k / 4, y = sy(v);
+      el('line', { x1: m.l, x2: Wd - m.r, y1: y, y2: y, stroke: 'var(--grid)', 'stroke-width': 1 }, svg);
+      el('text', { x: m.l - 6, y: y + 4, 'text-anchor': 'end' }, svg).textContent = v.toFixed(1);
+    }
+    const model = r.o.model || G.DEFAULT_MODEL;
+    r.chains.forEach(c => el('rect', { x: sx(c.start) - bw / 2, y: m.t, width: bw * c.len, height: Ht - m.t - m.b, fill: 'rgba(46,216,163,.12)' }, svg));
+    const knotSet = new Set(r.knots);
+    steps.forEach((s, i) => {
+      el('rect', { x: sx(i) - bw * 0.35, y: sy(s.cost), width: bw * 0.7, height: Math.max(1, sy(0) - sy(s.cost)), rx: 2,
+        fill: knotSet.has(i) ? 'var(--knot)' : 'var(--sel)', opacity: knotSet.has(i) ? 1 : 0.85 }, svg);
+      if (s.reversed) el('text', { x: sx(i), y: sy(s.cost) - 3, 'text-anchor': 'middle', 'font-size': 10 }, svg).textContent = '⇠';
+    });
+    [[r.median, 'median'], [r.median * model.knotMul, 'knot']].forEach(([v, label]) => {
+      if (!v || v > yMax) return;
+      el('line', { x1: m.l, x2: Wd - m.r, y1: sy(v), y2: sy(v), stroke: 'var(--muted)', 'stroke-width': 1, 'stroke-dasharray': '4 3' }, svg);
+      el('text', { x: Wd - m.r, y: sy(v) - 3, 'text-anchor': 'end', 'font-size': 10 }, svg).textContent = label;
+    });
+    const stepLbl = Math.ceil(n / 16);
+    for (let i = 0; i < n; i += stepLbl) el('text', { x: sx(i), y: Ht - 9, 'text-anchor': 'middle' }, svg).textContent = i + 1;
+    el('text', { x: Wd - m.r, y: Ht, 'text-anchor': 'end' }, svg).textContent = 'step';
+    const hit = el('rect', { x: m.l, y: 0, width: Wd - m.l - m.r, height: Ht - m.b, fill: 'transparent' }, svg);
+    attachTip(host, svg, hit, Wd, sx, i => sy(steps[i].cost), n, i => {
+      const s = steps[i];
+      return `Step ${i + 1}: <span class="tv">${s.word}</span> (layer ${s.layer + 1}${s.reversed ? ', reversed' : ''})<br>cost ${fmt2(s.cost)} · ${s.avail} linkable · ${s.dist.toFixed(1)} away · crowd ${s.crowd}<br>decoys ${s.decoys}${s.nearMiss ? ` (${s.nearMiss} near)` : ''} · bonus ${s.bonus}${s.preVis != null ? ` · pre-vis ${pct(s.preVis)}` : ''}`;
+    });
+  }
+
+  function renderCharts(r, shown) {
+    lineChart($('chart-avail'), {
+      all: shown.map(x => x.perWave.map(w => w.available)),
+      sel: r.perWave.map(w => w.available),
+      yMax: niceMax(Math.max(1, ...shown.flatMap(x => x.perWave.map(w => w.available)), ...r.perWave.map(w => w.available))),
+      fmt: v => String(v),
+      tip: (i, v) => `${v} of ${r.perWave[i].remaining} remaining`,
+    });
+    lineChart($('chart-ratio'), {
+      all: shown.map(x => x.perWave.map(w => w.available / w.remaining)),
+      sel: r.perWave.map(w => w.available / w.remaining),
+      yMax: 1,
+      fmt: v => Math.round(v * 100) + '%',
+      tip: (i, v) => `${r.perWave[i].available} / ${r.perWave[i].remaining} = ${Math.round(v * 100)}%`,
+    });
+    const bonusShare = w => w.bonus / (w.bonus + w.available);
+    lineChart($('chart-bonus'), {
+      all: shown.map(x => x.perWave.map(bonusShare)),
+      sel: r.perWave.map(bonusShare),
+      yMax: 1,
+      fmt: v => Math.round(v * 100) + '%',
+      tip: (i, v) => {
+        const w = r.perWave[i];
+        return `${w.bonus} bonus / ${w.bonus + w.available} linkable (${w.available} targets) = ${Math.round(v * 100)}%`;
+      },
+    });
+  }
+
+  function lineChart(host, { all, sel, yMax, fmt, tip }) {
+    host.querySelectorAll('svg, .tip').forEach(n => n.remove());
+    const Wd = Math.max(280, host.clientWidth), Ht = 180, m = { l: 40, r: 14, t: 10, b: 28 };
+    const xMax = Math.max(2, sel.length, ...all.map(s => s.length));
+    const sx = i => m.l + (i / (xMax - 1)) * (Wd - m.l - m.r);
+    const sy = v => m.t + (1 - v / yMax) * (Ht - m.t - m.b);
+    const svg = el('svg', { viewBox: `0 0 ${Wd} ${Ht}`, height: Ht }, host);
+    for (let k = 0; k <= 4; k++) {
+      const v = yMax * k / 4, y = sy(v);
+      el('line', { x1: m.l, x2: Wd - m.r, y1: y, y2: y, stroke: 'var(--grid)', 'stroke-width': 1 }, svg);
+      el('text', { x: m.l - 6, y: y + 4, 'text-anchor': 'end' }, svg).textContent = fmt(v);
+    }
+    const step = Math.ceil(xMax / 12);
+    for (let i = 0; i < xMax; i += step) el('text', { x: sx(i), y: Ht - 10, 'text-anchor': 'middle' }, svg).textContent = i + 1;
+    el('text', { x: Wd - m.r, y: Ht, 'text-anchor': 'end' }, svg).textContent = 'wave';
+    const path = s => s.map((v, i) => `${i ? 'L' : 'M'}${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join('');
+    const faint = all.map(path).filter(Boolean).join('');
+    if (faint) el('path', { d: faint, fill: 'none', stroke: 'var(--faint)', 'stroke-width': 1.5, 'stroke-linejoin': 'round' }, svg);
+    el('path', { d: path(sel), fill: 'none', stroke: 'var(--sel)', 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+    sel.forEach((v, i) => el('circle', { cx: sx(i), cy: sy(v), r: 4, fill: 'var(--sel)', stroke: '#2a2152', 'stroke-width': 2 }, svg));
+    const hit = el('rect', { x: m.l, y: 0, width: Wd - m.l - m.r, height: Ht - m.b, fill: 'transparent' }, svg);
+    if (sel.length) attachTip(host, svg, hit, Wd, sx, i => sy(sel[i]), sel.length, i => `Wave ${i + 1}<br><span class="tv">${tip(i, sel[i])}</span>`);
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (activeIdx < 0 || !results[activeIdx]) return;
+      renderBoard(results[activeIdx]);
+      tempoChart($('chart-tempo'), results[activeIdx]);
+      renderCharts(results[activeIdx], filtered());
+    }, 150);
+  });
+
+  // ======================================================================
+  // Word reuse stats, compared against a baseline kept in this browser
+  // ======================================================================
+  const BASELINE_KEY = SETTINGS_KEY + '.reuse-baseline';
+  let baseline = null;
+  try { baseline = JSON.parse(localStorage.getItem(BASELINE_KEY)); } catch (_) {}
+
+  const REUSE_ROWS = [
+    ['Levels', s => s.levels, String, 0],
+    ['Word slots', (s, g) => s[g].placements, String, 0],
+    ['Distinct words', (s, g) => s[g].distinct, String, 1],
+    ['Mean uses per word', (s, g) => s[g].mean, fmt2, -1],
+    ['Median uses per word', (s, g) => s[g].median, fmt1, -1],
+    ['90th pct uses', (s, g) => s[g].p90, String, -1],
+    ['Max uses', (s, g) => s[g].max, String, -1],
+    ['Words used once', (s, g) => s[g].once, pct, 1],
+    ['Top 10 words\' share of slots', (s, g) => s[g].top10Share, pct, -1],
+    ['Slots filled by optimizer', (s, g) => g === 'all' ? s.swappedShare : null, pct, 0],
+    ['Kept swaps per level', (s, g) => g === 'all' ? s.acceptedPerLevel : null, fmt1, 0],
+  ];
+
+  function deltaCell(cur, base, fmt, dir) {
+    if (cur == null || base == null) return '<td></td>';
+    const d = cur - base;
+    if (Math.abs(d) < 1e-9) return '<td class="muted">=</td>';
+    const cls = dir ? (Math.sign(d) === dir ? 'better' : 'worse') : 'muted';
+    return `<td class="${cls}">${d > 0 ? '+' : '−'}${fmt(Math.abs(d))}</td>`;
+  }
+
+  function renderReuse() {
+    $('reuse').hidden = !reuse;
+    if (!reuse) return;
+    const b = baseline, groups = ['all', 'swapped'];
+    const diff = b && b.config ? Object.keys(reuse.config).filter(k => JSON.stringify(reuse.config[k]) !== JSON.stringify(b.config[k])) : [];
+    $('reuse-note').innerHTML = !b
+      ? 'No baseline yet. Set one, change the code or settings, then generate again with the same seed to compare.'
+      : (diff.length
+        ? `<span class="warn">Baseline used different settings: ${diff.map(k => k.replace(/^(o|fn)-/, '')).join(', ')}.</span>`
+        : 'Baseline used the same settings.') + ` Baseline set ${new Date(b.at).toLocaleString()}.`;
+    const val = (s, g, row) => s ? row[1](s, g) : null;
+    $('reuse-table').innerHTML = `<thead><tr><th class="l">Metric</th><th>All words</th><th>Baseline</th><th>Δ</th><th>Optimizer words</th><th>Baseline</th><th>Δ</th></tr></thead><tbody>` +
+      REUSE_ROWS.map(row => `<tr><td class="l">${row[0]}</td>` + groups.map(g => {
+        const cur = val(reuse, g, row), base = val(b, g, row), f = x => x == null ? '' : row[2](x);
+        return `<td>${f(cur)}</td><td class="muted">${f(base)}</td>${deltaCell(cur, base, row[2], row[3])}`;
+      }).join('') + '</tr>').join('') + '</tbody>';
+    const baseLen = new Map(((b && b.byLen) || []).map(x => [x.len, x]));
+    $('reuse-len').innerHTML = `<thead><tr><th>Len</th><th title="Target words of this length in the dictionary">Pool</th><th>Distinct</th><th title="Distinct ÷ pool">Pool used</th><th>Mean uses</th><th>Baseline</th><th>Max</th></tr></thead><tbody>` +
+      reuse.byLen.map(x => {
+        const bl = baseLen.get(x.len);
+        return `<tr><td>${x.len}</td><td>${x.pool}</td><td>${x.distinct}</td><td>${x.pool ? pct(x.distinct / x.pool) : ''}</td><td>${fmt2(x.mean)}</td><td class="muted">${bl ? fmt2(bl.mean) : ''}</td><td>${x.max}</td></tr>`;
+      }).join('') + '</tbody>';
+    const list = top => top.map(([w, n, s]) => `<span class="w">${w}<sub> ×${n}${s ? ` (${s} opt)` : ''}</sub></span>`).join('') || '—';
+    $('reuse-top').innerHTML = `<div>${list(reuse.top)}</div><div class="muted">${b ? list(b.top) : 'No baseline'}</div>`;
+  }
+
+  $('reuse-base').addEventListener('click', () => {
+    if (!reuse) return;
+    baseline = { ...reuse, at: Date.now() };
+    try { localStorage.setItem(BASELINE_KEY, JSON.stringify(baseline)); } catch (_) { toast('Could not save; kept for this page only'); }
+    renderReuse();
+    toast('Baseline set');
+  });
+  $('reuse-copy').addEventListener('click', async () => {
+    if (!reuse) return;
+    try { await navigator.clipboard.writeText(JSON.stringify(reuse, null, 2)); toast('Copied stats'); }
+    catch (_) { toast('Clipboard blocked by the browser'); }
+  });
+
+  // ======================================================================
+  // Export (index.html level format)
+  // ======================================================================
+  const nameOf = r => r.levelNo ? `Level ${r.levelNo}` : `Generated ${r.seed}`;
+  function exportJson() {
+    const picked = [...selected].sort((a, b) => a - b).map(i => results[i]);
+    return JSON.stringify({ levels: picked.map((r, n) => G.levelJson(r, n + 1, nameOf(r))) }, null, 2);
+  }
+
+  $('play').addEventListener('click', () => {
+    if (activeIdx < 0) return;
+    const r = results[activeIdx];
+    const url = 'index.html#play=' + encodeURIComponent(JSON.stringify(G.levelJson(r, 1, nameOf(r))));
+    window.open(url, 'layered-word-link-play');
+  });
+
+  function toast(msg) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1600);
+  }
+
+  $('download').addEventListener('click', () => {
+    if (!selected.size) return toast('Select some levels first');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([exportJson()], { type: 'application/json' }));
+    a.download = runInfo.kind === 'funnel' ? `levels_${runInfo.lang}_${runInfo.preset || 'funnel'}.json` : `levels_generated_${runInfo.lang}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  $('copy').addEventListener('click', async () => {
+    if (!selected.size) return toast('Select some levels first');
+    try { await navigator.clipboard.writeText(exportJson()); toast(`Copied ${selected.size} levels`); }
+    catch (_) { toast('Clipboard blocked by the browser'); }
+  });
+
+  // ======================================================================
+  // Settings persistence (per-browser convenience only)
+  // ======================================================================
+  const SETTING_IDS = ['o-lang', 'o-w', 'o-h', 'o-profile', 'o-min', 'o-max', 'o-cover', 'o-lenbias', 'o-easytop', 'o-optimize', 'o-swaps', 'o-reusepen', 'o-maxbonus', 'o-count', 'o-maxtries', 'o-reversed', 'o-noinplace', 'o-rmix', 'o-fullboard', 'o-seed',
+    'fn-lang', 'fn-preset', 'fn-count', 'fn-seed', 'fn-swaps', 'fn-tries', 'fn-cands', 'fn-avoid', 'fn-stages'];
+  const settingsSnapshot = () => ({ ...Object.fromEntries(SETTING_IDS.map(id => [id, $(id).type === 'checkbox' ? $(id).checked : $(id).value])), model: readModel() });
+  function saveSettings() {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settingsSnapshot())); } catch (_) {}
+  }
+  let savedModel = G.DEFAULT_MODEL;
+  try {
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {};
+    SETTING_IDS.forEach(id => {
+      if (s[id] == null) return;
+      if ($(id).type === 'checkbox') $(id).checked = !!s[id]; else $(id).value = s[id];
+    });
+    if (s.model) savedModel = { ...G.DEFAULT_MODEL, ...s.model };
+  } catch (_) {}
+  renderModel(savedModel);
+  if (!$('fn-stages').value.trim()) $('fn-stages').value = stagesText(presetStages());
+
+  try {
+    const v = $('o-profile').value.trim();
+    segments = v.startsWith('[') ? JSON.parse(v) : [{ type: 'single', counts: v }];
+    if (!Array.isArray(segments) || !segments.length) throw new Error('empty');
+  } catch (_) { segments = [{ type: 'single', counts: '1,4,6,4,2,1' }]; }
+  renderBuilder();
+
+  $('o-lang').addEventListener('change', renderDictStatus);
+  $('fn-lang').addEventListener('change', renderDictStatus);
+  $('generate').addEventListener('click', () => { if (running) stopRequested = true; else runBatch(); });
+  $('fn-generate').addEventListener('click', () => { if (running) stopRequested = true; else runFunnel(); });
+  parseStages();
+  render();
+  loadDicts();
+
+  window.__gen = { G, DICT, get results() { return results; }, exportJson };
+})();
+</script>
+</body>
+</html>
